@@ -4140,3 +4140,199 @@ textarea::placeholder {
     min-height: 44px;
   }
 }
+/* Programme catalogue: expandable sections for the supplied programme groups. */
+.programme-focus {
+  max-width: 850px;
+  margin-bottom: 60px;
+}
+.programme-focus > p:not(.eyebrow) {
+  color: var(--muted);
+  font-size: 17px;
+  line-height: 1.85;
+}
+.programme-jump-links {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 30px;
+}
+.programme-jump-links > a {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  min-height: 44px;
+  padding: 10px 17px;
+  border: 1px solid var(--line);
+  border-radius: 30px;
+  font-size: 12px;
+  background: var(--paper);
+}
+.programme-details {
+  display: grid;
+  gap: 60px;
+}
+.programme-detail {
+  display: grid;
+  grid-template-columns: 0.8fr 1.2fr;
+  gap: 55px;
+  align-items: start;
+  padding-top: 40px;
+  border-top: 1px solid var(--line);
+  scroll-margin-top: 120px;
+}
+.programme-detail > .photo-slot {
+  height: 420px;
+  position: sticky;
+  top: 115px;
+}
+.programme-detail h2 {
+  font-size: 42px;
+  margin-bottom: 22px;
+}
+.programme-detail > div > p:not(.eyebrow) {
+  font-size: 15px;
+  color: var(--muted);
+  line-height: 1.9;
+}
+.programme-detail .check-list {
+  margin: 25px 0 30px;
+}
+.programme-detail .check-list li {
+  font-size: 13px;
+}
+.programme-detail-actions {
+  display: flex;
+  gap: 25px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.programme-detail-actions .text-link {
+  font-size: 12px;
+}
+.future-plans {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  background: var(--sage);
+  padding: 45px;
+  border-radius: 6px;
+}
+.future-plans h2 {
+  font-size: 40px;
+}
+.future-plans > div > p:not(.eyebrow) {
+  font-size: 14px;
+  color: var(--muted);
+  line-height: 1.9;
+}
+.future-plans .check-list {
+  margin: 0;
+  align-content: center;
+  gap: 20px;
+}
+.challenge-list {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0 35px;
+  margin: 0 0 30px;
+}
+.challenge-list li {
+  display: flex;
+  align-items: baseline;
+  gap: 18px;
+  border-top: 1px solid var(--line);
+  padding: 20px 0;
+  font-size: 15px;
+}
+.value-card h3 {
+  font-size: 26px;
+  letter-spacing: -0.8px;
+  margin: 30px 0 15px;
+}
+.testimonial-slots .photo-slot {
+  height: 300px;
+}
+@media (max-width: 1000px) {
+  .programme-detail {
+    gap: 35px;
+    grid-template-columns: 0.8fr 1fr;
+  }
+  .programme-detail h2 {
+    font-size: 35px;
+  }
+  .programme-detail > .photo-slot {
+    height: 350px;
+  }
+  .future-plans {
+    padding: 32px;
+    gap: 35px;
+  }
+  .future-plans h2 {
+    font-size: 34px;
+  }
+}
+@media (max-width: 760px) {
+  .programme-focus {
+    margin-bottom: 40px;
+  }
+  .programme-focus h2 {
+    font-size: 37px;
+  }
+  .programme-focus > p:not(.eyebrow) {
+    font-size: 15px;
+  }
+  .programme-jump-links > a {
+    font-size: 11px;
+  }
+  .programme-details {
+    gap: 40px;
+  }
+  .programme-detail {
+    grid-template-columns: 1fr;
+    gap: 28px;
+    scroll-margin-top: 95px;
+    padding-top: 30px;
+  }
+  .programme-detail > .photo-slot {
+    position: relative;
+    top: auto;
+    height: 290px;
+  }
+  .programme-detail h2 {
+    font-size: 34px;
+  }
+  .programme-detail > div > p:not(.eyebrow) {
+    font-size: 14px;
+  }
+  .programme-detail-actions {
+    gap: 15px;
+  }
+  .programme-detail-actions .button {
+    font-size: 11px;
+  }
+  .future-plans {
+    grid-template-columns: 1fr;
+    padding: 27px;
+    gap: 30px;
+  }
+  .future-plans h2 {
+    font-size: 33px;
+  }
+  .future-plans .check-list {
+    gap: 15px;
+  }
+  .future-plans .check-list li {
+    font-size: 13px;
+  }
+  .challenge-list {
+    grid-template-columns: 1fr;
+  }
+  .challenge-list li {
+    font-size: 14px;
+  }
+  .value-card h3 {
+    font-size: 25px;
+  }
+}

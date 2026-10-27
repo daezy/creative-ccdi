@@ -1,3 +1,10 @@
+import {
+  ProgrammeCatalogue,
+  ReportedProgress,
+  FuturePlans,
+  DeliveryChallenges,
+} from "@/components/programme-content";
+import { fundingSources, fundUses, testimonials } from "@/lib/programmes";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
@@ -339,61 +346,7 @@ function PageContent({ slug }: { slug: string }) {
     case "programmes":
       return (
         <>
-          <div className="programme-list">
-            {[
-              {
-                name: "Vocational skills acquisition",
-                description:
-                  "Practical training in fashion, food, beauty, digital skills, agriculture, and printing.",
-                href: "/skills-training/",
-                icon: "skills",
-                theme: "sage",
-              },
-              {
-                name: "Entrepreneurship & enterprise",
-                description:
-                  "Connect practical abilities with business learning and productive services.",
-                href: "/projects/social-enterprise/",
-                icon: "enterprise",
-                theme: "gold",
-              },
-              {
-                name: "Child & youth empowerment",
-                description:
-                  "Care, education, life skills, welfare support, and mentorship for children and young people.",
-                href: "/projects/benevolent-childcare/",
-                icon: "care",
-                theme: "clay",
-              },
-              {
-                name: "Family & community development",
-                description:
-                  "Parenting, relationships, healthy living, and value-based community programmes.",
-                href: "/projects/creative-community/",
-                icon: "community",
-                theme: "cream",
-              },
-            ].map((p, i) => (
-              <Link href={p.href} className="programme-list-item" key={p.name}>
-                <PhotoSlot
-                  label={p.name}
-                  variant={p.theme}
-                  number={`0${i + 1}`}
-                />
-                <div>
-                  <span className="number-label">PROGRAMME / 0{i + 1}</span>
-                  <h2>{p.name}</h2>
-                  <p>{p.description}</p>
-                  <span className="text-link">
-                    Explore programme <ArrowRight size={18} />
-                  </span>
-                </div>
-                <span className="round-arrow">
-                  <ArrowUpRight size={24} />
-                </span>
-              </Link>
-            ))}
-          </div>
+          <ProgrammeCatalogue />
           <Faq />
         </>
       );
@@ -490,6 +443,8 @@ function PageContent({ slug }: { slug: string }) {
               ))}
             </div>
           </section>
+          <ReportedProgress />
+          <FuturePlans />
           <div className="statement-panel">
             <Eyebrow>Our impact philosophy</Eyebrow>
             <h2>Learn → Develop → Master → Apply → Impact</h2>
@@ -706,16 +661,18 @@ function PageContent({ slug }: { slug: string }) {
               Share your CCDI story
             </Button>
           </div>
-          <div className="three-cards">
-            {[
-              "A learner’s journey",
-              "A volunteer’s perspective",
-              "A community story",
-            ].map((t, i) => (
-              <article className="story-placeholder" key={t}>
-                <PhotoSlot label={t} variant={["sage", "gold", "clay"][i]} />
-                <h3>{t}</h3>
-                <p>Story space · Awaiting approved contribution</p>
+          <div className="three-cards testimonial-slots">
+            {testimonials.map((story, i) => (
+              <article className="story-placeholder" key={story.title}>
+                <PhotoSlot
+                  label={story.image}
+                  number={`0${i + 1}`}
+                  variant={story.theme}
+                />
+                <h3>{story.title}</h3>
+                <p>
+                  Testimonial {i + 1} of 5 · Awaiting approved story and photo
+                </p>
               </article>
             ))}
           </div>
@@ -952,36 +909,62 @@ function PageContent({ slug }: { slug: string }) {
       );
     case "financial-transparency":
       return (
-        <div className="prose narrow">
-          <h2>Our commitment</h2>
-          <p>
-            CCDI is committed to financial transparency, measurable impact
-            reporting, sustainable growth, ethical leadership, and strategic
-            partnerships.
-          </p>
-          <h2>Governance and oversight</h2>
-          <p>
-            The organisation operates under the supervision of its Board of
-            Trustees and Management Team. Its supplied governance statement
-            describes periodic meetings to review activities, approve
-            programmes, and strengthen organisational effectiveness.
-          </p>
-          <h2>Sustainable support</h2>
-          <p>
-            CCDI’s social-enterprise arm is designed to generate income that
-            supports its programmes and reduces donor dependency.
-          </p>
-          <h2>Reports and financial information</h2>
-          <p>
-            Approved financial statements, reporting periods, and detailed
-            impact publications have not yet been supplied for this website.
-            They will be added when available. No payment is collected on this
-            website.
-          </p>
-          <TextLink href="/contact/?interest=Financial%20transparency">
-            Ask about reporting and accountability
-          </TextLink>
-        </div>
+        <>
+          <div className="prose narrow">
+            <h2>Our commitment</h2>
+            <p>
+              CCDI is committed to financial transparency, measurable impact
+              reporting, sustainable growth, ethical leadership, and strategic
+              partnerships.
+            </p>
+            <h2>Governance and oversight</h2>
+            <p>
+              The organisation operates under the supervision of its Board of
+              Trustees and Management Team. Its supplied governance statement
+              describes periodic meetings to review activities, approve
+              programmes, and strengthen organisational effectiveness.
+            </p>
+            <h2>Sustainable support</h2>
+            <p>
+              CCDI’s social-enterprise arm is designed to generate income that
+              supports its programmes and reduces donor dependency.
+            </p>
+            <h2>How our work is supported</h2>
+            <p>CCDI reports receiving support through:</p>
+            <ul className="check-list">
+              {fundingSources.map((source) => (
+                <li key={source}>
+                  <Check size={16} aria-hidden="true" />
+                  {source}
+                </li>
+              ))}
+            </ul>
+            <h2>How funds are used</h2>
+            <p>
+              Funds received are used for the organisation’s programme and
+              operational needs, including:
+            </p>
+            <ul className="check-list">
+              {fundUses.map((use) => (
+                <li key={use}>
+                  <Check size={16} aria-hidden="true" />
+                  {use}
+                </li>
+              ))}
+            </ul>
+            <h2>Reports and financial information</h2>
+            <p>
+              Approved financial statements, reporting periods, and detailed
+              impact publications have not yet been supplied for this website.
+              They will be added when available. No payment is collected on this
+              website.
+            </p>
+            <TextLink href="/contact/?interest=Financial%20transparency">
+              Ask about reporting and accountability
+            </TextLink>
+          </div>
+          <DeliveryChallenges />
+        </>
       );
     default:
       return null;

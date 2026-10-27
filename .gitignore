@@ -4,3 +4,7 @@ out/
 *.tsbuildinfo
 .env*
 .openai/*.zip
+
+# Original local image collection is preserved separately from approved web assets.
+/images/
+.DS_Store

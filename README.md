@@ -51,3 +51,7 @@ PhotoSlot labels are descriptive so you can search for a slot. Placeholder artwo
 ## Hosting
 
 `.openai/hosting.json` contains the private Sites project identity. Preserve it across updates. The static export is portable and does not depend on Sites for runtime features.
+
+## Additional programme content
+
+The additional programme overview supplied in this chat is maintained in `src/lib/programmes.ts`. It covers youth, women, benevolent and childcare, and community/family programmes; reported achievements; delivery challenges; funding sources and uses; future plans; and five reserved testimonial slots. Reporting-period dates, financial amounts, evidence attachments, and actual testimonial quotations were not supplied. The catalogue and related project pages use the supplied programme names, including Couples Blissful Day events. Original images in the root `images/` folder remain local; only approved assets placed in `public/images/` are part of the web build.

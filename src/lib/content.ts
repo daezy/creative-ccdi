@@ -126,6 +126,9 @@ export const arms = [
       "Food, clothing, and healthcare support",
       "Child protection advocacy and awareness",
       "Mentorship, counselling, and psychosocial support",
+      "Children’s Day celebrations and awareness programmes",
+      "School assistance and educational materials",
+      "Child rights awareness and moral development",
     ],
     outcomes: [
       "Greater protection for vulnerable children",
@@ -154,6 +157,11 @@ export const arms = [
       "Preventive health and wellness education",
       "Community relationship development",
       "Peaceful homes and conflict-prevention education",
+      "Marriage enrichment seminars and workshops",
+      "Couples Blissful Day events",
+      "Family counselling and responsible family management",
+      "Community welfare and humanitarian outreach",
+      "Community sensitisation and awareness campaigns",
     ],
     outcomes: [
       "Stronger family bonds",
