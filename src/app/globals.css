@@ -4638,3 +4638,19 @@ textarea::placeholder {
     font-size: 30px;
   }
 }
+.board-photo {
+  margin: 0 0 45px;
+  max-width: 1100px;
+}
+.board-photo > img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 6px;
+  background: var(--sage);
+}
+.board-photo > figcaption {
+  padding-top: 14px;
+  font-size: 12px;
+  color: var(--muted);
+}

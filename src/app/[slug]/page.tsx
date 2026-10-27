@@ -207,6 +207,16 @@ function PageContent({ slug }: { slug: string }) {
               CCDI operates under the supervision of its Board of Trustees and
               Management Team.
             </SectionHead>
+            <figure className="board-photo">
+              <img
+                src="/images/board-of-trustees.jpeg"
+                alt="CCDI Board of Trustees group photograph"
+                width={1280}
+                height={759}
+                loading="lazy"
+              />
+              <figcaption>CCDI Board of Trustees</figcaption>
+            </figure>
             <div className="trustee-grid">
               {["Gloria Omoze Omagbemi", "Temisan Ignatius Omagbemi"].map(
                 (name, i) => (
