@@ -387,7 +387,7 @@ export const pageInfo: Record<
     label: "Community voices",
     title: "Every journey has a story.",
     description:
-      "A place for the people, experiences, and possibilities at the heart of CCDI.",
+      "First-hand stories of learning, growth, mentorship, and service from CCDI’s community, alongside personal leadership reflections.",
   },
   gallery: {
     label: "Life at CCDI",

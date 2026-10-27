@@ -133,30 +133,3 @@ export const fundUses = [
   "Welfare support",
   "Administration and operational expenses",
 ];
-export const testimonials = [
-  {
-    title: "A young person’s journey",
-    image: "Youth empowerment testimonial portrait",
-    theme: "sage",
-  },
-  {
-    title: "A woman’s next chapter",
-    image: "Women’s empowerment testimonial portrait",
-    theme: "gold",
-  },
-  {
-    title: "A family’s perspective",
-    image: "Family strengthening testimonial portrait",
-    theme: "clay",
-  },
-  {
-    title: "A volunteer’s experience",
-    image: "Volunteer testimonial portrait",
-    theme: "cream",
-  },
-  {
-    title: "A community connection",
-    image: "Community testimonial portrait",
-    theme: "sage",
-  },
-];

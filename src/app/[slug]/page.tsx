@@ -4,7 +4,8 @@ import {
   FuturePlans,
   DeliveryChallenges,
 } from "@/components/programme-content";
-import { fundingSources, fundUses, testimonials } from "@/lib/programmes";
+import { fundingSources, fundUses } from "@/lib/programmes";
+import { Testimonials } from "@/components/testimonials";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
@@ -216,7 +217,11 @@ function PageContent({ slug }: { slug: string }) {
                       variant={i ? "cream" : "sage"}
                     />
                     <h3>{name}</h3>
-                    <p>Board of Trustees · Life Skill Coach</p>
+                    <p>
+                      {i
+                        ? "Trustee Secretary · Life Skill Coach"
+                        : "Chairman · Life Skills Coach"}
+                    </p>
                   </article>
                 ),
               )}
@@ -636,48 +641,7 @@ function PageContent({ slug }: { slug: string }) {
     case "gallery":
       return <Gallery />;
     case "testimonials":
-      return (
-        <>
-          <div className="testimonial-feature">
-            <span aria-hidden="true" className="quote-mark">
-              “
-            </span>
-            <h2>
-              Behind every skill
-              <br />
-              is a person.
-              <br />
-              <em>
-                Behind every person,
-                <br />a possibility.
-              </em>
-            </h2>
-            <p>
-              We’re making space for first-hand stories from CCDI’s learners,
-              families, volunteers, and partners. Approved testimonials will
-              appear here.
-            </p>
-            <Button href="/contact/?interest=Sharing%20my%20CCDI%20story">
-              Share your CCDI story
-            </Button>
-          </div>
-          <div className="three-cards testimonial-slots">
-            {testimonials.map((story, i) => (
-              <article className="story-placeholder" key={story.title}>
-                <PhotoSlot
-                  label={story.image}
-                  number={`0${i + 1}`}
-                  variant={story.theme}
-                />
-                <h3>{story.title}</h3>
-                <p>
-                  Testimonial {i + 1} of 5 · Awaiting approved story and photo
-                </p>
-              </article>
-            ))}
-          </div>
-        </>
-      );
+      return <Testimonials />;
     case "blog":
       return (
         <div className="journal-grid">
