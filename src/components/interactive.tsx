@@ -11,6 +11,7 @@ import {
   Camera,
   ArrowRight,
   ArrowLeft,
+  ArrowUp,
   Heart,
 } from "lucide-react";
 import { training, facebook } from "@/lib/content";
@@ -190,7 +191,8 @@ export function Gallery() {
           </section>
         ))}
         <a className="text-link gallery-return" href="#gallery-collections">
-          Back to collections ↑
+          Back to collections{" "}
+          <ArrowUp className="inline-icon" aria-hidden="true" />
         </a>
       </div>
       <Dialog.Portal>

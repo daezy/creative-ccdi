@@ -13,7 +13,7 @@ import {
 } from "@/components/organisation-content";
 import { organisationCopy as copy } from "@/lib/organisation-copy";
 import Link from "next/link";
-import { ArrowUpRight, Check } from "lucide-react";
+import { ArrowUpRight, Check, Asterisk } from "lucide-react";
 import { Hero } from "@/components/hero";
 import {
   Button,
@@ -34,7 +34,7 @@ export default function Home() {
       <section className="belief-strip">
         <div className="container">
           <span className="belief-star" aria-hidden="true">
-            ✳
+            <Asterisk size="1em" aria-hidden="true" />
           </span>
           <p>
             Everyone has potential.
@@ -228,7 +228,7 @@ export default function Home() {
               number="04"
             />
             <span className="community-star" aria-hidden="true">
-              ✳
+              <Asterisk size="1em" aria-hidden="true" />
             </span>
           </div>
         </div>

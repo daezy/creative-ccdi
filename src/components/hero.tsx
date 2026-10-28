@@ -11,6 +11,8 @@ import {
   Pause,
   Play,
   ArrowDownRight,
+  ArrowUpRight,
+  Asterisk,
 } from "lucide-react";
 import { Button, Eyebrow, PhotoSlot } from "./ui";
 import library from "@/lib/media-library.json";
@@ -276,7 +278,9 @@ export function Hero() {
           </div>
           <div className="hero-bottom">
             <div className="small-orbit" aria-hidden="true">
-              <span>✳</span>
+              <span>
+                <Asterisk size="1em" aria-hidden="true" />
+              </span>
             </div>
             <p>
               Discover. Develop.
@@ -320,7 +324,9 @@ export function Hero() {
                 </textPath>
               </text>
             </svg>
-            <span aria-hidden="true">↗</span>
+            <span aria-hidden="true">
+              <ArrowUpRight size="1em" />
+            </span>
           </div>
           <div className="hero-note">
             <span>THE CCDI WAY</span>

@@ -1,3 +1,4 @@
+import { ArrowUpRight } from "lucide-react";
 import { responsive, SIZES } from "@/lib/responsive";
 import library from "@/lib/media-library.json";
 import videos from "@/lib/video-library.json";
@@ -90,7 +91,10 @@ export function Publications() {
                 {...responsive(p.src, p.width, SIZES.quarter)}
               />
               <h2>{p.alt}</h2>
-              <span className="text-link">View cover ↗</span>
+              <span className="text-link">
+                View cover{" "}
+                <ArrowUpRight className="inline-icon" aria-hidden="true" />
+              </span>
             </a>
           );
         })}
@@ -124,7 +128,10 @@ export function Publications() {
                   {...responsive(p.src, p.width, SIZES.third)}
                 />
                 <h3>{p.alt}</h3>
-                <span>View full image ↗</span>
+                <span>
+                  View full image{" "}
+                  <ArrowUpRight className="inline-icon" aria-hidden="true" />
+                </span>
               </a>
             ))}
         </div>

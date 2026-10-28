@@ -1,4 +1,4 @@
-import { Check } from "lucide-react";
+import { Check, ArrowDownRight } from "lucide-react";
 import {
   programmeGroups,
   achievements,
@@ -26,7 +26,9 @@ export function ProgrammeCatalogue() {
           {programmeGroups.map((group) => (
             <a key={group.id} href={`#${group.id}`}>
               {group.title}
-              <span aria-hidden="true">↘</span>
+              <span aria-hidden="true">
+                <ArrowDownRight size="1em" />
+              </span>
             </a>
           ))}
         </nav>

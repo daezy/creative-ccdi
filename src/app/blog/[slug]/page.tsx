@@ -1,3 +1,4 @@
+import { ArrowUpRight } from "lucide-react";
 import { pageMetadata } from "@/lib/seo";
 import { PageStructuredData } from "@/components/structured-data";
 import type { Metadata } from "next";
@@ -57,7 +58,10 @@ export default async function Article({
                   {heading}
                 </a>
               ))}
-              <Link href="/blog/">The CCDI journal ↗</Link>
+              <Link href="/blog/">
+                The CCDI journal{" "}
+                <ArrowUpRight className="inline-icon" aria-hidden="true" />
+              </Link>
             </nav>
             <div className="prose narrow">
               {a.body.map(([heading, text], index) => (

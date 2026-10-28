@@ -11,7 +11,7 @@ import { reship } from "@/lib/content";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { Check, ArrowUpRight } from "lucide-react";
+import { Check, ArrowUpRight, ArrowDownRight } from "lucide-react";
 import { arms } from "@/lib/content";
 import {
   Button,
@@ -81,11 +81,20 @@ export default async function Project({
             className="page-reading-links"
             aria-label={`${a.name}: page sections`}
           >
-            <a href="#programme-activities">{a.division} ↘</a>
+            <a href="#programme-activities">
+              {a.division}{" "}
+              <ArrowDownRight className="inline-icon" aria-hidden="true" />
+            </a>
             {detail.purposes.length > 0 && (
-              <a href="#initiative-purposes">Our purposes ↘</a>
+              <a href="#initiative-purposes">
+                Our purposes{" "}
+                <ArrowDownRight className="inline-icon" aria-hidden="true" />
+              </a>
             )}
-            <a href="#initiative-outcomes">What we work towards ↘</a>
+            <a href="#initiative-outcomes">
+              What we work towards{" "}
+              <ArrowDownRight className="inline-icon" aria-hidden="true" />
+            </a>
           </nav>
         </div>
       </section>

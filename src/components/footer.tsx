@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowUpRight, Mail, MapPin, Phone } from "lucide-react";
+import { ArrowUpRight, ArrowUp, Mail, MapPin, Phone } from "lucide-react";
 import { socials, contact } from "@/lib/content";
 import { SocialIcon } from "@/components/social-icon";
 export function Footer() {
@@ -96,7 +96,9 @@ export function Footer() {
           <div>
             <Link href="/privacy-policy/">Privacy policy</Link>
             <Link href="/child-protection/">Child protection</Link>
-            <a href="#main">Back to top ↑</a>
+            <a href="#main">
+              Back to top <ArrowUp className="inline-icon" aria-hidden="true" />
+            </a>
           </div>
         </div>
       </div>

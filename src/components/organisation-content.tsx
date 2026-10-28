@@ -1,6 +1,6 @@
 import { MembershipContent } from "./document-content";
 import { FormCallout } from "./document-library";
-import { Check } from "lucide-react";
+import { Check, ArrowRight } from "lucide-react";
 import { organisationCopy as copy } from "@/lib/organisation-copy";
 import { Button, Eyebrow, PhotoSlot, SectionHead, TextLink } from "./ui";
 
@@ -201,7 +201,19 @@ export function ImpactContent() {
       </section>
       <div className="statement-panel">
         <Eyebrow>Our impact philosophy</Eyebrow>
-        <h2>Learn → Develop → Master → Apply → Impact</h2>
+        <h2>
+          {["Learn", "Develop", "Master", "Apply", "Impact"].map((step, i) => (
+            <span className="philosophy-step" key={step}>
+              {step}
+              {i < 4 && (
+                <>
+                  {" "}
+                  <ArrowRight className="inline-icon" aria-hidden="true" />{" "}
+                </>
+              )}
+            </span>
+          ))}
+        </h2>
         <p>
           From potential to capability.
           <br />

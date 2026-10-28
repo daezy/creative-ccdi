@@ -157,7 +157,11 @@ export function HumanStory() {
             </li>
             <li>
               <span>Growing through experience</span>
-              <strong>Facilitator → Office Administrator</strong>
+              <strong>
+                Facilitator{" "}
+                <ArrowRight className="inline-icon" aria-hidden="true" /> Office
+                Administrator
+              </strong>
             </li>
             <li>
               <span>Today</span>
