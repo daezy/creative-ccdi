@@ -73,9 +73,8 @@ export function Testimonials() {
             <em>Possibilities made personal.</em>
           </h2>
           <p>
-            From learners to professionals, facilitators, and community
-            members—these are the experiences they’ve shared about their time
-            with CCDI.
+            From learners to professionals, facilitators, and community members.
+            These are the experiences they’ve shared about their time with CCDI.
           </p>
         </div>
         <div className="real-stories-grid">

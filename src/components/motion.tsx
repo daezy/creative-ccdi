@@ -106,7 +106,7 @@ export function Motion() {
 
     if (s.reduced) {
       pre?.classList.add("is-done");
-      flushIntro();
+      flushIntro(false);
       return;
     }
 
@@ -200,7 +200,7 @@ export function Motion() {
       });
     } else {
       pre?.classList.add("is-done");
-      flushIntro();
+      flushIntro(false);
     }
 
     // Header hides on scroll down, returns on scroll up.
@@ -444,7 +444,7 @@ function setupPage(
     claimed.add(hero);
     const run = () =>
       ctx.add(() => heroEntrance(hero, fromCurtain ? 0.45 : 0.1));
-    if (isFirst) onIntro(run);
+    if (isFirst) onIntro((animate) => animate && run());
     else run();
   }
 
@@ -471,7 +471,7 @@ function setupPage(
       );
   });
 
-  // 3. Headings: masked line-by-line rise — the one signature move.
+  // 3. Headings: masked line-by-line rise, the one signature move.
   all("h1, h2").forEach((h) => {
     if (skip(h) || isClaimed(h) || !h.textContent?.trim()) return;
     claimed.add(h);

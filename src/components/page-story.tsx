@@ -1,3 +1,5 @@
+import { EagerImage } from "./eager-image";
+import { responsive } from "@/lib/responsive";
 import Link from "next/link";
 import { ArrowDownRight, FileText, ShieldCheck } from "lucide-react";
 import { pageInfo } from "@/lib/content";
@@ -129,6 +131,7 @@ export const pageDesigns: Record<string, PageDesign> = {
     links: [
       ["A good place to start", "contact-details"],
       ["Let’s connect", "contact-enquiry"],
+      ["Find us", "find-ccdi"],
     ],
   },
   "privacy-policy": {
@@ -177,12 +180,13 @@ export function PageMasthead({ slug }: { slug: string }) {
           </div>
           {photo && (
             <figure className="masthead-photograph">
-              <img
+              <EagerImage
                 src={photo.src}
                 alt={photo.alt}
                 width={photo.width}
                 height={photo.height}
                 fetchPriority="high"
+                {...responsive(photo.src, photo.width)}
               />
               <figcaption>{info.label}</figcaption>
             </figure>
@@ -190,7 +194,7 @@ export function PageMasthead({ slug }: { slug: string }) {
           {design.family === "voices" && (
             <div className="masthead-portraits" aria-hidden="true">
               {communityTestimonials.slice(0, 3).map((story) => (
-                <img
+                <EagerImage
                   key={story.id}
                   src={story.portrait}
                   alt=""

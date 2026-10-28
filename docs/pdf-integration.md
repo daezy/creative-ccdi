@@ -13,7 +13,7 @@ The framework's photo/video consent form is on page 7 and is directly linked wit
 
 The PDF files are printable documents rather than interactive AcroForms. Website guidance directs visitors to download, print, complete, sign where applicable, and contact CCDI to confirm the return method. The website does not receive or store completed forms.
 
-The registration and membership document headers provide the following organisation contact details, now shown on Contact: No. 9, Sanusi Adeyemo Street, Satellite Town, Lagos, Nigeria; 07061252687; 08026264133; info@creativecdi.org. The trailing full stop in the printed email header is treated as punctuation. These are general organisation contacts, not an identified safeguarding or data-protection focal person's details.
+The registration and membership document headers provide the organisation address and phone numbers: No. 9, Sanusi Adeyemo Street, Satellite Town, Lagos, Nigeria; 07061252687; 08026264133. The original PDFs contain info@creativecdi.org, but the website now uses the subsequently confirmed email creativecraft_dt@yahoo.com. The source PDFs are preserved unchanged. These are general organisation contacts, not an identified safeguarding or data-protection focal person's details.
 
 The website's technical privacy explanation is retained alongside a link to the full supplied framework. No analytics, newsletter, application-submission or payment feature is added merely because it is described in the PDF.
 

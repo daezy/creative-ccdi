@@ -1,3 +1,5 @@
+import { EagerImage } from "./eager-image";
+import { responsive } from "@/lib/responsive";
 import library from "@/lib/media-library.json";
 import Link from "next/link";
 import { photos } from "@/lib/media";
@@ -118,12 +120,14 @@ export function PhotoSlot({
   className?: string;
 }) {
   const photo = photos[label];
+  // Eager images render client-side so they are not preloaded on every page.
+  const Img = priority ? EagerImage : "img";
   if (photo)
     return (
       <div
         className={`photo-slot has-photo ${photo.contain ? "photo-contain" : ""} photo-${variant} ${className}`}
       >
-        <img
+        <Img
           className="slot-image"
           src={photo.src}
           alt={photo.alt}
@@ -131,7 +135,9 @@ export function PhotoSlot({
           height={photo.height || 720}
           loading={priority ? "eager" : "lazy"}
           fetchPriority={priority ? "high" : "auto"}
+          decoding="async"
           style={{ objectPosition: photo.objectPosition || "center" }}
+          {...responsive(photo.src, photo.width)}
         />
       </div>
     );

@@ -1,4 +1,5 @@
 "use client";
+import { responsive, SIZES } from "@/lib/responsive";
 import library from "@/lib/media-library.json";
 import { useEffect, useState, type FormEvent } from "react";
 import { Dialog } from "@base-ui/react/dialog";
@@ -177,6 +178,8 @@ export function Gallery() {
                     width={g.width}
                     height={g.height}
                     loading="lazy"
+                    decoding="async"
+                    {...responsive(g.src, g.width, SIZES.third)}
                   />
                   <span className="gallery-expand" aria-hidden="true">
                     <ArrowUpRight size={20} />

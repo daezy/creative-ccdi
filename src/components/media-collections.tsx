@@ -1,3 +1,4 @@
+import { responsive, SIZES } from "@/lib/responsive";
 import library from "@/lib/media-library.json";
 import videos from "@/lib/video-library.json";
 import { Eyebrow, SectionHead, TextLink } from "./ui";
@@ -81,10 +82,12 @@ export function Publications() {
             >
               <img
                 src={p.src}
-                alt={`${p.alt} — publication cover`}
+                alt={`Publication cover: ${p.alt}`}
                 width={p.width}
                 height={p.height}
                 loading="lazy"
+                decoding="async"
+                {...responsive(p.src, p.width, SIZES.quarter)}
               />
               <h2>{p.alt}</h2>
               <span className="text-link">View cover ↗</span>
@@ -117,6 +120,8 @@ export function Publications() {
                   width={p.width}
                   height={p.height}
                   loading="lazy"
+                  decoding="async"
+                  {...responsive(p.src, p.width, SIZES.third)}
                 />
                 <h3>{p.alt}</h3>
                 <span>View full image ↗</span>
@@ -184,6 +189,8 @@ export function ProjectPhotos({ slug }: { slug: string }) {
                   width={p.width}
                   height={p.height}
                   loading="lazy"
+                  decoding="async"
+                  {...responsive(p.src, p.width, SIZES.third)}
                 />
               </a>
               <figcaption>{p.alt}</figcaption>

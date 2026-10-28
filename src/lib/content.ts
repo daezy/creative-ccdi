@@ -8,11 +8,25 @@ export const contact = {
     { label: "0706 125 2687", href: "tel:+2347061252687" },
     { label: "0802 626 4133", href: "tel:+2348026264133" },
   ],
-  email: "info@creativecdi.org",
+  email: "creativecraft_dt@yahoo.com",
 };
-export const socials = [{ label: "Facebook", href: facebook }];
-export const siteUrl =
-  new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://creativecdi.org").origin;
+/** Stable profile destination of the supplied TikTok share link. */
+export const tiktok = "https://www.tiktok.com/@user5333967161017";
+export const whatsapp =
+  "https://chat.whatsapp.com/GpMoc1i5cm6GCgUIMyBTwn?s=sw&p=a&mlu=4&ilr=4";
+export const socials = [
+  { label: "Facebook", href: facebook, action: "Find us on Facebook" },
+  { label: "TikTok", href: tiktok, action: "Watch on TikTok" },
+  { label: "WhatsApp", href: whatsapp, action: "Join our WhatsApp group" },
+];
+export const mapSearch = encodeURIComponent(contact.address);
+/** Google Maps' generated embed for the street; no unverified building pin. */
+export const mapEmbedUrl =
+  "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3964.623389518721!2d3.2504279757046732!3d6.442381824099205!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x103b862c7df02baf%3A0x7659515a2ec50a2f!2sSanusi%20Adeyemo%20Street%2C%20Satellite%20Town%2C%20Satellite%20102102%2C%20Lagos!5e0!3m2!1sen!2sng!4v1793190330578!5m2!1sen!2sng";
+export const mapDirectionsUrl = `https://www.google.com/maps/dir/?api=1&destination=${mapSearch}`;
+export const siteUrl = new URL(
+  process.env.NEXT_PUBLIC_SITE_URL || "https://creativecdi.org",
+).origin;
 export const navigation = [
   { label: "Home", href: "/" },
   {

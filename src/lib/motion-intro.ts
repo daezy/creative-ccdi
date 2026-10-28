@@ -2,13 +2,18 @@
  * Coordinates the first-load "intro" moment. Components register entrance
  * animations with onIntro(); they all start together when the preloader
  * lifts (or immediately when there is no preloader).
+ *
+ * Callbacks receive `animate`: false on a load without the preloader, so
+ * content that is already on screen shows immediately instead of waiting for
+ * an entrance (better first paint). Later client-side visits always animate.
  */
+type IntroCallback = (animate: boolean) => void;
 let done = false;
-const queue: Array<() => void> = [];
+const queue: IntroCallback[] = [];
 
-export function onIntro(cb: () => void) {
+export function onIntro(cb: IntroCallback) {
   if (done) {
-    cb();
+    cb(true);
     return () => {};
   }
   queue.push(cb);
@@ -18,10 +23,10 @@ export function onIntro(cb: () => void) {
   };
 }
 
-export function flushIntro() {
+export function flushIntro(animate = true) {
   if (done) return;
   done = true;
-  queue.splice(0).forEach((cb) => cb());
+  queue.splice(0).forEach((cb) => cb(animate));
   document.documentElement.classList.add("intro-done");
 }
 

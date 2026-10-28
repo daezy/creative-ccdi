@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import pages from "./seo-pages.json";
-import { contact, facebook, siteUrl } from "./content";
+import { contact, facebook, tiktok, siteUrl } from "./content";
 import { photos } from "./media";
 
 export type SeoPage = {
@@ -31,7 +31,7 @@ export function pageMetadata(path: string): Metadata {
     width: 1200,
     height: 630,
     type: "image/png",
-    alt: `${page.title} — ${organisationName}`,
+    alt: `${page.title} | ${organisationName}`,
   };
   return {
     title: { absolute: title },
@@ -86,7 +86,7 @@ export const siteStructuredData = {
         contactType: "Enquiries",
         email: contact.email,
       })),
-      sameAs: [facebook],
+      sameAs: [facebook, tiktok],
     },
     {
       "@type": "WebSite",

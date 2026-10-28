@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { Motion } from "@/components/motion";
+import { ServiceWorker } from "@/components/service-worker";
 import {
   Preloader,
   PageCurtain,
@@ -79,6 +80,7 @@ export default function RootLayout({
         <PageCurtain />
         <Motion />
         <StructuredData data={siteStructuredData} />
+        <ServiceWorker />
       </body>
     </html>
   );

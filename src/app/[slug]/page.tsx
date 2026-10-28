@@ -1,5 +1,8 @@
 import { pageMetadata } from "@/lib/seo";
 import { PageStructuredData } from "@/components/structured-data";
+import { ContactMap } from "@/components/contact-map";
+import { SocialIcon } from "@/components/social-icon";
+import { responsive, SIZES } from "@/lib/responsive";
 import {
   PageMasthead,
   CommunityEvidence,
@@ -51,7 +54,6 @@ import {
   BookOpen,
   Heart,
   MapPin,
-  Facebook,
   Mail,
   Phone,
 } from "lucide-react";
@@ -62,7 +64,8 @@ import {
   training,
   reship,
   articles,
-  facebook,
+  contact,
+  socials,
 } from "@/lib/content";
 import {
   Button,
@@ -307,8 +310,14 @@ function PageContent({ slug }: { slug: string }) {
                     src={library[servicePhotos[i]].src}
                     alt={library[servicePhotos[i]].alt}
                     loading="lazy"
+                    decoding="async"
                     width={640}
                     height={480}
+                    {...responsive(
+                      library[servicePhotos[i]].src,
+                      library[servicePhotos[i]].width,
+                      SIZES.third,
+                    )}
                   />
                 </div>
                 <Icon
@@ -514,68 +523,81 @@ function PageContent({ slug }: { slug: string }) {
       );
     case "contact":
       return (
-        <div className="contact-grid">
-          <aside className="contact-aside" id="contact-details">
-            <Eyebrow>A good place to start</Eyebrow>
-            <h2>
-              People.
-              <br />
-              Purpose.
-              <br />
-              <em>Possibilities.</em>
-            </h2>
-            <p>We’d love to learn what brings you to CCDI.</p>
-            <div className="contact-channel">
-              <Facebook size={22} />
-              <div>
-                <h3>Our Facebook community</h3>
-                <a href={facebook} target="_blank" rel="noreferrer">
-                  Visit the official page
-                  <ArrowUpRight size={16} />
-                </a>
+        <>
+          <div className="contact-grid">
+            <aside className="contact-aside" id="contact-details">
+              <Eyebrow>A good place to start</Eyebrow>
+              <h2>
+                People.
+                <br />
+                Purpose.
+                <br />
+                <em>Possibilities.</em>
+              </h2>
+              <p>We’d love to learn what brings you to CCDI.</p>
+              {socials.map((social) => (
+                <div className="contact-channel" key={social.label}>
+                  <SocialIcon platform={social.label} size={22} />
+                  <div>
+                    <h3>
+                      {social.label === "WhatsApp"
+                        ? "Our WhatsApp community"
+                        : social.label === "Facebook"
+                          ? "Our Facebook community"
+                          : "CCDI on TikTok"}
+                    </h3>
+                    <a href={social.href} target="_blank" rel="noreferrer">
+                      {social.label === "Facebook"
+                        ? "Visit the official page"
+                        : social.action}
+                      <ArrowUpRight size={16} />
+                    </a>
+                  </div>
+                </div>
+              ))}
+              <div className="contact-channel">
+                <Mail size={22} aria-hidden="true" />
+                <div>
+                  <h3>Email CCDI</h3>
+                  <a href={`mailto:${contact.email}`}>{contact.email}</a>
+                </div>
               </div>
-            </div>
-            <div className="contact-channel">
-              <Mail size={22} aria-hidden="true" />
-              <div>
-                <h3>Email CCDI</h3>
-                <a href="mailto:info@creativecdi.org">info@creativecdi.org</a>
+              <div className="contact-channel">
+                <Phone size={22} aria-hidden="true" />
+                <div>
+                  <h3>Speak with the team</h3>
+                  <a href="tel:+2347061252687">0706 125 2687</a>
+                  <a href="tel:+2348026264133">0802 626 4133</a>
+                </div>
               </div>
-            </div>
-            <div className="contact-channel">
-              <Phone size={22} aria-hidden="true" />
-              <div>
-                <h3>Speak with the team</h3>
-                <a href="tel:+2347061252687">0706 125 2687</a>
-                <a href="tel:+2348026264133">0802 626 4133</a>
+              <div className="contact-channel">
+                <MapPin size={22} />
+                <div>
+                  <h3>Visit CCDI</h3>
+                  <p>
+                    No. 9, Sanusi Adeyemo Street,
+                    <br />
+                    Satellite Town, Lagos, Nigeria.
+                  </p>
+                  <p>Confirm your programme venue before visiting.</p>
+                </div>
               </div>
+              <figure className="contact-centre-photo">
+                <PhotoSlot label="CCDI centre" variant="sage" />
+                <figcaption>
+                  The CCDI centre. Confirm your programme venue before visiting.
+                </figcaption>
+              </figure>
+              <TextLink href="/documents/#forms">
+                Registration forms & documents
+              </TextLink>
+            </aside>
+            <div id="contact-enquiry">
+              <EnquiryForm />
             </div>
-            <div className="contact-channel">
-              <MapPin size={22} />
-              <div>
-                <h3>Visit CCDI</h3>
-                <p>
-                  No. 9, Sanusi Adeyemo Street,
-                  <br />
-                  Satellite Town, Lagos, Nigeria.
-                </p>
-                <p>Confirm your programme venue before visiting.</p>
-              </div>
-            </div>
-            <figure className="contact-centre-photo">
-              <PhotoSlot label="CCDI centre" variant="sage" />
-              <figcaption>
-                The CCDI centre. Confirm your programme venue before visiting.
-              </figcaption>
-            </figure>
-            <TextLink href="/documents/#forms">
-              Registration forms & documents
-            </TextLink>
-          </aside>
-          <div id="contact-enquiry">
-            <EnquiryForm />
           </div>
-        </div>
+          <ContactMap />
+        </>
       );
     case "privacy-policy":
       return (
@@ -594,10 +616,11 @@ function PageContent({ slug }: { slug: string }) {
           </p>
           <h2>Third-party services</h2>
           <p>
-            Facebook links take you to a third-party service with its own
-            privacy practices. Information you send through Facebook is handled
-            through that service. Use your judgement about what personal
-            information to include.
+            Facebook, TikTok and WhatsApp links take you to third-party services
+            with their own privacy practices. Information you send through those
+            services is handled by them. Use your judgement about what personal
+            information to include. The contact page also includes an embedded
+            Google Map; loading or using it connects your browser to Google.
           </p>
           <h2>Photos and personal stories</h2>
           <p>

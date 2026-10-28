@@ -148,6 +148,9 @@ export function Hero() {
   const [focused, setFocused] = useState(false);
   const [reducedMotion, setReducedMotion] = useState(false);
   const [introDone, setIntroDone] = useState(false);
+  // Background photos download only when needed: the current slide, plus the
+  // next one a moment before it is due, so hidden slides cost nothing upfront.
+  const [bgLoaded, setBgLoaded] = useState<number[]>([0]);
   const rootRef = useRef<HTMLElement>(null);
   const introPlayed = useRef(false);
   const lastSlide = useRef(0);
@@ -156,10 +159,12 @@ export function Hero() {
     const root = rootRef.current;
     if (!root) return;
     let ctx: gsap.Context | undefined;
-    const off = onIntro(() => {
+    const off = onIntro((animate) => {
       setIntroDone(true);
       introPlayed.current = true;
-      if (prefersReducedMotion()) return;
+      // No preloader on this load: the hero is already on screen, so skip
+      // the entrance rather than hide and replay it.
+      if (!animate || prefersReducedMotion()) return;
       const delay = document.documentElement.classList.contains("intro-done")
         ? 0.45
         : 0.05;
@@ -197,6 +202,15 @@ export function Hero() {
     );
     return () => clearTimeout(id);
   }, [running, active]);
+  useEffect(() => {
+    const next = (active + 1) % slides.length;
+    setBgLoaded((l) => (l.includes(active) ? l : [...l, active]));
+    const id = window.setTimeout(
+      () => setBgLoaded((l) => (l.includes(next) ? l : [...l, next])),
+      2500,
+    );
+    return () => window.clearTimeout(id);
+  }, [active]);
   const slide = slides[active];
   function change(n: number) {
     setActive((n + slides.length) % slides.length);
@@ -223,7 +237,7 @@ export function Hero() {
           // eslint-disable-next-line @next/next/no-img-element
           <img
             key={s.background.src}
-            src={s.background.src}
+            src={bgLoaded.includes(i) ? s.background.src : undefined}
             alt=""
             className={i === active ? "is-active" : undefined}
             loading={i === 0 ? "eager" : "lazy"}

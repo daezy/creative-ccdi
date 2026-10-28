@@ -23,11 +23,11 @@ export const communityTestimonials: Testimonial[] = [
     portrait: "/images/testimonials/testimonial-emadu.jpeg",
     position: "50% 27%",
     excerpt:
-      "CCDI did more than teach me a skill—it helped me discover what I could become and gave me the opportunity to develop the capacity to pursue it.",
+      "CCDI did more than teach me a skill. It helped me discover what I could become and gave me the opportunity to develop the capacity to pursue it.",
     paragraphs: [
       "My name is Emadu Erhumena, and my journey with Creative Craft Development Initiative (CCDI) began in 2015 as a student. What started as an opportunity to learn and develop skills soon became a journey that shaped my career and who I am today.",
       "At CCDI, I progressed from being a student to becoming a facilitator and later the Business Development/Office Administrator, where I had the privilege of coordinating and overseeing over 200 students and facilitators. It was my first real work experience, and it gave me invaluable opportunities to develop my leadership, administrative, communication, and people-management skills.",
-      "Looking back, I can confidently say that CCDI did more than teach me a skill—it helped me discover what I could become and gave me the opportunity to develop the capacity to pursue it.",
+      "Looking back, I can confidently say that CCDI did more than teach me a skill. It helped me discover what I could become and gave me the opportunity to develop the capacity to pursue it.",
       "Today, I am a businesswoman and HR Practitioner, and many of the lessons, experiences, and values I gained through CCDI continue to influence my professional journey.",
       "I am grateful to have been part of CCDI’s story, and I am even more excited to be part of its new development and growth journey. It is inspiring to see an organisation that invests in people, equips them with meaningful skills, and creates pathways for them to build purposeful and self-sufficient lives.",
       "CCDI was part of my beginning, and I am proud to be part of its future.",
@@ -44,11 +44,11 @@ export const communityTestimonials: Testimonial[] = [
     excerpt:
       "It gave me an environment to discover abilities within me that I may not have recognised on my own and encouraged me to keep growing beyond where I started.",
     paragraphs: [
-      "My journey with Creative Craft Development Initiative (CCDI) began in 2015. At the time, I simply saw it as an opportunity to learn, grow, and develop myself. Looking back today, I realise that it was much more than that—it was the beginning of a journey that has continued to shape my life.",
+      "My journey with Creative Craft Development Initiative (CCDI) began in 2015. At the time, I simply saw it as an opportunity to learn, grow, and develop myself. Looking back today, I realise that it was much more than that. It was the beginning of a journey that has continued to shape my life.",
       "Over the years, CCDI has been a place where I have experienced self-discovery, capacity building, learning, and personal development. It gave me an environment to discover abilities within me that I may not have recognised on my own and encouraged me to keep growing beyond where I started.",
       "What makes my CCDI experience particularly meaningful is that it has been a journey of growth. From where I was in 2015 to where I am today, I have gained not only skills and knowledge, but also greater confidence, discipline, resilience, and a deeper understanding of the importance of empowering people with the right opportunities.",
       "CCDI taught me that sometimes, all a person needs is someone or an organisation willing to provide the platform, guidance, and opportunity to discover what they are capable of becoming.",
-      "Today, when I look back at my journey, I am grateful that my story is connected to CCDI. I have seen firsthand how investing in people and equipping them with practical skills can create lasting impact—not only in individuals, but also in families and communities.",
+      "Today, when I look back at my journey, I am grateful that my story is connected to CCDI. I have seen firsthand how investing in people and equipping them with practical skills can create lasting impact, not only in individuals, but also in families and communities.",
       "I am proud of how far I have come since 2015, and I am even more grateful to still be connected to an organisation whose vision continues to centre around self-discovery, capacity building, and skills for life.",
       "CCDI was part of my journey then, it has contributed to who I am today, and I look forward to seeing the greater impact it will continue to make in the lives of many more people.",
       "I am grateful for the journey. I am grateful for the growth. And I am grateful to be part of the CCDI story.",
@@ -84,7 +84,7 @@ export const communityTestimonials: Testimonial[] = [
       "My name is Uchenna Ebenezer, and my journey with Creative Craft Development Initiative (CCDI) began in the year 2011.",
       "From being a student, I have become a professional guitarist (bass player) and a professional decorator.",
       "CCDI offered me the opportunity to develop my skill/talent and build my capacity and confidence.",
-      "The words of Pastor Omagbemi—“If you graduate from school, get a skill, and if you get a skill, go to school”—were a big motivation and inspiration to me.",
+      "The words of Pastor Omagbemi, “If you graduate from school, get a skill, and if you get a skill, go to school”, were a big motivation and inspiration to me.",
       "I am sincerely grateful to God Almighty for the opportunity provided by CCDI to develop myself. I am also grateful to CCDI for this opportunity.",
     ],
   },

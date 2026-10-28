@@ -2279,6 +2279,72 @@ details > p {
   gap: 90px;
   align-items: start;
 }
+.footer-social-links {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+}
+.footer-social-links .social-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.contact-channel a {
+  overflow-wrap: anywhere;
+}
+.contact-channel > svg {
+  flex-shrink: 0;
+}
+.contact-map-section {
+  margin-top: clamp(48px, 7vw, 90px);
+  padding-top: 42px;
+  border-top: 1px solid var(--line);
+}
+.contact-map-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  margin-bottom: 28px;
+}
+.contact-map-heading h2 {
+  font-size: clamp(30px, 3.5vw, 48px);
+  margin-bottom: 14px;
+}
+.contact-map-heading p:not(.eyebrow) {
+  font-size: 14px;
+  color: var(--muted);
+  margin: 0;
+}
+.contact-map-heading .button {
+  flex-shrink: 0;
+}
+.contact-map-frame {
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: var(--sage);
+}
+.contact-map-frame iframe {
+  display: block;
+  width: 100%;
+  height: 420px;
+  border: 0;
+}
+.contact-map-note {
+  margin: 14px 0 0;
+  color: var(--muted);
+  font-size: 12px;
+}
+@media (max-width: 760px) {
+  .contact-map-heading {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+  .contact-map-frame iframe {
+    height: 320px;
+  }
+}
 .contact-aside h2 {
   font-size: 50px;
   margin-bottom: 25px;
@@ -6213,7 +6279,8 @@ textarea::placeholder {
 }
 
 /* ---------- Hold first-view content until its entrance plays ---------- */
-.motion-ready:not(.intro-done)
+/* Only while the preloader covers the page; otherwise show content at once. */
+.motion-ready:not(.preloader-skip):not(.intro-done)
   :is(
     .home-hero .hero-copy > *,
     .home-hero .hero-visual > *,

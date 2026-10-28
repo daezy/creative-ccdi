@@ -7,7 +7,6 @@ import { Dialog } from "@base-ui/react/dialog";
 import {
   ArrowUpRight,
   ChevronDown,
-  Facebook,
   Heart,
   Mail,
   MapPin,
@@ -16,6 +15,7 @@ import {
   X,
 } from "lucide-react";
 import { navigation, contact, socials } from "@/lib/content";
+import { SocialIcon } from "@/components/social-icon";
 export function Header() {
   const path = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -80,9 +80,10 @@ export function Header() {
                 href={s.href}
                 target="_blank"
                 rel="noreferrer"
-                aria-label={`CCDI on ${s.label}`}
+                aria-label={s.action}
+                title={s.action}
               >
-                <Facebook size={14} aria-hidden="true" />
+                <SocialIcon platform={s.label} size={14} />
               </a>
             ))}
           </div>
@@ -96,9 +97,7 @@ export function Header() {
         <div className="container header-inner">
           <Link href="/" className="brand" aria-label="CCDI home">
             <img
-              src="/images/ccdi-logo-116.png"
-              srcSet="/images/ccdi-logo-116.png 116w, /images/ccdi-logo-232.png 232w"
-              sizes="58px"
+              src="/images/ccdi-logo-120.webp"
               width="58"
               height="53"
               alt=""

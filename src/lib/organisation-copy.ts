@@ -63,7 +63,7 @@ export const organisationCopy = {
         "Catering & Bakery Services",
         "Makeover & Beauty Skills",
         "ICT & Digital Services",
-        "Agriculture — Crop Farming & Poultry",
+        "Agriculture: Crop Farming & Poultry",
         "Printing & Publishing",
       ],
       ending:
@@ -151,14 +151,14 @@ export const projectCopy = {
     intro:
       "This arm drives sustainability through income-generating activities.",
     coreFunctions: [
-      "Decorations – Interior & Exterior Design",
+      "Decorations: Interior & Exterior Design",
       "Event Planning & Management",
-      "Catering & Confectionery – Indoor & Outdoor Services",
+      "Catering & Confectionery: Indoor & Outdoor Services",
       "Rental of Event Equipment and Utensils",
-      "Printing & Publishing – High-Quality Printing and Publications",
-      "Exclusive Fashion Design – Elegant Unisex Wear",
+      "Printing & Publishing: High-Quality Printing and Publications",
+      "Exclusive Fashion Design: Elegant Unisex Wear",
       "Business Consulting & Entrepreneurial Skills Empowerment",
-      "Livestock & Crop Farming – Raising Organic Birds and Crops",
+      "Livestock & Crop Farming: Raising Organic Birds and Crops",
     ],
     purposes: [],
     outcomes: [
@@ -170,7 +170,7 @@ export const projectCopy = {
   },
   "benevolent-childcare": {
     intro:
-      "The Young Entrepreneurs Initiative – Child Protection & Welfare Division is dedicated to nurturing, protecting, and empowering children and young people through skills training, entrepreneurship education, mentorship, and welfare support.",
+      "The Young Entrepreneurs Initiative (Child Protection & Welfare Division) is dedicated to nurturing, protecting, and empowering children and young people through skills training, entrepreneurship education, mentorship, and welfare support.",
     body: "The division places special emphasis on vulnerable children, including orphans and disadvantaged youth, by providing educational support, life skills, child protection advocacy, and humanitarian assistance to orphanages and underserved communities. Through strategic partnerships and sustainable interventions, we equip young people with the knowledge, skills, and opportunities needed to become productive, self-reliant, and responsible leaders.",
     coreFunctions: [
       "Orphanage support",

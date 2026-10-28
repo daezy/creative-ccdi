@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ArrowUpRight, Mail, MapPin, Phone } from "lucide-react";
-import { facebook, contact } from "@/lib/content";
+import { socials, contact } from "@/lib/content";
+import { SocialIcon } from "@/components/social-icon";
 export function Footer() {
   return (
     <footer className="site-footer branded-footer" id="site-footer">
@@ -9,13 +10,13 @@ export function Footer() {
           <div className="footer-intro">
             <Link href="/" className="footer-logo" aria-label="CCDI home">
               <img
-                src="/images/ccdi-logo-232.png"
-                srcSet="/images/ccdi-logo-232.png 232w, /images/ccdi-logo-432.png 432w"
-                sizes="108px"
+                src="/images/ccdi-logo-120.webp"
+                srcSet="/images/ccdi-logo-120.webp 1x, /images/ccdi-logo-240.webp 2x"
                 alt=""
                 width={108}
                 height={98}
                 loading="lazy"
+                decoding="async"
               />
               <span className="footer-brand-name">
                 Creative Craft
@@ -28,14 +29,23 @@ export function Footer() {
               <br />
               skills, purpose, and community.
             </p>
-            <a
-              href={facebook}
-              target="_blank"
-              rel="noreferrer"
-              className="social-link"
+            <nav
+              className="footer-social-links"
+              aria-label="CCDI social channels"
             >
-              Find us on Facebook <ArrowUpRight size={15} aria-hidden="true" />
-            </a>
+              {socials.map((social) => (
+                <a
+                  key={social.label}
+                  href={social.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="social-link"
+                >
+                  <SocialIcon platform={social.label} size={16} />
+                  {social.action} <ArrowUpRight size={15} aria-hidden="true" />
+                </a>
+              ))}
+            </nav>
           </div>
           <nav className="footer-nav" aria-label="Discover">
             <p className="footer-heading">Discover</p>

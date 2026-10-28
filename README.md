@@ -86,6 +86,7 @@ Run the build before `check:export`; the checker reads the generated `out/` dire
 - Five community testimonials and two leadership reflections, including their full supplied stories and identified portraits.
 - Four original PDF documents, with their guidance also integrated into relevant training, membership, privacy and safeguarding pages.
 - Contact information and locally prepared enquiries; support choices lead to a relevant enquiry rather than a payment checkout.
+- Current email: `creativecraft_dt@yahoo.com`; Facebook, TikTok and WhatsApp group links are shared in the header, footer and Contact page. Contact also includes a Google Maps preview and directions link using the supplied Lagos address.
 
 ## Project structure
 
