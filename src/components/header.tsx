@@ -9,6 +9,19 @@ import { navigation, facebook } from "@/lib/content";
 export function Header() {
   const path = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [expandedGroup, setExpandedGroup] = useState<string | null>(null);
+  const isCurrent = (href: string) => path === href;
+  const isGroupActive = (item: (typeof navigation)[number]) =>
+    (item.href !== "/" && path.startsWith(item.href)) ||
+    Boolean(item.links?.some((child) => isCurrent(child.href)));
+  function changeMobileOpen(open: boolean) {
+    setMobileOpen(open);
+    if (open)
+      setExpandedGroup(
+        navigation.find((item) => item.links && isGroupActive(item))?.label ||
+          null,
+      );
+  }
   return (
     <>
       <a href="#main" className="skip-link">
@@ -43,7 +56,7 @@ export function Header() {
                     openOnHover
                     delay={150}
                     closeDelay={120}
-                    className={`nav-link ${path.startsWith(item.href) ? "current" : ""}`}
+                    className={`nav-link ${isGroupActive(item) ? "current" : ""}`}
                   >
                     {item.label}
                     <ChevronDown size={12} aria-hidden="true" />
@@ -59,7 +72,13 @@ export function Header() {
                       >
                         <span className="dropdown-label">{item.label}</span>
                         {item.links.map((child, i) => (
-                          <Link key={`${child.href}-${i}`} href={child.href}>
+                          <Link
+                            key={`${child.href}-${i}`}
+                            href={child.href}
+                            aria-current={
+                              isCurrent(child.href) ? "page" : undefined
+                            }
+                          >
                             {child.label}
                             <ArrowUpRight size={14} aria-hidden="true" />
                           </Link>
@@ -85,7 +104,7 @@ export function Header() {
             Donate
             <ArrowUpRight size={15} aria-hidden="true" />
           </Link>
-          <Dialog.Root open={mobileOpen} onOpenChange={setMobileOpen}>
+          <Dialog.Root open={mobileOpen} onOpenChange={changeMobileOpen}>
             <Dialog.Trigger
               className="mobile-trigger"
               aria-label="Open navigation"
@@ -104,28 +123,67 @@ export function Header() {
                     <X />
                   </Dialog.Close>
                 </div>
+                <div className="mobile-quick-links">
+                  <Link
+                    href="/skills-training/"
+                    onClick={() => setMobileOpen(false)}
+                  >
+                    Find training <ArrowUpRight size={17} aria-hidden="true" />
+                  </Link>
+                  <Link href="/contact/" onClick={() => setMobileOpen(false)}>
+                    Get in touch <ArrowUpRight size={17} aria-hidden="true" />
+                  </Link>
+                </div>
                 <nav aria-label="Mobile navigation">
-                  {navigation.map((item) => (
+                  {navigation.map((item, index) => (
                     <div key={item.label} className="mobile-group">
-                      <Link
-                        href={item.href}
-                        onClick={() => setMobileOpen(false)}
-                      >
-                        {item.label}
-                        <ArrowUpRight size={17} aria-hidden="true" />
-                      </Link>
-                      {item.links && (
-                        <div>
-                          {item.links.map((child, i) => (
-                            <Link
-                              key={`${child.href}-${i}`}
-                              href={child.href}
-                              onClick={() => setMobileOpen(false)}
-                            >
-                              {child.label}
-                            </Link>
-                          ))}
-                        </div>
+                      {item.links ? (
+                        <>
+                          <button
+                            type="button"
+                            className={`mobile-section-toggle ${isGroupActive(item) ? "current" : ""}`}
+                            aria-expanded={expandedGroup === item.label}
+                            aria-controls={`mobile-section-${index}`}
+                            onClick={() =>
+                              setExpandedGroup((group) =>
+                                group === item.label ? null : item.label,
+                              )
+                            }
+                          >
+                            {item.label}
+                            <ChevronDown size={18} aria-hidden="true" />
+                          </button>
+                          <div
+                            id={`mobile-section-${index}`}
+                            hidden={expandedGroup !== item.label}
+                            className="mobile-submenu"
+                          >
+                            {item.links.map((child, i) => (
+                              <Link
+                                key={`${child.href}-${i}`}
+                                href={child.href}
+                                aria-current={
+                                  isCurrent(child.href) ? "page" : undefined
+                                }
+                                onClick={() => setMobileOpen(false)}
+                              >
+                                {child.label}
+                                <ArrowUpRight size={14} aria-hidden="true" />
+                              </Link>
+                            ))}
+                          </div>
+                        </>
+                      ) : (
+                        <Link
+                          href={item.href}
+                          aria-current={
+                            isCurrent(item.href) ? "page" : undefined
+                          }
+                          onClick={() => setMobileOpen(false)}
+                        >
+                          {item.label}
+                          <ArrowUpRight size={17} aria-hidden="true" />
+                        </Link>
                       )}
                     </div>
                   ))}

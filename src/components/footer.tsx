@@ -54,7 +54,7 @@ export function Footer() {
           <div>
             <Link href="/privacy-policy/">Privacy policy</Link>
             <Link href="/child-protection/">Child protection</Link>
-            <span>Made for possibility.</span>
+            <a href="#main">Back to top ↑</a>
           </div>
         </div>
       </div>
