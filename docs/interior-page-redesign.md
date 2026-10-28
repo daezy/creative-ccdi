@@ -28,3 +28,9 @@ Added community testimony panels reuse the existing supplied quotes, attribution
 - Before/after rendered-text comparison: 963 existing heading, paragraph and list blocks checked with whitespace normalized; zero missing blocks. No organisation/programme/testimonial content source files were rewritten.
 - All 27 interior routes checked at a 390px browser viewport for horizontal fit and a single h1. The programme photo frame's positioning was corrected after this check found an 11px overflow; the corrected page is 390px wide.
 - Desktop visual review includes programme, project, forms, testimonial and article layouts. Existing reduced-motion handling, gallery controls, form behaviour and downloads are preserved.
+
+## Section alignment correction
+
+The article masthead previously capped its container at 1040px while its photograph used the shared 1328px container. Removed that conflicting width and made nested containers inherit the outer section's gutters. Article title line length remains capped separately from the outer container. Removed the photograph's negative top margin and overlapping margin rules in favour of explicit desktop/mobile section gaps. Text is unchanged.
+
+Browser measurements on all three article routes at a 1488px viewport: navigation, masthead, photo and content share left/right edges of 80px and 1408px. At a 390px viewport, the same elements align at 20px and 370px with no horizontal overflow. Homepage nested sections share the same outer edges.
