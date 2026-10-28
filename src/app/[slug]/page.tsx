@@ -1,3 +1,5 @@
+import { pageMetadata } from "@/lib/seo";
+import { PageStructuredData } from "@/components/structured-data";
 import {
   PageMasthead,
   CommunityEvidence,
@@ -96,14 +98,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { slug } = await params;
   const p = pageInfo[slug];
-  return p
-    ? {
-        title: p.label,
-        description: p.description,
-        alternates: { canonical: `/${slug}/` },
-        openGraph: { title: `${p.label} | CCDI`, description: p.description },
-      }
-    : {};
+  return p ? pageMetadata(`/${slug}/`) : {};
 }
 export default async function Page({
   params,
@@ -115,6 +110,7 @@ export default async function Page({
   if (!p) notFound();
   return (
     <>
+      <PageStructuredData path={`/${slug}/`} />
       <PageMasthead slug={slug} />
       <DisclosureMotion />
       <div

@@ -38,13 +38,28 @@ Open [http://localhost:3125](http://localhost:3125).
 
 ### Production domain
 
-Set the final production origin before building so canonical links, sitemap URLs and social metadata use the correct domain:
+The confirmed production origin is **https://creativecdi.org**. Canonical links, sitemap URLs, structured data and social previews use this domain by default. To use a different deployment origin, set it before building:
 
 ```bash
 NEXT_PUBLIC_SITE_URL=https://your-domain.example npm run build
 ```
 
-Without this setting, the site uses its existing Sites hosting origin. Environment files are ignored by Git; do not commit credentials.
+Copy `.env.example` to `.env.local` for local configuration. Use `NEXT_PUBLIC_ALLOW_INDEXING=false` on a publicly accessible staging deployment, then rebuild. The owner-private Sites preview retains its existing access settings; it is not accessible to search and social crawlers. Environment files are ignored by Git; do not commit credentials.
+
+### SEO and link previews
+
+All 28 pages have independent search titles, descriptions, absolute canonical URLs, Open Graph tags and X/Twitter large-image tags. Preview cards are generated at build time as public 1200 × 630 PNGs using the corrected CCDI logo. Metadata is in the exported HTML; crawlers do not need JavaScript or an image-generation server.
+
+`src/lib/seo-pages.json` controls route-specific metadata and preview copy. `src/lib/seo.ts` builds metadata and structured data. `npm run generate:social` regenerates cards, favicon/touch icons and small logo assets; `npm run build` runs it automatically. When adding a route, add its SEO entry too. Run both checks after building:
+
+```bash
+npm run check:export
+npm run check:seo
+```
+
+The SEO check validates every canonical and preview URL, image dimensions and size, metadata in the initial HTML, JSON-LD, article and breadcrumb relationships, sitemap images, icons, robots rules and 404 noindex. The page copy remains separate from search snippets and preview copy.
+
+See [the SEO launch guide](docs/seo-launch.md) for domain activation, Search Console and Bing verification, sitemap submission, and social-platform checks. No analytics or third-party tracking has been added.
 
 ## Commands
 
@@ -55,6 +70,9 @@ Without this setting, the site uses its existing Sites hosting origin. Environme
 | `npm run typecheck` | Check TypeScript without emitting files |
 | `npm run build` | Generate production assets and static HTML in `out/` |
 | `npm run check:export` | Check exported pages, metadata, internal links, anchors, sitemap and robots.txt |
+| `npm run generate:social` | Regenerate page previews, logo sizes and icons |
+| `npm run check:seo` | Validate every page’s metadata, previews, structured data and indexing configuration |
+| `npm run package:cpanel` | Check the export and create `dist/creativecdi-cpanel.zip` for the confirmed cPanel host (requires Python 3) |
 
 Run the build before `check:export`; the checker reads the generated `out/` directory.
 

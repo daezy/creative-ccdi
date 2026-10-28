@@ -1,3 +1,5 @@
+import { pageMetadata } from "@/lib/seo";
+import { PageStructuredData } from "@/components/structured-data";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -14,18 +16,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { slug } = await params;
   const a = articles.find((a) => a.slug === slug);
-  return a
-    ? {
-        title: a.title,
-        description: a.description,
-        alternates: { canonical: `/blog/${slug}/` },
-        openGraph: {
-          type: "article",
-          title: a.title,
-          description: a.description,
-        },
-      }
-    : {};
+  return a ? pageMetadata(`/blog/${slug}/`) : {};
 }
 export default async function Article({
   params,
@@ -38,6 +29,7 @@ export default async function Article({
   const i = articles.indexOf(a);
   return (
     <>
+      <PageStructuredData path={`/blog/${slug}/`} />
       <article className="narrative-article">
         <header className="page-hero article-hero narrative-article-hero">
           <div className="container">

@@ -1,0 +1,201 @@
+{
+  "/": {
+    "title": "CCDI | Creative Craft Development Initiative, Nigeria",
+    "description": "Creative Craft Development Initiative (CCDI) supports self-discovery, practical skills, youth and women’s empowerment, child welfare, and stronger communities in Nigeria.",
+    "label": "Home",
+    "category": "Self-discovery. Capacity building. Skills for life."
+  },
+  "/about/": {
+    "title": "About CCDI | Creative Craft Development Initiative",
+    "description": "Learn about Creative Craft Development Initiative in Lagos, Nigeria, its vision, leadership, and work in skills development and community empowerment.",
+    "label": "About CCDI",
+    "category": "Creative Craft Development Initiative"
+  },
+  "/vision-mission/": {
+    "title": "Our Vision & Mission",
+    "description": "Explore CCDI’s vision and mission for self-discovery, capacity building, practical skills, and purposeful living in Nigeria.",
+    "label": "Our direction",
+    "category": "Creative Craft Development Initiative"
+  },
+  "/core-values/": {
+    "title": "Our Core Values",
+    "description": "Discover the values that guide CCDI’s leadership, learning, child welfare, service, and community development.",
+    "label": "What guides us",
+    "category": "Creative Craft Development Initiative"
+  },
+  "/impact/": {
+    "title": "Our Impact in Nigeria",
+    "description": "Explore CCDI’s impact: 18 years of service, 12,000+ people reached, 3,000+ beneficiaries annually, and a reach across 12+ communities.",
+    "label": "Our impact",
+    "category": "Creative Craft Development Initiative"
+  },
+  "/projects/": {
+    "title": "Our Four Integrated Initiatives",
+    "description": "Explore CCDI’s four connected initiatives: capacity development, social enterprise, benevolent and childcare, and creative community development.",
+    "label": "The CCDI model",
+    "category": "Creative Craft Development Initiative"
+  },
+  "/skills-training/": {
+    "title": "Skills Training & Vocational Learning",
+    "description": "Explore practical skills training, entrepreneurship, digital literacy, mentoring, and capacity development with CCDI in Lagos, Nigeria.",
+    "label": "Learn with CCDI",
+    "category": "Creative Craft Development Initiative"
+  },
+  "/programmes/": {
+    "title": "Youth, Women & Community Programmes",
+    "description": "Explore CCDI programmes for youth and women’s empowerment, child welfare, family strengthening, skills training, seminars, and workshops.",
+    "label": "Explore CCDI",
+    "category": "Creative Craft Development Initiative"
+  },
+  "/services/": {
+    "title": "Social Enterprise & Practical Services",
+    "description": "Discover CCDI’s enterprise services and how practical skills, professional experience, and productive work support community empowerment.",
+    "label": "Purpose in practice",
+    "category": "Creative Craft Development Initiative"
+  },
+  "/volunteer/": {
+    "title": "Volunteer with CCDI in Nigeria",
+    "description": "Contribute your skills, time, and experience to CCDI’s training, welfare, and community initiatives. Learn about volunteering and membership.",
+    "label": "Give your time",
+    "category": "Creative Craft Development Initiative"
+  },
+  "/testimonials/": {
+    "title": "CCDI Testimonials & Community Stories",
+    "description": "Read first-hand experiences of learning, skills development, mentorship, and personal growth from CCDI community members and leaders.",
+    "label": "Community voices",
+    "category": "Creative Craft Development Initiative"
+  },
+  "/gallery/": {
+    "title": "CCDI Photo Gallery",
+    "description": "Explore photographs from CCDI skills training, community outreach, family programmes, and events in Nigeria.",
+    "label": "Life at CCDI",
+    "category": "Creative Craft Development Initiative"
+  },
+  "/videos/": {
+    "title": "CCDI Programme & Event Videos",
+    "description": "Watch CCDI programme films, training and event highlights, and stories from our community.",
+    "label": "CCDI in motion",
+    "category": "Creative Craft Development Initiative"
+  },
+  "/documents/": {
+    "title": "Registration Forms, Membership & Resources",
+    "description": "Access CCDI student registration and membership forms, programme resources, publications, and privacy and safeguarding guidance.",
+    "label": "Forms & resources",
+    "category": "Creative Craft Development Initiative"
+  },
+  "/blog/": {
+    "title": "CCDI Journal & Programme Perspectives",
+    "description": "Read CCDI perspectives on practical skills, entrepreneurship, purposeful living, family relationships, and community development.",
+    "label": "The CCDI journal",
+    "category": "Creative Craft Development Initiative"
+  },
+  "/partners/": {
+    "title": "Partner with CCDI",
+    "description": "Explore ways to support CCDI through partnerships, expertise, resources, and community collaboration in Nigeria.",
+    "label": "Grow with us",
+    "category": "Creative Craft Development Initiative"
+  },
+  "/donate/": {
+    "title": "Donate & Support CCDI’s Work",
+    "description": "Support CCDI’s skills training, child welfare, women’s and youth empowerment, and community outreach. Contact the team about contributing.",
+    "label": "Support possibility",
+    "category": "Creative Craft Development Initiative"
+  },
+  "/contact/": {
+    "title": "Contact CCDI in Lagos, Nigeria",
+    "description": "Contact Creative Craft Development Initiative in Satellite Town, Lagos, about skills training, volunteering, partnerships, and support.",
+    "label": "Let’s connect",
+    "category": "Creative Craft Development Initiative"
+  },
+  "/privacy-policy/": {
+    "title": "Privacy Policy & Data Protection",
+    "description": "Read CCDI’s website privacy information, enquiry handling, membership guidance, and media consent resources.",
+    "label": "Privacy & trust",
+    "category": "Creative Craft Development Initiative"
+  },
+  "/child-protection/": {
+    "title": "Child Protection & Safeguarding",
+    "description": "Read about CCDI’s commitment to child welfare, protection, dignity, and safeguarding through its benevolent and childcare initiative.",
+    "label": "Care & dignity",
+    "category": "Creative Craft Development Initiative"
+  },
+  "/financial-transparency/": {
+    "title": "Financial Transparency & Accountability",
+    "description": "Learn about CCDI’s funding sources, use of funds, financial accountability, and commitment to responsible leadership and sustainable growth.",
+    "label": "Accountability",
+    "category": "Creative Craft Development Initiative"
+  },
+  "/projects/capacity-development/": {
+    "title": "Capacity Development Initiative",
+    "description": "Bridging the gap between potential and skills through self-discovery, self-mastery, capacity building, and skills for life.",
+    "label": "Capacity Development",
+    "category": "The four arms of CCDI",
+    "parent": {
+      "path": "/projects/",
+      "name": "Projects"
+    }
+  },
+  "/projects/social-enterprise/": {
+    "title": "Social Enterprise Initiative",
+    "description": "Where Enterprise Meets Empowerment. Purpose driven Lasting Community Impact.",
+    "label": "Social Enterprise",
+    "category": "The four arms of CCDI",
+    "parent": {
+      "path": "/projects/",
+      "name": "Projects"
+    }
+  },
+  "/projects/benevolent-childcare/": {
+    "title": "Benevolent & Childcare Initiative",
+    "description": "Protecting children, empowering youth, and transforming futures through care, education, practical skills, and mentorship.",
+    "label": "Benevolent & Childcare",
+    "category": "The four arms of CCDI",
+    "parent": {
+      "path": "/projects/",
+      "name": "Projects"
+    }
+  },
+  "/projects/creative-community/": {
+    "title": "Creative Community Initiative",
+    "description": "Building strong, resilient, peaceful, healthy, and value-driven families and communities.",
+    "label": "Creative Community",
+    "category": "The four arms of CCDI",
+    "parent": {
+      "path": "/projects/",
+      "name": "Projects"
+    }
+  },
+  "/blog/from-potential-to-practical-skills/": {
+    "title": "From potential to practical skills",
+    "description": "Why discovery, practice, and support matter on the journey to productive living.",
+    "label": "From potential to practical skills",
+    "category": "Skills & growth",
+    "type": "article",
+    "parent": {
+      "path": "/blog/",
+      "name": "Journal"
+    }
+  },
+  "/blog/enterprise-that-strengthens-community/": {
+    "title": "Enterprise that gives back to community",
+    "description": "How practical services and business experience can support lasting empowerment.",
+    "label": "Enterprise that gives back to community",
+    "category": "Enterprise & purpose",
+    "type": "article",
+    "parent": {
+      "path": "/blog/",
+      "name": "Journal"
+    }
+  },
+  "/blog/stronger-families-stronger-futures/": {
+    "title": "Stronger families, stronger futures",
+    "description": "Healthy relationships and supportive homes are part of community transformation.",
+    "label": "Stronger families, stronger futures",
+    "category": "Family & community",
+    "type": "article",
+    "parent": {
+      "path": "/blog/",
+      "name": "Journal"
+    }
+  }
+}

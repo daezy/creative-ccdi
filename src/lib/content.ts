@@ -12,8 +12,7 @@ export const contact = {
 };
 export const socials = [{ label: "Facebook", href: facebook }];
 export const siteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL ||
-  "https://ccdi-skills-and-community.nicebook16.chatgpt.site";
+  new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://creativecdi.org").origin;
 export const navigation = [
   { label: "Home", href: "/" },
   {

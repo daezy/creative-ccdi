@@ -7,32 +7,54 @@ import {
   PageCurtain,
   motionBootScript,
 } from "@/components/preloader";
-import { siteUrl, facebook } from "@/lib/content";
+import { siteUrl } from "@/lib/content";
+import {
+  pageMetadata,
+  siteStructuredData,
+  organisationName,
+  indexingEnabled,
+} from "@/lib/seo";
+import { StructuredData } from "@/components/structured-data";
 import "./globals.css";
 export const metadata: Metadata = {
+  ...pageMetadata("/"),
   metadataBase: new URL(siteUrl),
-  title: {
-    default: "CCDI — Skills for life. Possibility for all.",
-    template: "%s | CCDI",
+  applicationName: "CCDI",
+  creator: organisationName,
+  publisher: organisationName,
+  category: "Community development and skills training",
+  referrer: "strict-origin-when-cross-origin",
+  robots: {
+    index: indexingEnabled,
+    follow: true,
+    googleBot: {
+      index: indexingEnabled,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
   },
-  description:
-    "Creative Craft Development Initiative empowers people in Nigeria through practical skills, social enterprise, child welfare, and family and community development.",
-  openGraph: {
-    type: "website",
-    siteName: "Creative Craft Development Initiative",
-    locale: "en_NG",
-    images: [
+  icons: {
+    icon: [
+      { url: "/icons/favicon-48.png", sizes: "48x48", type: "image/png" },
+      { url: "/icons/icon-192.png", sizes: "192x192", type: "image/png" },
+    ],
+    apple: [
       {
-        url: "/social-card.png",
-        width: 1200,
-        height: 630,
-        alt: "CCDI — Skills for life. Possibility for all.",
+        url: "/icons/apple-touch-icon.png",
+        sizes: "180x180",
+        type: "image/png",
       },
     ],
   },
-  twitter: { card: "summary_large_image" },
-  robots: { index: true, follow: true },
-  icons: { icon: "/favicon.svg" },
+  manifest: "/site.webmanifest",
+  verification: {
+    google: process.env.GOOGLE_SITE_VERIFICATION,
+    other: process.env.BING_SITE_VERIFICATION
+      ? { "msvalidate.01": process.env.BING_SITE_VERIFICATION }
+      : {},
+  },
 };
 export const viewport: Viewport = {
   themeColor: "#075b37",
@@ -56,22 +78,7 @@ export default function RootLayout({
         <Footer />
         <PageCurtain />
         <Motion />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "Organization",
-              name: "Creative Craft Development Initiative",
-              alternateName: "CCDI",
-              url: siteUrl,
-              logo: `${siteUrl}/images/ccdi-logo-corrected.png`,
-              sameAs: [facebook],
-              description:
-                "Skills development, social enterprise, child welfare, and family and community empowerment in Nigeria.",
-            }).replace(/</g, "\\u003c"),
-          }}
-        />
+        <StructuredData data={siteStructuredData} />
       </body>
     </html>
   );

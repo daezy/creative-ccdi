@@ -1,3 +1,5 @@
+import { pageMetadata } from "@/lib/seo";
+import { PageStructuredData } from "@/components/structured-data";
 import { CommunityEvidence } from "@/components/page-story";
 import { TextLink } from "@/components/ui";
 import { RegistrationContent } from "@/components/document-content";
@@ -30,13 +32,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { slug } = await params;
   const a = arms.find((a) => a.slug === slug);
-  return a
-    ? {
-        title: a.fullName,
-        description: a.description,
-        alternates: { canonical: `/projects/${slug}/` },
-      }
-    : {};
+  return a ? pageMetadata(`/projects/${slug}/`) : {};
 }
 export default async function Project({
   params,
@@ -49,6 +45,7 @@ export default async function Project({
   const detail = projectCopy[a.slug];
   return (
     <>
+      <PageStructuredData path={`/projects/${slug}/`} />
       <section
         className={`project-hero narrative-project-hero project-theme-${a.theme}`}
       >

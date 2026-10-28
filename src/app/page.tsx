@@ -1,3 +1,5 @@
+import { pageMetadata } from "@/lib/seo";
+import { PageStructuredData } from "@/components/structured-data";
 import {
   WorkChapters,
   LearningJourney,
@@ -23,10 +25,11 @@ import {
   TextLink,
 } from "@/components/ui";
 
-export const metadata = { alternates: { canonical: "/" } };
+export const metadata = pageMetadata("/");
 export default function Home() {
   return (
     <>
+      <PageStructuredData path="/" />
       <Hero />
       <section className="belief-strip">
         <div className="container">

@@ -1,8 +1,10 @@
 node_modules/
 .next/
 out/
+dist/
 *.tsbuildinfo
 .env*
+!.env.example
 .openai/*.zip
 
 # Original local image collection is preserved separately from approved web assets.
