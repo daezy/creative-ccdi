@@ -5953,3 +5953,97 @@ textarea::placeholder {
     gap: 0;
   }
 }
+
+/* Scroll-linked depth: the frame defines the timeline, so image transforms
+   cannot feed back into their own scroll progress. Unsupported browsers keep
+   the original composition. No scroll listeners or layout measurements. */
+@supports (animation-timeline: view()) and (animation-range: exit 0% exit 100%) {
+  @media (prefers-reduced-motion: no-preference) {
+    .home-hero {
+      view-timeline-name: --hero-depth;
+      view-timeline-axis: block;
+      overflow: clip;
+    }
+    .hero-backdrop {
+      inset-block: -10%;
+      animation: hero-parallax linear both;
+      animation-timeline: --hero-depth;
+      animation-range: exit 0% exit 100%;
+    }
+    :is(
+        .about-visual,
+        .community-visual,
+        .split-content,
+        .project-photo,
+        .programme-detail,
+        .article-photo
+      )
+      > .photo-slot.has-photo:not(.photo-contain) {
+      view-timeline-name: --photo-depth;
+      view-timeline-axis: block;
+    }
+    :is(
+        .about-visual,
+        .community-visual,
+        .split-content,
+        .project-photo,
+        .programme-detail,
+        .article-photo
+      )
+      > .photo-slot.has-photo:not(.photo-contain)
+      > .slot-image {
+      animation: photo-parallax linear both;
+      animation-timeline: --photo-depth;
+      animation-range: cover 0% cover 100%;
+    }
+    @media (max-width: 760px) {
+      .hero-backdrop {
+        animation-name: hero-parallax-mobile;
+      }
+      :is(
+          .about-visual,
+          .community-visual,
+          .split-content,
+          .project-photo,
+          .programme-detail,
+          .article-photo
+        )
+        > .photo-slot.has-photo:not(.photo-contain)
+        > .slot-image {
+        animation-name: photo-parallax-mobile;
+      }
+    }
+  }
+}
+@keyframes hero-parallax {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(8%);
+  }
+}
+@keyframes hero-parallax-mobile {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(4%);
+  }
+}
+@keyframes photo-parallax {
+  from {
+    transform: translateY(-4%) scale(1.1);
+  }
+  to {
+    transform: translateY(4%) scale(1.1);
+  }
+}
+@keyframes photo-parallax-mobile {
+  from {
+    transform: translateY(-2%) scale(1.06);
+  }
+  to {
+    transform: translateY(2%) scale(1.06);
+  }
+}
