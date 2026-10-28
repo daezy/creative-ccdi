@@ -26,7 +26,7 @@ export const photos: Record<string, Photo> = {
 
   "Hands-on skills. Real-world possibility.": library["catering-class"],
   "Learning together": library["baking-trainees"],
-  "Enterprise that empowers.": library["catering-service"],
+  "Enterprise that empowers.": library["event-service-team"],
   "Creating with purpose": library["handmade-accessories"],
   "Stronger families. Thriving communities.": library["couples-blissful-day"],
   "Growing together": library["couples-celebration"],

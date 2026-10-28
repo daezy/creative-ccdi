@@ -245,7 +245,7 @@ export function Hero() {
   return (
     <section
       ref={rootRef}
-      className="home-hero"
+      className="home-hero story-hero"
       aria-label="Welcome to CCDI"
       aria-roledescription="carousel"
       data-running={running ? "true" : "false"}

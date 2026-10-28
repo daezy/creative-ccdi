@@ -1,4 +1,9 @@
 import {
+  WorkChapters,
+  LearningJourney,
+  HumanStory,
+} from "@/components/home-story";
+import {
   Commitments,
   Governance,
   StrategicFocus,
@@ -6,7 +11,7 @@ import {
 } from "@/components/organisation-content";
 import { organisationCopy as copy } from "@/lib/organisation-copy";
 import Link from "next/link";
-import { ArrowUpRight, ArrowRight, Check, MoveUpRight } from "lucide-react";
+import { ArrowUpRight, Check } from "lucide-react";
 import { Hero } from "@/components/hero";
 import {
   Button,
@@ -17,7 +22,7 @@ import {
   Cta,
   TextLink,
 } from "@/components/ui";
-import { arms, articles } from "@/lib/content";
+
 export const metadata = { alternates: { canonical: "/" } };
 export default function Home() {
   return (
@@ -37,7 +42,7 @@ export default function Home() {
           </a>
         </div>
       </section>
-      <section className="section about-section">
+      <section className="section about-section story-introduction">
         <div className="container about-grid">
           <div className="about-visual">
             <PhotoSlot
@@ -77,47 +82,10 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <StrategicFocus />
-      <section className="section arms-section">
-        <div className="container">
-          <SectionHead
-            eyebrow="Our integrated approach"
-            title={
-              <>
-                Four-Integrated
-                <br />
-                <em>Project-Arm Structure.</em>
-              </>
-            }
-            href="/projects/"
-            linkLabel="Meet our four arms"
-          >
-            {copy.integratedIntro}
-          </SectionHead>
-          <div className="arms-grid">
-            {arms.map((a) => (
-              <Link
-                href={`/projects/${a.slug}/`}
-                className={`arm-card arm-${a.theme}`}
-                key={a.slug}
-              >
-                <div className="arm-card-top">
-                  <span>{a.number} /</span>
-                  <Icon name={a.icon} size={30} />
-                </div>
-                <div>
-                  <h3>{a.fullName}</h3>
-                  <p>{a.description}</p>
-                </div>
-                <span className="arm-link">
-                  Explore this arm <ArrowUpRight size={20} aria-hidden="true" />
-                </span>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
-      <section className="section impact-home">
+      <WorkChapters />
+      <LearningJourney />
+      <HumanStory />
+      <section className="section impact-home story-impact">
         <div className="container">
           <div className="impact-intro">
             <Eyebrow light>From potential to purpose</Eyebrow>
@@ -137,26 +105,29 @@ export default function Home() {
               Explore our impact
             </Button>
           </div>
-          <div className="impact-facts">
-            <div>
-              <span className="fact-number">18</span>
-              <h3>Years of impact</h3>
-            </div>
-            <div>
-              <span className="fact-number">3,000+</span>
-              <h3>Beneficiaries annually</h3>
-              <p>
-                Through vocational training, skills acquisition, and empowerment
-                programs.
-              </p>
-            </div>
-            <div>
-              <span className="fact-number">12,000+</span>
-              <h3>People reached</h3>
-            </div>
-            <div>
-              <span className="fact-number">12+</span>
-              <h3>Community reach</h3>
+          <div className="impact-evidence">
+            <PhotoSlot label="Benevolent outreach, children’s learning, and welfare support" />
+            <div className="impact-facts">
+              <div>
+                <span className="fact-number">18</span>
+                <h3>Years of impact</h3>
+              </div>
+              <div>
+                <span className="fact-number">3,000+</span>
+                <h3>Beneficiaries annually</h3>
+                <p>
+                  Through vocational training, skills acquisition, and
+                  empowerment programs.
+                </p>
+              </div>
+              <div>
+                <span className="fact-number">12,000+</span>
+                <h3>People reached</h3>
+              </div>
+              <div>
+                <span className="fact-number">12+</span>
+                <h3>Community reach</h3>
+              </div>
             </div>
           </div>
         </div>
@@ -227,39 +198,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <section className="section journey-section">
-        <div className="container journey-grid">
-          <div>
-            <Eyebrow>The CCDI philosophy</Eyebrow>
-            <h2>
-              Not just a skill.
-              <br />
-              <em>A way forward.</em>
-            </h2>
-            <p>
-              Real transformation takes more than a training session. We support
-              a journey from self-discovery to meaningful contribution.
-            </p>
-            <TextLink href="/vision-mission/">What we believe</TextLink>
-          </div>
-          <ol className="journey-list">
-            {[
-              ["Learn", "Discover what’s possible."],
-              ["Develop", "Build the ability to do more."],
-              ["Master", "Grow through practice and support."],
-              ["Apply", "Put your skills to work."],
-              ["Impact", "Make a difference that reaches further."],
-            ].map(([title, text], i) => (
-              <li key={title}>
-                <span className="journey-num">0{i + 1}</span>
-                <h3>{title}</h3>
-                <p>{text}</p>
-                <ArrowUpRight size={20} aria-hidden="true" />
-              </li>
-            ))}
-          </ol>
-        </div>
-      </section>
       <section className="community-feature">
         <div className="container">
           <div className="community-feature-copy">
@@ -292,8 +230,9 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <section className="section">
+      <section className="section story-foundations">
         <div className="container">
+          <StrategicFocus />
           <Governance />
           <Commitments />
           <JoinMovement />
