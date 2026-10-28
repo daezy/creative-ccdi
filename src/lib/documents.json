@@ -1,0 +1,50 @@
+[
+  {
+    "id": "student-registration",
+    "title": "Student registration form",
+    "pages": 1,
+    "size": "153 KB",
+    "src": "/documents/student-registration.pdf",
+    "preview": "/images/documents/student-registration.webp",
+    "label": "Training & skills",
+    "description": "For learners registering their interest in CCDI training and programmes.",
+    "width": 650,
+    "height": 841
+  },
+  {
+    "id": "membership",
+    "title": "Membership form",
+    "pages": 2,
+    "size": "227 KB",
+    "src": "/documents/membership.pdf",
+    "preview": "/images/documents/membership.webp",
+    "label": "Join CCDI",
+    "description": "For prospective members, volunteers, facilitators, ambassadors, donors, and partners.",
+    "width": 650,
+    "height": 841
+  },
+  {
+    "id": "membership-conduct",
+    "title": "Membership roles & code of conduct",
+    "pages": 2,
+    "size": "106 KB",
+    "src": "/documents/membership-conduct.pdf",
+    "preview": "/images/documents/membership-conduct.webp",
+    "label": "Membership guidance",
+    "description": "Read the membership roles, responsibilities, agreement, and code of conduct.",
+    "width": 650,
+    "height": 841
+  },
+  {
+    "id": "privacy-safeguarding",
+    "title": "Privacy & Safeguarding Framework",
+    "pages": 7,
+    "size": "421 KB",
+    "src": "/documents/privacy-safeguarding.pdf",
+    "preview": "/images/documents/privacy-safeguarding.webp",
+    "label": "Policies & consent",
+    "description": "Includes privacy and data protection, the website privacy notice, child safeguarding, and photo/video consent.",
+    "width": 650,
+    "height": 841
+  }
+]

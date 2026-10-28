@@ -1,3 +1,4 @@
+import { FormCallout } from "@/components/document-library";
 import { ProjectPhotos, VideoCollection } from "@/components/media-collections";
 import { projectCopy } from "@/lib/organisation-copy";
 import { CopyList } from "@/components/organisation-content";
@@ -145,6 +146,7 @@ export default async function Project({
             </ol>
           </section>
         )}
+        {a.slug === "capacity-development" && <FormCallout kind="student" />}
         <ProjectPhotos slug={a.slug} />
         <section className="outcomes-panel">
           <Eyebrow>What we work towards</Eyebrow>

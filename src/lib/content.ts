@@ -402,10 +402,10 @@ export const pageInfo: Record<
       "A space for programme films, event highlights, and stories from our community.",
   },
   documents: {
-    label: "Resources & events",
-    title: "Knowledge worth sharing.",
+    label: "Forms & resources",
+    title: "Forms, guidance & resources.",
     description:
-      "A home for programme resources, event documents, and organisational publications.",
+      "Registration forms, membership guidance, privacy and safeguarding documents, programme materials, and CCDI publications.",
   },
   blog: {
     label: "The CCDI journal",

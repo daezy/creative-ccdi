@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Popover } from "@base-ui/react/popover";
 import { Dialog } from "@base-ui/react/dialog";
 import { ArrowUpRight, ChevronDown, Heart, Menu, X } from "lucide-react";
@@ -10,6 +10,17 @@ export function Header() {
   const path = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [expandedGroup, setExpandedGroup] = useState<string | null>(null);
+  const isHome = path === "/";
+  const [scrolled, setScrolled] = useState(false);
+  // On the homepage the header floats over the hero carousel and switches
+  // back to its solid theme as soon as the visitor starts scrolling.
+  useEffect(() => {
+    if (!isHome) return;
+    const onScroll = () => setScrolled(window.scrollY > 8);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, [isHome]);
   const isCurrent = (href: string) => path === href;
   const isGroupActive = (item: (typeof navigation)[number]) =>
     (item.href !== "/" && path.startsWith(item.href)) ||
@@ -35,7 +46,11 @@ export function Header() {
           </a>
         </div>
       </div>
-      <header className="site-header">
+      <header
+        className={`site-header${isHome ? " site-header-overlay" : ""}${
+          isHome && !scrolled && !mobileOpen ? " is-transparent" : ""
+        }`}
+      >
         <div className="container header-inner">
           <Link href="/" className="brand" aria-label="CCDI home">
             <img src="/images/ccdi-logo.jpg" width="58" height="53" alt="" />

@@ -1,3 +1,8 @@
+import {
+  DocumentLibrary,
+  FormCallout,
+  FrameworkLinks,
+} from "@/components/document-library";
 import { Publications, VideoCollection } from "@/components/media-collections";
 import {
   Commitments,
@@ -29,6 +34,8 @@ import {
   Heart,
   MapPin,
   Facebook,
+  Mail,
+  Phone,
 } from "lucide-react";
 import {
   pageInfo,
@@ -273,6 +280,7 @@ function PageContent({ slug }: { slug: string }) {
             />
             <TrainingGrid />
           </section>
+          <FormCallout kind="student" />
           <Reship />
           <Faq />
         </>
@@ -397,6 +405,7 @@ function PageContent({ slug }: { slug: string }) {
               ))}
             </div>
           </section>
+          <FormCallout kind="membership" />
           <div className="editorial-note">
             <ShieldCheck size={24} />
             <p>
@@ -435,7 +444,14 @@ function PageContent({ slug }: { slug: string }) {
     case "videos":
       return <VideoCollection />;
     case "documents":
-      return <Publications />;
+      return (
+        <>
+          <DocumentLibrary />
+          <section className="content-section">
+            <Publications />
+          </section>
+        </>
+      );
     case "donate":
       return (
         <div className="donate-grid">
@@ -502,12 +518,30 @@ function PageContent({ slug }: { slug: string }) {
               </div>
             </div>
             <div className="contact-channel">
+              <Mail size={22} aria-hidden="true" />
+              <div>
+                <h3>Email CCDI</h3>
+                <a href="mailto:info@creativecdi.org">info@creativecdi.org</a>
+              </div>
+            </div>
+            <div className="contact-channel">
+              <Phone size={22} aria-hidden="true" />
+              <div>
+                <h3>Speak with the team</h3>
+                <a href="tel:+2347061252687">0706 125 2687</a>
+                <a href="tel:+2348026264133">0802 626 4133</a>
+              </div>
+            </div>
+            <div className="contact-channel">
               <MapPin size={22} />
               <div>
-                <h3>Nigeria</h3>
+                <h3>Visit CCDI</h3>
                 <p>
-                  Please confirm the training venue with CCDI before visiting.
+                  No. 9, Sanusi Adeyemo Street,
+                  <br />
+                  Satellite Town, Lagos, Nigeria.
                 </p>
+                <p>Confirm your programme venue before visiting.</p>
               </div>
             </div>
             <figure className="contact-centre-photo">
@@ -516,6 +550,9 @@ function PageContent({ slug }: { slug: string }) {
                 The CCDI centre. Confirm your programme venue before visiting.
               </figcaption>
             </figure>
+            <TextLink href="/documents/#forms">
+              Registration forms & documents
+            </TextLink>
           </aside>
           <EnquiryForm />
         </div>
@@ -547,13 +584,15 @@ function PageContent({ slug }: { slug: string }) {
             stories supplied by CCDI. Please contact CCDI with any question
             about the use of an image or story.
           </p>
-          <h2>Hosting and future updates</h2>
+          <FrameworkLinks />
+          <h2>Hosting and website features</h2>
           <p>
             The hosting provider may process technical request information
-            needed to deliver this website. A fuller organisational privacy
-            notice will be added when CCDI confirms its contact details,
-            data-handling practices, and any additional services used on the
-            site.
+            needed to deliver this website. The supplied framework also
+            describes features such as analytics, newsletters, donations and
+            online applications. This website currently provides downloadable
+            forms and a locally prepared enquiry; it does not process
+            applications, subscriptions or payments.
           </p>
           <TextLink href="/contact/">Ask a privacy question</TextLink>
         </div>
@@ -580,13 +619,7 @@ function PageContent({ slug }: { slug: string }) {
             child through the website enquiry form. Ask CCDI directly for an
             appropriate and confidential way to raise a concern.
           </p>
-          <h2>Detailed safeguarding policy</h2>
-          <p>
-            CCDI’s approved safeguarding policy, reporting procedure, and
-            designated contact details will be published when supplied. This
-            page is an overview of the programme’s focus and does not replace
-            that policy.
-          </p>
+          <FrameworkLinks safeguarding />
           <Button href="/projects/benevolent-childcare/">
             Explore the initiative
           </Button>

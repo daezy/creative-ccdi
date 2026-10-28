@@ -8,6 +8,8 @@ import {
   ArrowDownRight,
 } from "lucide-react";
 import { Button, Eyebrow, PhotoSlot } from "./ui";
+import library from "@/lib/media-library.json";
+const SLIDE_MS = 6500;
 const slides = [
   {
     first: "Creative Craft",
@@ -20,6 +22,7 @@ const slides = [
     photo: "Hands-on skills. Real-world possibility.",
     small: "Learning together",
     theme: "sage",
+    background: library["training-room"],
   },
   {
     first: "Where enterprise",
@@ -32,6 +35,7 @@ const slides = [
     photo: "Enterprise that empowers.",
     small: "Creating with purpose",
     theme: "gold",
+    background: library["event-service-team"],
   },
   {
     first: "Creative",
@@ -44,28 +48,35 @@ const slides = [
     photo: "Stronger families. Thriving communities.",
     small: "Growing together",
     theme: "clay",
+    background: library["community-celebration"],
   },
 ];
 export function Hero() {
   const [active, setActive] = useState(0);
-  const [playing, setPlaying] = useState(false);
-  const [hovered, setHovered] = useState(false);
+  const [playing, setPlaying] = useState(true);
+  const [focused, setFocused] = useState(false);
+  const [reducedMotion, setReducedMotion] = useState(false);
   useEffect(() => {
-    if (
-      !playing ||
-      hovered ||
-      window.matchMedia("(prefers-reduced-motion: reduce)").matches
-    )
-      return;
-    const id = setInterval(
+    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+    setReducedMotion(mq.matches);
+    if (mq.matches) setPlaying(false);
+    const onChange = () => setReducedMotion(mq.matches);
+    mq.addEventListener("change", onChange);
+    return () => mq.removeEventListener("change", onChange);
+  }, []);
+  const running = playing && !focused && !reducedMotion;
+  // A timeout keyed on the active slide restarts the full interval after
+  // every change, so manual navigation never cuts the next slide short.
+  useEffect(() => {
+    if (!running) return;
+    const id = setTimeout(
       () => setActive((v) => (v + 1) % slides.length),
-      7000,
+      SLIDE_MS,
     );
-    return () => clearInterval(id);
-  }, [playing, hovered]);
+    return () => clearTimeout(id);
+  }, [running, active]);
   const slide = slides[active];
   function change(n: number) {
-    setPlaying(false);
     setActive((n + slides.length) % slides.length);
   }
   return (
@@ -73,17 +84,34 @@ export function Hero() {
       className="home-hero"
       aria-label="Welcome to CCDI"
       aria-roledescription="carousel"
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-      onFocusCapture={() => setHovered(true)}
+      data-running={running ? "true" : "false"}
+      style={{ ["--slide-ms" as string]: `${SLIDE_MS}ms` }}
+      onFocusCapture={(e) => {
+        if ((e.target as HTMLElement).matches(":focus-visible"))
+          setFocused(true);
+      }}
       onBlurCapture={(e) => {
         if (!e.currentTarget.contains(e.relatedTarget as Node))
-          setHovered(false);
+          setFocused(false);
       }}
     >
+      <div className="hero-backdrop" aria-hidden="true">
+        {slides.map((s, i) => (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img
+            key={s.background.src}
+            src={s.background.src}
+            alt=""
+            className={i === active ? "is-active" : undefined}
+            loading={i === 0 ? "eager" : "lazy"}
+            fetchPriority={i === 0 ? "high" : "auto"}
+            decoding="async"
+          />
+        ))}
+      </div>
       <div className="container hero-grid">
         <div className="hero-copy" key={active}>
-          <Eyebrow>Creative Craft Development Initiative (CCDI)</Eyebrow>
+          <Eyebrow light>Creative Craft Development Initiative (CCDI)</Eyebrow>
           <h1>
             {slide.first}
             <br />
@@ -102,7 +130,9 @@ export function Hero() {
           </h1>
           <p className="hero-description">{slide.description}</p>
           <div className="hero-actions">
-            <Button href={slide.href}>{slide.cta}</Button>
+            <Button href={slide.href} variant="gold">
+              {slide.cta}
+            </Button>
             <a className="hero-secondary" href="/about/">
               Get to know CCDI <ArrowDownRight size={18} aria-hidden="true" />
             </a>
@@ -176,7 +206,7 @@ export function Hero() {
                 aria-pressed={active === i}
                 onClick={() => change(i)}
               >
-                <span />
+                <span key={active === i ? `on-${active}` : "off"} />
               </button>
             ))}
           </div>
