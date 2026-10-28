@@ -85,9 +85,22 @@ const CLIENT_ZONES =
 
 const norm = (p: string) => p.replace(/\/+$/, "") || "/";
 
+/** Set by the browser's back/forward buttons, which should keep their position. */
+let historyNav = false;
+
+/** Jump (not smooth-scroll) to the top, or to the #anchor if the link has one. */
+function resetScroll() {
+  const target = location.hash
+    ? document.getElementById(decodeURIComponent(location.hash.slice(1)))
+    : null;
+  if (target) target.scrollIntoView({ behavior: "instant", block: "start" });
+  else window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+}
+
 export function Motion() {
   const pathname = usePathname();
   const router = useRouter();
+  const navSeen = useRef(false);
   const state = useRef({
     first: true,
     preloader: false,
@@ -99,6 +112,10 @@ export function Motion() {
   // ---------------------------------------------------------------- global
   useLayoutEffect(() => {
     window.__ccdiMotion = true;
+    const onPop = () => {
+      historyNav = true;
+    };
+    window.addEventListener("popstate", onPop);
     const s = state.current;
     s.reduced = prefersReducedMotion();
     const html = document.documentElement;
@@ -155,9 +172,6 @@ export function Motion() {
           onComplete: () => {
             // Hide rather than remove: React owns this node.
             pre.classList.add("is-done");
-            try {
-              sessionStorage.setItem("ccdi-preloaded", "1");
-            } catch {}
             ScrollTrigger.refresh();
           },
         });
@@ -330,6 +344,14 @@ export function Motion() {
   // -------------------------------------------------------------- per page
   useLayoutEffect(() => {
     const s = state.current;
+    // Every newly opened page starts at the top. The site uses smooth
+    // scrolling, which used to leave the new page part-way down.
+    if (!navSeen.current) navSeen.current = true;
+    else if (historyNav) historyNav = false;
+    else {
+      resetScroll();
+      requestAnimationFrame(resetScroll);
+    }
     if (s.reduced) return;
     const isFirst = s.first;
     s.first = false;
@@ -341,7 +363,7 @@ export function Motion() {
     const fromCurtain = s.curtainCovering;
     const teardown = setupPage(isFirst, animateInView, fromCurtain);
     if (fromCurtain) {
-      window.scrollTo(0, 0);
+      resetScroll();
       s.uncover();
     }
     requestAnimationFrame(() => ScrollTrigger.refresh());

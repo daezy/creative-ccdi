@@ -132,7 +132,7 @@ export function PageCurtain() {
 
 /**
  * Runs before first paint. Marks the document for motion (enables the
- * preloader and hero pre-hide styles), skips the preloader after the first
- * visit in a session, and fails safe if the motion script never starts.
+ * preloader and hero pre-hide styles; it plays on every fresh open of the
+ * site) and fails safe if the motion script never starts.
  */
-export const motionBootScript = `(function(){var d=document.documentElement;try{if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){d.classList.add('reduce-motion');return;}d.classList.add('motion-ready');if(sessionStorage.getItem('ccdi-preloaded'))d.classList.add('preloader-skip');}catch(e){}setTimeout(function(){if(!window.__ccdiMotion){d.classList.remove('motion-ready');d.classList.add('preloader-skip','intro-done');}},6000);})();`;
+export const motionBootScript = `(function(){var d=document.documentElement;try{if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){d.classList.add('reduce-motion');return;}d.classList.add('motion-ready');}catch(e){}setTimeout(function(){if(!window.__ccdiMotion){d.classList.remove('motion-ready');d.classList.add('preloader-skip','intro-done');}},6000);})();`;

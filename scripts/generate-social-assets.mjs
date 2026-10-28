@@ -127,6 +127,8 @@ for (const [path, page] of Object.entries(pages)) {
   );
 }
 for (const [name, size] of [
+  ["favicon-16", 16],
+  ["favicon-32", 32],
   ["favicon-48", 48],
   ["apple-touch-icon", 180],
   ["icon-192", 192],
@@ -159,7 +161,54 @@ for (const [name, size] of [
   );
 }
 console.log(
-  `Generated ${Object.keys(pages).length} social preview cards and 4 icons using the corrected CCDI logo.`,
+  `Generated ${Object.keys(pages).length} social preview cards and 6 icons using the corrected CCDI logo.`,
+);
+// Keep conventional and legacy URLs on the same approved artwork too.
+const iconFrames = await Promise.all(
+  [16, 32, 48].map(async (size) => ({
+    size,
+    png: await fs.readFile(new URL(`favicon-${size}.png`, icons)),
+  })),
+);
+const icoHeader = Buffer.alloc(6 + 16 * iconFrames.length);
+icoHeader.writeUInt16LE(1, 2);
+icoHeader.writeUInt16LE(iconFrames.length, 4);
+let offset = icoHeader.length;
+iconFrames.forEach(({ size, png }, i) => {
+  const entry = 6 + i * 16;
+  icoHeader[entry] = size;
+  icoHeader[entry + 1] = size;
+  icoHeader.writeUInt16LE(1, entry + 4);
+  icoHeader.writeUInt16LE(32, entry + 6);
+  icoHeader.writeUInt32LE(png.length, entry + 8);
+  icoHeader.writeUInt32LE(offset, entry + 12);
+  offset += png.length;
+});
+await fs.writeFile(
+  new URL("../public/favicon.ico", import.meta.url),
+  Buffer.concat([icoHeader, ...iconFrames.map(({ png }) => png)]),
+);
+await fs.copyFile(
+  new URL("favicon-48.png", icons),
+  new URL("../public/favicon.png", import.meta.url),
+);
+await fs.copyFile(
+  new URL("apple-touch-icon.png", icons),
+  new URL("../public/apple-touch-icon.png", import.meta.url),
+);
+const iconPng = await fs.readFile(new URL("icon-192.png", icons));
+await fs.writeFile(
+  new URL("../public/favicon.svg", import.meta.url),
+  `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 192"><image width="192" height="192" href="data:image/png;base64,${iconPng.toString("base64")}"/></svg>\n`,
+);
+await fs.copyFile(
+  new URL("home.png", output),
+  new URL("../public/social-card.png", import.meta.url),
+);
+const homePng = await fs.readFile(new URL("home.png", output));
+await fs.writeFile(
+  new URL("../public/social-card.svg", import.meta.url),
+  `<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630"><image width="1200" height="630" href="data:image/png;base64,${homePng.toString("base64")}"/></svg>\n`,
 );
 for (const width of [116, 232, 432]) {
   const height = Math.round((width * 1193) / 1319);
