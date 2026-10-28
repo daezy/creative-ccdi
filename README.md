@@ -1,4 +1,4 @@
-<img src="public/images/ccdi-logo.jpg" alt="Creative Craft Development Initiative logo" width="96" />
+<img src="public/images/ccdi-logo-corrected.png" alt="Creative Craft Development Initiative logo" width="96" />
 
 # Creative Craft Development Initiative (CCDI)
 

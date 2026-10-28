@@ -65,7 +65,7 @@ export default function RootLayout({
               name: "Creative Craft Development Initiative",
               alternateName: "CCDI",
               url: siteUrl,
-              logo: `${siteUrl}/images/ccdi-logo.jpg`,
+              logo: `${siteUrl}/images/ccdi-logo-corrected.png`,
               sameAs: [facebook],
               description:
                 "Skills development, social enterprise, child welfare, and family and community empowerment in Nigeria.",
