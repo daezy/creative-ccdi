@@ -1,4 +1,11 @@
 import {
+  PageMasthead,
+  CommunityEvidence,
+  pageDesigns,
+} from "@/components/page-story";
+import { WorkChapters } from "@/components/home-story";
+import library from "@/lib/media-library.json";
+import {
   RegistrationContent,
   MembershipContent,
   MemberConduct,
@@ -70,6 +77,13 @@ import {
   EnquiryForm,
   SupportSelector,
 } from "@/components/interactive";
+const communityEvidenceByPage: Record<string, string> = {
+  impact: "emadu",
+  "skills-training": "uchenna",
+  volunteer: "adanma",
+  partners: "grace",
+  "core-values": "adanma",
+};
 export const dynamicParams = false;
 export function generateStaticParams() {
   return Object.keys(pageInfo).map((slug) => ({ slug }));
@@ -100,27 +114,15 @@ export default async function Page({
   if (!p) notFound();
   return (
     <>
-      <section className={`page-hero page-hero-${slug}`}>
-        <div className="container">
-          <div className="breadcrumb">
-            <Link href="/">Home</Link>
-            <span>/</span>
-            <span>{p.label}</span>
-          </div>
-          <div className="page-hero-grid">
-            <div>
-              <Eyebrow>{p.label}</Eyebrow>
-              <h1>{p.title}</h1>
-              <p>{p.description}</p>
-            </div>
-            <span className="page-flower" aria-hidden="true">
-              ✳
-            </span>
-          </div>
-        </div>
-      </section>
-      <div className="container page-content">
+      <PageMasthead slug={slug} />
+      <div
+        className={`container page-content narrative-content narrative-${pageDesigns[slug].family} narrative-${slug}`}
+        id="page-details"
+      >
         <PageContent slug={slug} />
+        {communityEvidenceByPage[slug] && (
+          <CommunityEvidence id={communityEvidenceByPage[slug]} />
+        )}
       </div>
       {![
         "contact",
@@ -132,36 +134,22 @@ export default async function Page({
     </>
   );
 }
-function ArmGrid() {
-  return (
-    <div className="project-grid">
-      {arms.map((a) => (
-        <Link
-          className={`project-card arm-${a.theme}`}
-          key={a.slug}
-          href={`/projects/${a.slug}/`}
-        >
-          <div className="project-card-top">
-            <Icon name={a.icon} size={35} />
-            <span>{a.number}</span>
-          </div>
-          <h2>{a.fullName}</h2>
-          <p>{a.description}</p>
-          <span className="arm-link">
-            Explore the initiative
-            <ArrowUpRight size={20} />
-          </span>
-        </Link>
-      ))}
-    </div>
-  );
-}
+const servicePhotos = [
+  "event-decoration",
+  "event-arrivals",
+  "catering-class",
+  "catering-service",
+  "helpers-helpmeet",
+  "fashion-design",
+  "seminar-audience",
+  "agriculture-project",
+] as const;
 function PageContent({ slug }: { slug: string }) {
   switch (slug) {
     case "about":
       return (
         <>
-          <div className="split-content">
+          <div className="split-content" id="our-story">
             <div>
               <Eyebrow>Who we are</Eyebrow>
               <h2>Empowering lives through skills, purpose, and community.</h2>
@@ -232,7 +220,7 @@ function PageContent({ slug }: { slug: string }) {
       return <VisionMission />;
     case "core-values":
       return (
-        <div className="values-grid">
+        <div className="values-grid values-editorial">
           {values.map(([title, text], i) => (
             <article className="value-card" key={title}>
               <span className="number-label">
@@ -248,7 +236,7 @@ function PageContent({ slug }: { slug: string }) {
       return (
         <>
           <p className="intro-paragraph">{copy.belief}</p>
-          <ArmGrid />
+          <WorkChapters />
           <IntegratedModel />
           <Commitments />
         </>
@@ -316,6 +304,15 @@ function PageContent({ slug }: { slug: string }) {
           <div className="service-grid">
             {arms[1].activities.map((s, i) => (
               <article className="service-card" key={s}>
+                <div className="service-photograph">
+                  <img
+                    src={library[servicePhotos[i]].src}
+                    alt={library[servicePhotos[i]].alt}
+                    loading="lazy"
+                    width={640}
+                    height={480}
+                  />
+                </div>
                 <Icon
                   name={
                     [
@@ -377,7 +374,7 @@ function PageContent({ slug }: { slug: string }) {
               variant="sage"
             />
           </div>
-          <section className="content-section">
+          <section className="content-section" id="contribution">
             <SectionHead
               eyebrow="Find your contribution"
               title={
@@ -469,7 +466,9 @@ function PageContent({ slug }: { slug: string }) {
         <>
           <DocumentLibrary />
           <section className="content-section">
-            <Publications />
+            <div id="publications">
+              <Publications />
+            </div>
           </section>
         </>
       );
@@ -518,7 +517,7 @@ function PageContent({ slug }: { slug: string }) {
     case "contact":
       return (
         <div className="contact-grid">
-          <aside className="contact-aside">
+          <aside className="contact-aside" id="contact-details">
             <Eyebrow>A good place to start</Eyebrow>
             <h2>
               People.
@@ -575,14 +574,16 @@ function PageContent({ slug }: { slug: string }) {
               Registration forms & documents
             </TextLink>
           </aside>
-          <EnquiryForm />
+          <div id="contact-enquiry">
+            <EnquiryForm />
+          </div>
         </div>
       );
     case "privacy-policy":
       return (
         <div className="prose narrow">
           <OrganisationPrivacy />
-          <h2>About this website</h2>
+          <h2 id="website-privacy">About this website</h2>
           <p>
             This website introduces Creative Craft Development Initiative and
             its programmes. You do not need an account to browse the pages.
@@ -671,7 +672,7 @@ function PageContent({ slug }: { slug: string }) {
               CCDI’s social-enterprise arm is designed to generate income that
               supports its programmes and reduces donor dependency.
             </p>
-            <h2>How our work is supported</h2>
+            <h2 id="funding-sources">How our work is supported</h2>
             <p>CCDI reports receiving support through:</p>
             <ul className="check-list">
               {fundingSources.map((source) => (
@@ -681,7 +682,7 @@ function PageContent({ slug }: { slug: string }) {
                 </li>
               ))}
             </ul>
-            <h2>How funds are used</h2>
+            <h2 id="fund-uses">How funds are used</h2>
             <p>
               Funds received are used for the organisation’s programme and
               operational needs, including:

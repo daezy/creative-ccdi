@@ -31,11 +31,11 @@ export function Commitments() {
 export function VisionMission() {
   return (
     <>
-      <section className="statement-panel">
+      <section className="statement-panel" id="vision-statement">
         <Eyebrow>Vision statement</Eyebrow>
         <h2>{copy.vision}</h2>
       </section>
-      <section className="split-content content-section">
+      <section className="split-content content-section" id="mission-statement">
         <div>
           <Eyebrow>Our vision</Eyebrow>
           <h2>We envision a society where:</h2>
@@ -249,7 +249,7 @@ export function PartnershipContent() {
           variant="gold"
         />
       </div>
-      <section className="content-section">
+      <section className="content-section" id="partnership-opportunities">
         <SectionHead
           eyebrow="Collaboration"
           title="Our partnership opportunities"

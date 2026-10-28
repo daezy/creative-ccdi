@@ -1,3 +1,4 @@
+import { CommunityEvidence } from "@/components/page-story";
 import { TextLink } from "@/components/ui";
 import { RegistrationContent } from "@/components/document-content";
 import { FormCallout } from "@/components/document-library";
@@ -48,7 +49,9 @@ export default async function Project({
   const detail = projectCopy[a.slug];
   return (
     <>
-      <section className={`project-hero project-theme-${a.theme}`}>
+      <section
+        className={`project-hero narrative-project-hero project-theme-${a.theme}`}
+      >
         <div className="container">
           <div className="breadcrumb">
             <Link href="/">Home</Link>
@@ -70,30 +73,32 @@ export default async function Project({
                 Connect with this initiative
               </Button>
             </div>
-            <div className="project-emblem" aria-hidden="true">
-              <Icon name={a.icon} size={110} />
-              <span>{a.number}</span>
+            <div className="project-photo project-lead-photo">
+              <PhotoSlot label={a.photo} priority number={a.number} />
+              <span className="project-photo-index">
+                {a.number} / {a.name}
+              </span>
             </div>
           </div>
+          <nav
+            className="page-reading-links"
+            aria-label={`${a.name}: page sections`}
+          >
+            <a href="#programme-activities">{a.division} ↘</a>
+            {detail.purposes.length > 0 && (
+              <a href="#initiative-purposes">Our purposes ↘</a>
+            )}
+            <a href="#initiative-outcomes">What we work towards ↘</a>
+          </nav>
         </div>
       </section>
-      <div className="container page-content">
-        <div className="project-photo">
-          <PhotoSlot
-            label={a.photo}
-            variant={
-              a.theme === "orange"
-                ? "clay"
-                : a.theme === "light"
-                  ? "cream"
-                  : a.theme === "green"
-                    ? "sage"
-                    : "gold"
-            }
-            number={a.number}
-          />
-        </div>
-        <section className="split-content content-section">
+      <div
+        className={`container page-content narrative-content narrative-project narrative-project-${a.slug}`}
+      >
+        <section
+          className="split-content content-section"
+          id="programme-activities"
+        >
           <div>
             <Eyebrow>{a.division}</Eyebrow>
             <h2>{a.division}</h2>
@@ -125,7 +130,10 @@ export default async function Project({
           </section>
         )}
         {detail.purposes.length > 0 && (
-          <section className="content-section supplied-purposes">
+          <section
+            className="content-section supplied-purposes"
+            id="initiative-purposes"
+          >
             <SectionHead eyebrow={a.fullName} title="Our purposes" />
             <ol>
               {detail.purposes.map((purpose, i) => (
@@ -170,7 +178,7 @@ export default async function Project({
           </section>
         )}
         <ProjectPhotos slug={a.slug} />
-        <section className="outcomes-panel">
+        <section className="outcomes-panel" id="initiative-outcomes">
           <Eyebrow>What we work towards</Eyebrow>
           <h2>Change that reaches further.</h2>
           <ul className="check-list">
@@ -182,6 +190,18 @@ export default async function Project({
             ))}
           </ul>
         </section>
+        <CommunityEvidence
+          id={
+            (
+              {
+                "capacity-development": "emadu",
+                "social-enterprise": "uchenna",
+                "benevolent-childcare": "adanma",
+                "creative-community": "chidozie",
+              } as Record<string, string>
+            )[a.slug]
+          }
+        />
         {a.slug !== "social-enterprise" && (
           <section className="content-section">
             <VideoCollection
@@ -216,6 +236,9 @@ export default async function Project({
                   href={`/projects/${other.slug}/`}
                   key={other.slug}
                 >
+                  <div className="related-arm-photo">
+                    <PhotoSlot label={other.photo} />
+                  </div>
                   <Icon name={other.icon} />
                   <h3>{other.fullName}</h3>
                   <p>{other.description}</p>

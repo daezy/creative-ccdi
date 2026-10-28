@@ -38,8 +38,8 @@ export default async function Article({
   const i = articles.indexOf(a);
   return (
     <>
-      <article>
-        <header className="page-hero article-hero">
+      <article className="narrative-article">
+        <header className="page-hero article-hero narrative-article-hero">
           <div className="container">
             <div className="breadcrumb">
               <Link href="/">Home</Link>
@@ -58,19 +58,29 @@ export default async function Article({
           <div className="article-photo">
             <PhotoSlot label={a.title} />
           </div>
-          <div className="prose narrow">
-            {a.body.map(([heading, text]) => (
-              <section key={heading}>
-                <h2>{heading}</h2>
-                <p>{text}</p>
-              </section>
-            ))}
-            <div className="article-end">
-              <p>
-                Discover practical opportunities to learn, contribute, and grow
-                with CCDI.
-              </p>
-              <Button href="/programmes/">Explore our programmes</Button>
+          <div className="article-reading-layout">
+            <nav className="article-contents" aria-label="Article sections">
+              {a.body.map(([heading], index) => (
+                <a href={`#article-section-${index + 1}`} key={heading}>
+                  {heading}
+                </a>
+              ))}
+              <Link href="/blog/">The CCDI journal ↗</Link>
+            </nav>
+            <div className="prose narrow">
+              {a.body.map(([heading, text], index) => (
+                <section key={heading} id={`article-section-${index + 1}`}>
+                  <h2>{heading}</h2>
+                  <p>{text}</p>
+                </section>
+              ))}
+              <div className="article-end">
+                <p>
+                  Discover practical opportunities to learn, contribute, and
+                  grow with CCDI.
+                </p>
+                <Button href="/programmes/">Explore our programmes</Button>
+              </div>
             </div>
           </div>
         </div>
