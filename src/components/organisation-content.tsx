@@ -1,6 +1,5 @@
 import { MembershipContent } from "./document-content";
 import { FormCallout } from "./document-library";
-import { TeamCollection } from "./media-collections";
 import { Check } from "lucide-react";
 import { organisationCopy as copy } from "@/lib/organisation-copy";
 import { Button, Eyebrow, PhotoSlot, SectionHead, TextLink } from "./ui";
@@ -56,7 +55,7 @@ export function Governance() {
     <section className="content-section" id="governance">
       <SectionHead
         eyebrow="Governance and management"
-        title="Board of Trustees"
+        title="Board of Trustees & Management Team"
       />
       <div className="supplied-prose">
         {copy.governance.map((p) => (
@@ -66,12 +65,12 @@ export function Governance() {
       <figure className="board-photo">
         <img
           src="/images/board-of-trustees.jpeg"
-          alt="CCDI Board of Trustees group photograph"
+          alt="CCDI Board of Trustees and Management Team group photograph"
           width={1280}
           height={759}
           loading="lazy"
         />
-        <figcaption>CCDI Board of Trustees</figcaption>
+        <figcaption>CCDI Board of Trustees &amp; Management Team</figcaption>
       </figure>
       <div className="trustee-grid">
         {["Gloria Omoze Omagbemi", "Temisan Ignatius Omagbemi"].map(
@@ -92,8 +91,6 @@ export function Governance() {
           ),
         )}
       </div>
-      <h3 className="supplied-subheading">Management Team and Facilitators</h3>
-      <TeamCollection />
     </section>
   );
 }

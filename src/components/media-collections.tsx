@@ -48,32 +48,6 @@ export function VideoCollection({
     </section>
   );
 }
-export function TeamCollection() {
-  return (
-    <div className="team-photo-grid">
-      {Object.entries(library)
-        .filter(([, v]) => v.category === "Team")
-        .map(([id, v]) => (
-          <figure key={id}>
-            <a
-              href={v.src}
-              target="_blank"
-              rel="noreferrer"
-              aria-label={`View ${v.alt}`}
-            >
-              <img
-                src={v.src}
-                alt={v.alt}
-                width={v.width}
-                height={v.height}
-                loading="lazy"
-              />
-            </a>
-          </figure>
-        ))}
-    </div>
-  );
-}
 export function Publications() {
   const books = [
     "godly-pattern",

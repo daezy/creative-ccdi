@@ -35,6 +35,6 @@ Source for this correction: the About CCDI / Home Page / Four-Integrated Project
 - “18+ Years & Above — Target Beneficiaries” is ambiguous in that block. The Home Page separately and clearly states 18 years of impact and 3,000+ beneficiaries annually; those are displayed as supplied.
 - Social Enterprise purposes stop at “To generate sustainable income that supports CCDI's programmes and…”. Do not complete the missing sentence or invent the remaining purposes. The complete services and outcomes are displayed.
 - Source includes alternate third-arm names. Use the later “Benevolent and Childcare Initiative”, retaining its supplied Child Protection, Young Entrepreneurs & Welfare division.
-- Management Team and Facilitators has a heading but no names or biographies. Retain the heading and do not invent staff.
+- Confirmed by the user on 28 October 2026: the Board of Trustees also serves as the management team. Home and About now use one combined “Board of Trustees & Management Team” section. The separate unlabelled Management Team and Facilitators photo collection has been removed from these sections; its images remain in the gallery. Do not infer facilitator identities or additional roles from photographs.
 - Editorial drafting remarks such as “These seven purposes are suitable for…” and “Absolutely…” are not organisational website copy and are excluded.
 - No unpublished programme dates, fees, contact addresses, payment details or financial statements are invented.

@@ -16,7 +16,7 @@ export const pageDesigns: Record<string, PageDesign> = {
     image: "outreach-volunteers",
     links: [
       ["Who we are", "our-story"],
-      ["Board of Trustees", "governance"],
+      ["Board of Trustees & Management Team", "governance"],
     ],
   },
   "vision-mission": {
