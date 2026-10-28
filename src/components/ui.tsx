@@ -1,9 +1,9 @@
+import library from "@/lib/media-library.json";
 import Link from "next/link";
 import { photos } from "@/lib/media";
 import {
   ArrowUpRight,
   ArrowRight,
-  Heart,
   Sprout,
   Users,
   HandHeart,
@@ -160,28 +160,37 @@ export function PhotoSlot({
 }
 export function Cta() {
   return (
-    <section className="cta-section">
+    <section
+      className="cta-section cta-story"
+      id="get-involved"
+      aria-labelledby="closing-invitation"
+    >
       <div className="container cta-inner">
-        <div className="cta-symbol" aria-hidden="true">
-          <Heart size={53} strokeWidth={1} />
-          <span>+</span>
-        </div>
-        <div>
+        <div className="cta-copy">
           <Eyebrow light>There is a place for you here</Eyebrow>
-          <h2>
+          <h2 id="closing-invitation">
             A little of you.
             <br />A world of <em>difference.</em>
           </h2>
+          <div className="cta-actions">
+            <Button href="/volunteer/" variant="gold">
+              Get involved
+            </Button>
+            <Link href="/partners/">
+              Let’s build something together{" "}
+              <ArrowUpRight size={16} aria-hidden="true" />
+            </Link>
+          </div>
         </div>
-        <div className="cta-actions">
-          <Button href="/volunteer/" variant="gold">
-            Get involved
-          </Button>
-          <Link href="/partners/">
-            Let’s build something together{" "}
-            <ArrowUpRight size={16} aria-hidden="true" />
-          </Link>
-        </div>
+        <figure className="cta-photograph">
+          <img
+            src={library["outreach-volunteers"].src}
+            alt={library["outreach-volunteers"].alt}
+            width={960}
+            height={540}
+            loading="lazy"
+          />
+        </figure>
       </div>
     </section>
   );

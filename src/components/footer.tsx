@@ -1,15 +1,25 @@
 import Link from "next/link";
-import { ArrowUpRight } from "lucide-react";
-import { facebook } from "@/lib/content";
+import { ArrowUpRight, Mail, MapPin, Phone } from "lucide-react";
+import { facebook, contact } from "@/lib/content";
 export function Footer() {
   return (
-    <footer className="site-footer">
+    <footer className="site-footer branded-footer" id="site-footer">
       <div className="container">
         <div className="footer-top">
           <div className="footer-intro">
-            <Link href="/" className="footer-logo">
-              CCDI
-              <span className="logo-dot" />
+            <Link href="/" className="footer-logo" aria-label="CCDI home">
+              <img
+                src="/images/ccdi-logo.jpg"
+                alt=""
+                width={108}
+                height={98}
+                loading="lazy"
+              />
+              <span className="footer-brand-name">
+                Creative Craft
+                <br />
+                Development Initiative
+              </span>
             </Link>
             <p>
               Empowering lives through
@@ -25,27 +35,47 @@ export function Footer() {
               Find us on Facebook <ArrowUpRight size={15} aria-hidden="true" />
             </a>
           </div>
-          <div>
+          <nav className="footer-nav" aria-label="Discover">
             <p className="footer-heading">Discover</p>
             <Link href="/about/">About CCDI</Link>
             <Link href="/projects/">Our four arms</Link>
             <Link href="/skills-training/">Skills training</Link>
             <Link href="/impact/">Our impact</Link>
-          </div>
-          <div>
+          </nav>
+          <nav className="footer-nav" aria-label="Be part of it">
             <p className="footer-heading">Be part of it</p>
             <Link href="/volunteer/">Volunteer</Link>
             <Link href="/partners/">Partner with us</Link>
             <Link href="/donate/">Donate & support</Link>
             <Link href="/contact/">Contact us</Link>
-          </div>
-          <div>
+          </nav>
+          <nav className="footer-nav" aria-label="Stay curious">
             <p className="footer-heading">Stay curious</p>
             <Link href="/blog/">Journal & updates</Link>
             <Link href="/gallery/">Photo gallery</Link>
             <Link href="/documents/">Resources</Link>
             <Link href="/financial-transparency/">Financial transparency</Link>
+          </nav>
+        </div>
+        <div className="footer-contact-strip">
+          <p>
+            <MapPin size={18} aria-hidden="true" />
+            <span>{contact.address}</span>
+          </p>
+          <div className="footer-phone-links">
+            <Phone size={18} aria-hidden="true" />
+            <div>
+              {contact.phones.map((phone) => (
+                <a href={phone.href} key={phone.href}>
+                  {phone.label}
+                </a>
+              ))}
+            </div>
           </div>
+          <a href={`mailto:${contact.email}`}>
+            <Mail size={18} aria-hidden="true" />
+            <span>{contact.email}</span>
+          </a>
         </div>
         <div className="footer-bottom">
           <span>

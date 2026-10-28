@@ -8204,3 +8204,282 @@ body {
   object-fit: contain;
   background: var(--paper);
 }
+
+/* A closing invitation rooted in CCDI's people and actual identity. */
+.cta-story {
+  background: #f7f8f3;
+  padding: 64px 0 0;
+}
+.cta-story .cta-inner {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  align-items: stretch;
+  gap: 0;
+  background: var(--green-dark);
+  border-radius: 3px;
+  overflow: hidden;
+}
+.cta-story .cta-copy {
+  padding: clamp(36px, 4vw, 60px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.cta-story .eyebrow {
+  font-size: 9px;
+  letter-spacing: 0.16em;
+  color: #d1e0cb;
+  margin-bottom: 24px;
+}
+.cta-story h2 {
+  color: white;
+  font-size: clamp(34px, 3.4vw, 52px);
+  line-height: 1.13;
+  letter-spacing: -0.045em;
+}
+.cta-story h2 em {
+  color: #e5d58e;
+}
+.cta-story .cta-actions {
+  margin-top: 32px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 20px 25px;
+}
+.cta-story .cta-actions > .button {
+  min-width: 170px;
+}
+.cta-story .cta-actions > a:last-child {
+  font-size: 12px;
+  color: #e2ebdf;
+  line-height: 1.6;
+}
+.cta-photograph {
+  margin: 0;
+  overflow: hidden;
+  min-height: 370px;
+}
+.cta-photograph img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 35%;
+}
+.branded-footer {
+  background: #f7f8f3;
+  padding-top: 60px;
+}
+.branded-footer .footer-top {
+  grid-template-columns: 1.45fr 1fr 1fr 1fr;
+  gap: 48px;
+  padding-bottom: 42px;
+}
+.branded-footer .footer-logo {
+  display: inline-flex !important;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 0;
+  background: none;
+}
+.branded-footer .footer-logo img {
+  flex: 0 0 auto;
+  width: 92px;
+  height: auto;
+}
+.footer-brand-name {
+  font-size: 15px;
+  font-weight: 650;
+  letter-spacing: -0.02em;
+  line-height: 1.45;
+  max-width: 20ch;
+}
+.branded-footer .footer-intro > p {
+  margin-top: 24px;
+  margin-bottom: 21px;
+  font-size: 14px;
+  line-height: 1.9;
+}
+.branded-footer .social-link {
+  font-size: 12px !important;
+  min-height: 36px;
+}
+.branded-footer .footer-heading {
+  font-size: 12px;
+  color: var(--green-dark);
+  margin-bottom: 20px;
+  padding-top: 8px;
+}
+.footer-nav {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.footer-nav > a {
+  font-size: 13px;
+  color: #536b5b;
+  display: inline-flex;
+  align-items: center;
+  min-height: 38px;
+  padding-block: 6px;
+  line-height: 1.6;
+}
+.footer-nav > a:hover {
+  color: var(--green);
+  text-decoration: underline;
+  text-underline-offset: 5px;
+}
+.footer-contact-strip {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr;
+  gap: 36px;
+  padding-block: 24px;
+  border-top: 1px solid var(--line);
+}
+.footer-contact-strip > p,
+.footer-contact-strip > a,
+.footer-phone-links {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.8;
+  color: #536b5b;
+}
+.footer-contact-strip svg {
+  flex-shrink: 0;
+  margin-top: 3px;
+  color: var(--green);
+}
+.footer-phone-links > div {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 18px;
+}
+.footer-contact-strip a:hover {
+  color: var(--green);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.branded-footer .footer-bottom {
+  font-size: 10px;
+  padding-block: 22px;
+  gap: 24px;
+}
+@media (max-width: 1100px) {
+  .cta-story .cta-inner {
+    grid-template-columns: 1.15fr 1fr;
+  }
+  .cta-story .cta-copy {
+    padding: 36px;
+  }
+  .cta-story .cta-actions {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+  .branded-footer .footer-top {
+    gap: 30px;
+    grid-template-columns: 1.4fr 1fr 1fr 1fr;
+  }
+  .branded-footer .footer-logo {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 13px;
+  }
+  .footer-contact-strip {
+    grid-template-columns: 1.3fr 1fr;
+  }
+}
+@media (max-width: 760px) {
+  .cta-story {
+    padding-top: 40px;
+  }
+  .cta-story .cta-inner {
+    grid-template-columns: 1fr;
+  }
+  .cta-story .cta-copy {
+    padding: 32px 26px;
+  }
+  .cta-story .eyebrow {
+    font-size: 8px;
+    line-height: 1.8;
+    margin-bottom: 20px;
+  }
+  .cta-story h2 {
+    font-size: clamp(31px, 7.8vw, 40px);
+  }
+  .cta-story .cta-actions {
+    margin-top: 26px;
+    gap: 18px;
+  }
+  .cta-photograph {
+    min-height: 0;
+    height: 245px;
+  }
+  .cta-photograph img {
+    object-position: 50% 30%;
+  }
+  .branded-footer {
+    padding-top: 40px;
+  }
+  .branded-footer .footer-top {
+    grid-template-columns: 1fr 1fr;
+    gap: 28px 24px;
+    padding-bottom: 28px;
+  }
+  .branded-footer .footer-intro {
+    grid-column: 1 / -1;
+  }
+  .branded-footer .footer-logo {
+    flex-direction: row;
+    align-items: center;
+    gap: 18px;
+  }
+  .branded-footer .footer-logo img {
+    width: 84px;
+  }
+  .footer-brand-name {
+    font-size: 15px;
+  }
+  .branded-footer .footer-intro > p {
+    margin-top: 20px;
+    font-size: 14px;
+  }
+  .branded-footer .footer-heading {
+    padding-top: 0;
+    margin-bottom: 12px;
+  }
+  .footer-nav > a {
+    min-height: 42px;
+    font-size: 13px;
+  }
+  .footer-contact-strip {
+    grid-template-columns: 1fr;
+    gap: 18px;
+    padding-block: 24px;
+  }
+  .footer-phone-links > div {
+    column-gap: 20px;
+  }
+  .branded-footer .footer-bottom {
+    font-size: 10px;
+    gap: 16px;
+    padding-block: 22px;
+  }
+  .branded-footer .footer-bottom > div {
+    gap: 14px 20px;
+  }
+}
+@media (max-width: 760px) {
+  .branded-footer .footer-top > .footer-nav:last-child {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 24px;
+  }
+  .branded-footer .footer-top > .footer-nav:last-child .footer-heading {
+    grid-column: 1 / -1;
+  }
+}
