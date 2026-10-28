@@ -25,69 +25,45 @@ function playIntro(root: HTMLElement, delay: number) {
   const split = SplitText.create(h1, { type: "words", mask: "words" });
   const tl = gsap.timeline({
     delay,
-    defaults: { ease: "expo.out", duration: 1.2 },
+    defaults: { ease: "power3.out", duration: 0.9 },
     onComplete: () => split.revert(),
   });
-  tl.from(
-    ".hero-backdrop",
-    { scale: 1.16, duration: 2.6, ease: "power3.out" },
-    0,
-  )
-    .from(".hero-copy .eyebrow", { x: -24, autoAlpha: 0, duration: 0.9 }, 0.1)
-    .from(split.words, { yPercent: 115, stagger: 0.06, duration: 1.3 }, 0.2)
+  tl.from(".hero-backdrop", { scale: 1.08, duration: 2, ease: "power2.out" }, 0)
+    .from(".hero-copy .eyebrow", { y: 12, autoAlpha: 0 }, 0.1)
+    .from(
+      split.words,
+      { yPercent: 110, stagger: 0.05, duration: 1.1, ease: "power4.out" },
+      0.15,
+    )
     .from(
       ".hero-accent > svg path",
-      { drawSVG: "0%", duration: 1.1, ease: "power2.inOut" },
-      0.95,
+      { drawSVG: "0%", duration: 0.9, ease: "power2.inOut" },
+      0.8,
     )
-    .from(".hero-description", { y: 26, autoAlpha: 0 }, 0.55)
-    .from(".hero-actions > *", { y: 26, autoAlpha: 0, stagger: 0.08 }, 0.65)
-    .from(".hero-bottom > *", { y: 18, autoAlpha: 0, stagger: 0.06 }, 0.8)
+    .from(
+      ".hero-description, .hero-actions, .hero-bottom",
+      { y: 16, autoAlpha: 0, stagger: 0.08 },
+      0.5,
+    )
     .fromTo(
       ".hero-photo-main",
       { clipPath: `inset(100% 0% 0% 0% ${RADIUS})` },
       {
         clipPath: `inset(0% 0% 0% 0% ${RADIUS})`,
-        duration: 1.5,
-        ease: "expo.inOut",
+        duration: 1.2,
+        ease: "power3.inOut",
         clearProps: "clipPath",
       },
       0.25,
     )
-    .from(".hero-photo-main img", { scale: 1.4, duration: 2.2 }, 0.25)
-    .from(".hero-photo-caption", { yPercent: 100, duration: 0.9 }, 1.15)
     .from(
-      ".hero-photo-small",
-      {
-        y: 140,
-        rotation: -28,
-        autoAlpha: 0,
-        duration: 1.4,
-        ease: "back.out(1.3)",
-      },
-      0.75,
-    )
-    .from(
-      ".hero-stamp",
-      { scale: 0, rotation: -220, duration: 1.5, ease: "back.out(1.6)" },
-      1.0,
-    )
-    .from(".hero-note", { y: 22, autoAlpha: 0 }, 1.2)
-    .from(".carousel-bar", { y: 22, autoAlpha: 0 }, 1.05);
-  // Scroll away: content lifts and fades, photography drifts slower.
-  gsap.to(".hero-grid", {
-    yPercent: -10,
-    opacity: 0.25,
-    ease: "none",
-    scrollTrigger: {
-      trigger: root,
-      start: "top top",
-      end: "bottom top",
-      scrub: true,
-    },
-  });
+      ".hero-photo-small, .hero-stamp, .hero-note, .carousel-bar",
+      { y: 16, autoAlpha: 0, stagger: 0.08 },
+      0.8,
+    );
+  // The background photo drifts slightly slower than the page.
   gsap.to(".hero-backdrop", {
-    yPercent: 18,
+    yPercent: 10,
     ease: "none",
     scrollTrigger: {
       trigger: root,
@@ -98,50 +74,33 @@ function playIntro(root: HTMLElement, delay: number) {
   });
 }
 
-/** Slide change: headline re-sets word by word, photos wipe in. */
+/** Slide change: headline re-sets word by word, photos crossfade. */
 function playSlide(root: HTMLElement) {
   const copy = root.querySelector<HTMLElement>(".hero-copy")!;
   const h1 = copy.querySelector<HTMLElement>("h1")!;
   const split = SplitText.create(h1, { type: "words", mask: "words" });
-  const tl = gsap.timeline({
-    defaults: { ease: "expo.out" },
-    onComplete: () => split.revert(),
-  });
-  tl.from(split.words, { yPercent: 115, duration: 1.05, stagger: 0.045 }, 0)
+  gsap
+    .timeline({
+      defaults: { ease: "power3.out" },
+      onComplete: () => split.revert(),
+    })
     .from(
-      copy.querySelector(".hero-accent > svg path"),
-      { drawSVG: "0%", duration: 0.9, ease: "power2.inOut" },
-      0.45,
-    )
-    .from(
-      copy.querySelectorAll(".hero-description, .hero-actions > *"),
-      { y: 20, autoAlpha: 0, duration: 0.9, stagger: 0.07 },
-      0.15,
-    )
-    .fromTo(
-      ".hero-photo-main",
-      { clipPath: `inset(0% 0% 0% 100% ${RADIUS})` },
-      {
-        clipPath: `inset(0% 0% 0% 0% ${RADIUS})`,
-        duration: 1.15,
-        ease: "expo.inOut",
-        clearProps: "clipPath",
-      },
+      split.words,
+      { yPercent: 110, duration: 0.8, stagger: 0.035, ease: "power4.out" },
       0,
     )
-    .from(".hero-photo-main img", { scale: 1.25, duration: 1.7 }, 0)
     .from(
-      ".hero-photo-small",
-      {
-        y: 50,
-        rotation: -18,
-        autoAlpha: 0,
-        duration: 1.1,
-        ease: "back.out(1.6)",
-      },
-      0.2,
+      copy.querySelectorAll(".hero-description, .hero-actions"),
+      { autoAlpha: 0, duration: 0.6 },
+      0.15,
+    )
+    .from(
+      ".hero-photo-main img, .hero-photo-small img",
+      { autoAlpha: 0, duration: 0.7, ease: "power1.out" },
+      0,
     );
 }
+
 const slides = [
   {
     first: "Creative Craft",

@@ -51,14 +51,10 @@ export default function RootLayout({
       </head>
       <body>
         <Preloader />
-        <div className="scroll-progress" aria-hidden="true" />
         <Header />
         <main id="main">{children}</main>
         <Footer />
         <PageCurtain />
-        <div className="cursor" aria-hidden="true">
-          <span className="cursor-label" />
-        </div>
         <Motion />
         <script
           type="application/ld+json"

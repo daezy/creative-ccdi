@@ -37,6 +37,7 @@ import {
 } from "@/components/programme-content";
 import { fundingSources, fundUses } from "@/lib/programmes";
 import { Testimonials } from "@/components/testimonials";
+import { DisclosureMotion } from "@/components/disclosure-motion";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
@@ -115,6 +116,7 @@ export default async function Page({
   return (
     <>
       <PageMasthead slug={slug} />
+      <DisclosureMotion />
       <div
         className={`container page-content narrative-content narrative-${pageDesigns[slug].family} narrative-${slug}`}
         id="page-details"

@@ -1,11 +1,12 @@
 "use client";
 /**
- * Site-wide motion layer (GSAP). Mounted once in the root layout, it:
+ * Site-wide motion layer (GSAP), kept deliberately quiet. Mounted once in the
+ * root layout, it:
  *  - plays the preloader exit and releases the first-load intro
- *  - animates every page on arrival: split-line headings, staggered grids,
- *    clip-path image reveals, counters, parallax and scroll-linked details
- *  - adds page-to-page curtain transitions, a scroll progress bar, an
- *    auto-hiding header, magnetic buttons and a contextual cursor
+ *  - reveals content once as it scrolls into view: headings rise line by
+ *    line, blocks and cards fade up gently, photos unmask, numbers count up
+ *  - hides the header on scroll down and brings it back on scroll up
+ *  - plays a curtain transition between pages
  * Everything is skipped when the visitor prefers reduced motion.
  */
 import { useLayoutEffect, useRef } from "react";
@@ -13,12 +14,7 @@ import { usePathname, useRouter } from "next/navigation";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { SplitText } from "gsap/SplitText";
-import {
-  flushIntro,
-  isIntroDone,
-  onIntro,
-  prefersReducedMotion,
-} from "@/lib/motion-intro";
+import { flushIntro, onIntro, prefersReducedMotion } from "@/lib/motion-intro";
 
 declare global {
   interface Window {
@@ -33,7 +29,7 @@ if (typeof window !== "undefined") {
 const EASE = "expo.out";
 const CLEAR = "transform,opacity,visibility,transition";
 
-/** Containers whose children reveal as a stagger. */
+/** Containers whose children arrive as a soft stagger. */
 const GROUPS = [
   ".arms-grid",
   ".two-cards",
@@ -62,50 +58,30 @@ const GROUPS = [
   ".activity-list",
   ".challenge-list",
   ".supplied-purposes ol",
-  ".enquiry-steps",
-  ".programme-jump-links",
   ".gallery-masonry",
-  ".footer-top",
 ].join(",");
-/** Groups that slide in from the side rather than rise. */
-const LIST_GROUPS =
-  ".check-list, .about-checks, .journey-list, .activity-list, .challenge-list, .impact-facts, .supplied-purposes ol, .enquiry-steps";
 /** Individual blocks that fade up. */
 const SINGLES = [
-  "p:not(.eyebrow)",
+  ".eyebrow",
+  "p",
   ".button",
   ".text-link",
   "blockquote",
   "figcaption",
   ".contact-channel",
-  ".form-row",
-  ".enquiry-form > label",
+  ".enquiry-form",
   ".gallery-tags",
   ".filter-bar",
   ".cta-actions",
   ".hero-actions",
   "details",
   "table",
-  ".footer-bottom",
   ".cta-symbol",
 ].join(",");
-/** Cursor labels for "open me" surfaces. */
-const CURSOR_VIEW: Array<[string, string]> = [
-  [".video-card", "Play"],
-  [".journal-card, .real-story, .story-content", "Read"],
-  [".arm-card, .project-card, .programme-tile, .linked-card", "Explore"],
-  [".gallery-item, .publication-card, .flyer-card, .document-card", "View"],
-];
 
 /** Client-rendered areas whose DOM React may update. */
 const CLIENT_ZONES =
   ".gallery-collections, .enquiry-form, .document-library, .support-selector, .site-header";
-
-/** An image may scale only if its parent crops it. */
-const canZoom = (img: Element) => {
-  const parent = img.parentElement;
-  return !!parent && getComputedStyle(parent).overflow !== "visible";
-};
 
 const norm = (p: string) => p.replace(/\/+$/, "") || "/";
 
@@ -115,8 +91,9 @@ export function Motion() {
   const state = useRef({
     first: true,
     preloader: false,
-    curtainCovering: false,
     reduced: false,
+    curtainCovering: false,
+    uncover: () => {},
   });
 
   // ---------------------------------------------------------------- global
@@ -226,21 +203,6 @@ export function Motion() {
       flushIntro();
     }
 
-    // Scroll progress bar.
-    const bar = document.querySelector(".scroll-progress");
-    if (bar) {
-      const t = gsap.fromTo(
-        bar,
-        { scaleX: 0 },
-        {
-          scaleX: 1,
-          ease: "none",
-          scrollTrigger: { start: 0, end: "max", scrub: 0.3 },
-        },
-      );
-      cleanups.push(() => t.scrollTrigger?.kill());
-    }
-
     // Header hides on scroll down, returns on scroll up.
     let headerHidden = false;
     const headerST = ScrollTrigger.create({
@@ -256,8 +218,8 @@ export function Motion() {
         headerHidden = hide;
         gsap.to(header, {
           yPercent: hide ? -100 : 0,
-          duration: hide ? 0.35 : 0.55,
-          ease: hide ? "power2.in" : EASE,
+          duration: hide ? 0.3 : 0.45,
+          ease: hide ? "power2.in" : "power3.out",
           overwrite: true,
         });
       },
@@ -273,108 +235,37 @@ export function Motion() {
     ro.observe(document.body);
     cleanups.push(() => ro.disconnect());
 
-    const finePointer = window.matchMedia(
-      "(hover: hover) and (pointer: fine)",
-    ).matches;
-
-    // Magnetic buttons.
-    if (finePointer) {
-      const MAG =
-        ".button, .donate-button, .icon-button, .round-arrow, .belief-strip a";
-      let current: HTMLElement | null = null;
-      const release = (el: HTMLElement) =>
-        gsap.to(el, {
-          "--mx": "0px",
-          "--my": "0px",
-          duration: 0.8,
-          ease: "elastic.out(1, 0.4)",
-        });
-      const onMove = (e: PointerEvent) => {
-        const el = (e.target as Element)?.closest?.(MAG) as HTMLElement | null;
-        if (current && current !== el) release(current);
-        current = el;
-        if (!el) return;
-        const r = el.getBoundingClientRect();
-        const dx = ((e.clientX - (r.left + r.width / 2)) / r.width) * 14;
-        const dy = ((e.clientY - (r.top + r.height / 2)) / r.height) * 10;
-        gsap.to(el, {
-          "--mx": `${dx}px`,
-          "--my": `${dy}px`,
-          duration: 0.4,
-          ease: "power3.out",
-        });
-      };
-      const onLeaveDoc = () => {
-        if (current) release(current);
-        current = null;
-      };
-      document.addEventListener("pointermove", onMove);
-      document.documentElement.addEventListener("pointerleave", onLeaveDoc);
-      cleanups.push(() => {
-        document.removeEventListener("pointermove", onMove);
-        document.documentElement.removeEventListener(
-          "pointerleave",
-          onLeaveDoc,
-        );
-      });
-    }
-
-    // Contextual cursor.
-    const cursor = document.querySelector<HTMLElement>(".cursor");
-    if (finePointer && cursor) {
-      const label = cursor.querySelector<HTMLElement>(".cursor-label")!;
-      gsap.set(cursor, { xPercent: -50, yPercent: -50 });
-      const xTo = gsap.quickTo(cursor, "x", { duration: 0.45, ease: "power3" });
-      const yTo = gsap.quickTo(cursor, "y", { duration: 0.45, ease: "power3" });
-      let shown = false;
-      const onMove = (e: PointerEvent) => {
-        if (e.pointerType !== "mouse") return;
-        if (!shown) {
-          gsap.set(cursor, { x: e.clientX, y: e.clientY });
-          shown = true;
-        }
-        xTo(e.clientX);
-        yTo(e.clientY);
-        const t = e.target as Element;
-        cursor.classList.add("is-visible");
-        const hideOver = t.closest?.(
-          "input, textarea, select, iframe, video, .preloader, .gallery-dialog",
-        );
-        let view = "";
-        for (const [sel, text] of CURSOR_VIEW) {
-          if (t.closest?.(sel)) {
-            view = text;
-            break;
-          }
-        }
-        const interactive =
-          !view && t.closest?.("a, button, [role=button], label, summary");
-        cursor.classList.toggle("is-hidden", !!hideOver);
-        cursor.classList.toggle("is-view", !!view && !hideOver);
-        cursor.classList.toggle("is-hover", !!interactive && !hideOver);
-        if (view) label.textContent = view;
-      };
-      const onOut = (e: PointerEvent) => {
-        if (!e.relatedTarget) cursor.classList.remove("is-visible");
-      };
-      const onDown = () => cursor.classList.add("is-down");
-      const onUp = () => cursor.classList.remove("is-down");
-      document.addEventListener("pointermove", onMove);
-      document.addEventListener("pointerout", onOut);
-      document.addEventListener("pointerdown", onDown);
-      document.addEventListener("pointerup", onUp);
-      cleanups.push(() => {
-        document.removeEventListener("pointermove", onMove);
-        document.removeEventListener("pointerout", onOut);
-        document.removeEventListener("pointerdown", onDown);
-        document.removeEventListener("pointerup", onUp);
-      });
-    }
-
     // Page-to-page curtain.
     const curtain = document.querySelector<HTMLElement>(".page-curtain");
     let curtainSafety = 0;
     if (curtain) gsap.set(curtain, { y: 0, yPercent: 101, autoAlpha: 1 });
+    const uncover = () => {
+      clearTimeout(curtainSafety);
+      if (!curtain || !s.curtainCovering) return;
+      gsap
+        .timeline({
+          onComplete: () => {
+            s.curtainCovering = false;
+            gsap.set(curtain, { yPercent: 101 });
+          },
+        })
+        .to(
+          curtain.querySelectorAll(".page-curtain-emblem, .page-curtain-label"),
+          {
+            y: -30,
+            autoAlpha: 0,
+            duration: 0.4,
+            stagger: 0.04,
+            ease: "power3.in",
+          },
+        )
+        .to(
+          curtain,
+          { yPercent: -101, duration: 0.85, ease: "power4.inOut" },
+          "-=0.2",
+        );
+    };
+    s.uncover = uncover;
     const onClick = (e: MouseEvent) => {
       if (
         !curtain ||
@@ -430,38 +321,10 @@ export function Motion() {
           "-=0.35",
         );
     };
-    const uncover = () => {
-      clearTimeout(curtainSafety);
-      if (!curtain || !s.curtainCovering) return;
-      gsap
-        .timeline({
-          onComplete: () => {
-            s.curtainCovering = false;
-            gsap.set(curtain, { yPercent: 101 });
-          },
-        })
-        .to(
-          curtain.querySelectorAll(".page-curtain-emblem, .page-curtain-label"),
-          {
-            y: -30,
-            autoAlpha: 0,
-            duration: 0.4,
-            stagger: 0.04,
-            ease: "power3.in",
-          },
-        )
-        .to(
-          curtain,
-          { yPercent: -101, duration: 0.85, ease: "power4.inOut" },
-          "-=0.2",
-        );
-    };
-    (state.current as unknown as { uncover: () => void }).uncover = uncover;
     window.addEventListener("click", onClick, true);
     cleanups.push(() => window.removeEventListener("click", onClick, true));
 
     return () => cleanups.forEach((f) => f());
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // -------------------------------------------------------------- per page
@@ -470,17 +333,16 @@ export function Motion() {
     if (s.reduced) return;
     const isFirst = s.first;
     s.first = false;
-    const fromCurtain = s.curtainCovering;
     const header = document.querySelector<HTMLElement>(".site-header");
     if (header && !isFirst) gsap.set(header, { yPercent: 0 });
-
     // On a plain first load (no preloader), content already on screen is
-    // left alone so nothing flashes; everything below the fold still animates.
+    // left alone so nothing flashes; everything below the fold still reveals.
     const animateInView = !isFirst || s.preloader;
-    const { teardown } = setupPage({ isFirst, fromCurtain, animateInView });
+    const fromCurtain = s.curtainCovering;
+    const teardown = setupPage(isFirst, animateInView, fromCurtain);
     if (fromCurtain) {
       window.scrollTo(0, 0);
-      (s as unknown as { uncover?: () => void }).uncover?.();
+      s.uncover();
     }
     requestAnimationFrame(() => ScrollTrigger.refresh());
     return teardown;
@@ -490,24 +352,18 @@ export function Motion() {
 }
 
 // ---------------------------------------------------------------- page setup
-function setupPage({
-  isFirst,
-  fromCurtain,
-  animateInView,
-}: {
-  isFirst: boolean;
-  fromCurtain: boolean;
-  animateInView: boolean;
-}) {
+function setupPage(
+  isFirst: boolean,
+  animateInView: boolean,
+  fromCurtain: boolean,
+) {
   const ctx = gsap.context(() => {});
   const roots = [
     document.querySelector("main"),
     document.querySelector(".site-footer"),
   ].filter(Boolean) as HTMLElement[];
-  const all = <T extends Element = HTMLElement>(sel: string) =>
-    roots.flatMap((r) =>
-      Array.from(r.querySelectorAll<T & Element>(sel)),
-    ) as T[];
+  const all = (sel: string) =>
+    roots.flatMap((r) => Array.from(r.querySelectorAll<HTMLElement>(sel)));
   const claimed = new Set<Element>();
   const isClaimed = (el: Element) => {
     for (let p: Element | null = el; p; p = p.parentElement)
@@ -517,56 +373,66 @@ function setupPage({
   const skip = (el: Element) =>
     !!el.closest(".home-hero, [role=dialog], .sr-only, .preloader, [hidden]");
   const vh = window.innerHeight;
-  const onScreen = (el: Element) => el.getBoundingClientRect().top < vh * 0.98;
 
-  // Reveal on enter, staggering whatever arrives in the same frame.
+  // Reveal once on enter; things arriving together get a small stagger.
   const pending = new Map<Element, (delay: number) => void>();
   const io = new IntersectionObserver(
     (entries) => {
-      const hits = entries
+      entries
         .filter((e) => e.isIntersecting && pending.has(e.target))
         .map((e) => e.target)
         .sort((a, b) =>
           a.compareDocumentPosition(b) & Node.DOCUMENT_POSITION_FOLLOWING
             ? -1
             : 1,
-        );
-      hits.forEach((t, i) => {
-        const play = pending.get(t)!;
-        pending.delete(t);
-        io.unobserve(t);
-        ctx.add(() =>
-          play(Math.min(i * 0.08, 0.48) + (fromCurtain ? 0.35 : 0)),
-        );
-      });
+        )
+        .forEach((t, i) => {
+          const play = pending.get(t)!;
+          pending.delete(t);
+          io.unobserve(t);
+          ctx.add(() =>
+            play(Math.min(i * 0.06, 0.3) + (fromCurtain ? 0.35 : 0)),
+          );
+        });
     },
-    { rootMargin: "0px 0px -6% 0px" },
+    { rootMargin: "0px 0px -8% 0px" },
   );
   const reveal = (
     el: Element,
     prep: () => void,
     play: (delay: number) => void,
   ) => {
-    if (!animateInView && onScreen(el)) return;
+    if (!animateInView && el.getBoundingClientRect().top < vh * 0.98) return;
     ctx.add(prep);
     pending.set(el, play);
     io.observe(el);
   };
-  // Safety net: anything still waiting once it is on screen gets revealed.
-  const sweep = () => {
-    pending.forEach((play, el) => {
-      const r = el.getBoundingClientRect();
-      if (r.top < vh && r.bottom > 0) {
-        pending.delete(el);
-        io.unobserve(el);
-        ctx.add(() => play(0));
-      }
+  const fadeUp = (els: Element | Element[], delay: number, stagger = 0) =>
+    gsap.to(els, {
+      autoAlpha: 1,
+      y: 0,
+      duration: 0.8,
+      ease: "power3.out",
+      delay,
+      stagger,
+      clearProps: CLEAR,
     });
-  };
+  const hidden = { autoAlpha: 0, y: 20, transition: "none" };
+
+  // Safety net: anything still waiting once it is on screen gets revealed.
   let sweepTimer = 0;
   const onScroll = () => {
     clearTimeout(sweepTimer);
-    sweepTimer = window.setTimeout(sweep, 160);
+    sweepTimer = window.setTimeout(() => {
+      pending.forEach((play, el) => {
+        const r = el.getBoundingClientRect();
+        if (r.top < vh && r.bottom > 0) {
+          pending.delete(el);
+          io.unobserve(el);
+          ctx.add(() => play(0));
+        }
+      });
+    }, 160);
   };
   window.addEventListener("scroll", onScroll, { passive: true });
 
@@ -582,64 +448,30 @@ function setupPage({
     else run();
   }
 
-  // 2. Staggered groups.
+  // 2. Groups: children rise a little, one after another.
   all(GROUPS).forEach((group) => {
     if (skip(group) || isClaimed(group)) return;
-    const items = Array.from(group.children).filter(
-      (c) => !(c instanceof HTMLTemplateElement),
-    ) as HTMLElement[];
+    const items = Array.from(group.children) as HTMLElement[];
     if (!items.length) return;
     claimed.add(group);
-    const isList = group.matches(LIST_GROUPS);
-    const from = isList
-      ? { autoAlpha: 0, x: -32, transition: "none" }
-      : {
-          autoAlpha: 0,
-          y: 64,
-          scale: 0.96,
-          transformOrigin: "50% 100%",
-          transition: "none",
-        };
-    const images = (els: Element[]) =>
-      els
-        .map((i) => i.querySelector(".slot-image, .gallery-thumb, img"))
-        .filter((img): img is HTMLElement => !!img && canZoom(img));
-    const show = (els: HTMLElement[], delay: number) => {
-      gsap.to(els, {
-        autoAlpha: 1,
-        x: 0,
-        y: 0,
-        scale: 1,
-        duration: isList ? 0.9 : 1.2,
-        ease: EASE,
-        stagger: isList ? 0.07 : 0.1,
-        delay,
-        clearProps: CLEAR,
-      });
-      const imgs = images(els);
-      if (imgs.length)
-        gsap.to(imgs, {
-          scale: 1,
-          duration: 1.8,
-          ease: EASE,
-          stagger: 0.1,
-          delay,
-          clearProps: "transform,transition",
-        });
-    };
-    const prep = (els: HTMLElement[]) => () => {
-      gsap.set(els, from);
-      const imgs = images(els);
-      if (!isList && imgs.length)
-        gsap.set(imgs, { scale: 1.25, transition: "none" });
-    };
     // Long grids (e.g. the gallery) reveal item by item as they scroll in.
     if (items.length > 10)
-      items.forEach((it) => reveal(it, prep([it]), (d) => show([it], d)));
-    else reveal(group, prep(items), (d) => show(items, d));
+      items.forEach((it) =>
+        reveal(
+          it,
+          () => gsap.set(it, hidden),
+          (d) => fadeUp(it, d),
+        ),
+      );
+    else
+      reveal(
+        group,
+        () => gsap.set(items, hidden),
+        (d) => fadeUp(items, d, 0.07),
+      );
   });
 
-  // 3. Headings: masked line-by-line rise.
+  // 3. Headings: masked line-by-line rise — the one signature move.
   all("h1, h2").forEach((h) => {
     if (skip(h) || isClaimed(h) || !h.textContent?.trim()) return;
     claimed.add(h);
@@ -647,29 +479,19 @@ function setupPage({
       h,
       () => gsap.set(h, { autoAlpha: 0 }),
       (delay) => {
-        // Interactive React regions get a plain rise (no DOM splitting).
+        // Interactive React regions get a plain fade (no DOM splitting).
         if (h.closest(CLIENT_ZONES)) {
-          gsap.fromTo(
-            h,
-            { autoAlpha: 0, y: 30 },
-            {
-              autoAlpha: 1,
-              y: 0,
-              duration: 1,
-              ease: EASE,
-              delay,
-              clearProps: CLEAR,
-            },
-          );
+          gsap.set(h, { y: 20 });
+          fadeUp(h, delay);
           return;
         }
         const split = SplitText.create(h, { type: "lines", mask: "lines" });
         gsap.set(h, { autoAlpha: 1 });
         gsap.from(split.lines, {
-          yPercent: 115,
-          duration: 1.25,
-          ease: EASE,
-          stagger: 0.1,
+          yPercent: 105,
+          duration: 0.9,
+          ease: "power4.out",
+          stagger: 0.08,
           delay,
           onComplete: () => split.revert(),
         });
@@ -677,121 +499,37 @@ function setupPage({
     );
   });
 
-  // 4. Eyebrows: label slides in, dot pops.
-  all(".eyebrow").forEach((el) => {
-    if (skip(el) || isClaimed(el)) return;
-    claimed.add(el);
-    const dot = el.querySelector("span");
-    reveal(
-      el,
-      () => {
-        gsap.set(el, { autoAlpha: 0, x: -18 });
-        if (dot) gsap.set(dot, { scale: 0 });
-      },
-      (delay) => {
-        gsap.to(el, {
-          autoAlpha: 1,
-          x: 0,
-          duration: 0.9,
-          ease: EASE,
-          delay,
-          clearProps: CLEAR,
-        });
-        if (dot)
-          gsap.to(dot, {
-            scale: 1,
-            duration: 0.7,
-            ease: "back.out(4)",
-            delay: delay + 0.15,
-            clearProps: "transform",
-          });
-      },
-    );
-  });
-
-  // 5. Images: clip-path unmask with a slow zoom-out; large ones get parallax.
+  // 4. Photos: a soft unmask.
   all(".photo-slot.has-photo, figure > img").forEach((el) => {
     if (skip(el) || isClaimed(el)) return;
     claimed.add(el);
-    const found = (
-      el.matches("img") ? el : el.querySelector("img")
-    ) as HTMLElement | null;
-    // Only zoom images that sit inside a cropping frame.
-    const img = found && canZoom(found) ? found : null;
-    const big =
-      !!img && !el.matches("img") && el.getBoundingClientRect().height > 340;
     reveal(
       el,
-      () => {
-        gsap.set(el, { clipPath: "inset(14% 10% 14% 10%)" });
-        if (img) gsap.set(img, { scale: 1.35, transition: "none" });
-      },
-      (delay) => {
-        gsap.to(el, {
-          clipPath: "inset(0% 0% 0% 0%)",
-          duration: 1.5,
-          ease: "expo.inOut",
-          delay,
-          clearProps: "clipPath",
-        });
-        if (img)
-          gsap.to(img, {
-            scale: big ? 1.14 : 1,
-            duration: 2,
-            ease: EASE,
-            delay,
-            clearProps: big ? "transition" : "transform,transition",
-          });
-      },
-    );
-    if (big && img)
-      ctx.add(() =>
-        gsap.fromTo(
-          img,
-          { yPercent: -6 },
-          {
-            yPercent: 6,
-            ease: "none",
-            scrollTrigger: {
-              trigger: el,
-              start: "top bottom",
-              end: "bottom top",
-              scrub: true,
-            },
-          },
-        ),
-      );
-  });
-
-  // 6. Text and small blocks fade up.
-  all(SINGLES).forEach((el) => {
-    if (skip(el) || isClaimed(el) || el.closest(".photo-slot")) return;
-    claimed.add(el);
-    const isSymbol = el.matches(".cta-symbol");
-    reveal(
-      el,
-      () =>
-        gsap.set(
-          el,
-          isSymbol
-            ? { autoAlpha: 0, scale: 0.3, rotation: -60 }
-            : { autoAlpha: 0, y: 30, transition: "none" },
-        ),
+      () => gsap.set(el, { clipPath: "inset(6% 6% 6% 6%)", autoAlpha: 0 }),
       (delay) =>
         gsap.to(el, {
+          clipPath: "inset(0% 0% 0% 0%)",
           autoAlpha: 1,
-          y: 0,
-          scale: 1,
-          rotation: 0,
-          duration: isSymbol ? 1.6 : 1,
-          ease: isSymbol ? "elastic.out(1, 0.5)" : EASE,
+          duration: 1.1,
+          ease: "power3.out",
           delay,
-          clearProps: CLEAR,
+          clearProps: "clipPath,opacity,visibility",
         }),
     );
   });
 
-  // 7. Counters.
+  // 5. Text and small blocks fade up.
+  all(SINGLES).forEach((el) => {
+    if (skip(el) || isClaimed(el) || el.closest(".photo-slot")) return;
+    claimed.add(el);
+    reveal(
+      el,
+      () => gsap.set(el, hidden),
+      (d) => fadeUp(el, d),
+    );
+  });
+
+  // 6. Counters.
   all(".fact-number").forEach((el) => {
     const m = el.textContent?.trim().match(/^([\d,]+)(.*)$/);
     if (!m) return;
@@ -808,9 +546,9 @@ function setupPage({
         const o = { v: 0 };
         gsap.to(o, {
           v: target,
-          duration: 2.2,
+          duration: 1.6,
           ease: "power3.out",
-          delay: delay + 0.2,
+          delay: delay + 0.1,
           onUpdate: () => {
             el.textContent = `${Math.round(o.v).toLocaleString("en-NG")}${suffix}`;
           },
@@ -825,120 +563,48 @@ function setupPage({
     });
   });
 
-  // 8. Scroll-linked details: stars turn as you scroll past.
-  all(".belief-star, .community-star, .page-flower, .project-emblem").forEach(
-    (el) => {
-      ctx.add(() =>
-        gsap.to(el, {
-          rotation: 180,
-          ease: "none",
-          scrollTrigger: {
-            trigger: el,
-            start: "top bottom",
-            end: "bottom top",
-            scrub: 1,
-          },
-        }),
-      );
-    },
-  );
-
-  // 9. Gentle drift on the dark impact panel's heading block.
-  const impact = document.querySelector(".impact-intro");
-  if (impact)
-    ctx.add(() =>
-      gsap.fromTo(
-        impact,
-        { y: 40 },
-        {
-          y: -40,
-          ease: "none",
-          scrollTrigger: {
-            trigger: impact.closest("section") ?? impact,
-            start: "top bottom",
-            end: "bottom top",
-            scrub: true,
-          },
-        },
-      ),
-    );
-
-  return {
-    teardown: () => {
-      io.disconnect();
-      window.removeEventListener("scroll", onScroll);
-      clearTimeout(sweepTimer);
-      ctx.revert();
-    },
+  return () => {
+    io.disconnect();
+    window.removeEventListener("scroll", onScroll);
+    clearTimeout(sweepTimer);
+    ctx.revert();
   };
 }
 
 function heroEntrance(hero: HTMLElement, delay: number) {
-  const q = <T extends Element = HTMLElement>(sel: string) =>
-    Array.from(hero.querySelectorAll<T & Element>(sel)) as T[];
+  const q = (sel: string) =>
+    Array.from(hero.querySelectorAll<HTMLElement>(sel));
   gsap.set(q(".container > *"), { autoAlpha: 1 });
-  const tl = gsap.timeline({ delay, defaults: { ease: EASE, duration: 1.1 } });
-  const crumbs = hero.querySelector(".breadcrumb");
-  const eyebrow = hero.querySelector(".eyebrow");
+  const tl = gsap.timeline({
+    delay,
+    defaults: { ease: "power3.out", duration: 0.8 },
+  });
   const h1 = hero.querySelector("h1");
-  if (crumbs)
-    tl.from(
-      crumbs,
-      { y: -14, autoAlpha: 0, duration: 0.8, clearProps: CLEAR },
-      0,
-    );
-  if (eyebrow)
-    tl.from(eyebrow, { x: -20, autoAlpha: 0, clearProps: CLEAR }, 0.1);
   if (h1) {
     const split = SplitText.create(h1, { type: "lines", mask: "lines" });
     tl.from(
       split.lines,
       {
-        yPercent: 115,
-        duration: 1.3,
-        stagger: 0.1,
+        yPercent: 105,
+        duration: 1,
+        ease: "power4.out",
+        stagger: 0.08,
         onComplete: () => split.revert(),
       },
-      0.15,
+      0,
     );
   }
   const rest = q(
-    ".container p:not(.eyebrow), .container .button, .container .text-link, .container .project-hero-layout > div:not(:first-child) > *",
-  ).filter((el) => !el.closest(".breadcrumb") && !el.closest(".eyebrow"));
+    ".breadcrumb, .eyebrow, .container p:not(.eyebrow), .container .button, .container .text-link, .page-flower, .project-emblem, .photo-slot",
+  ).filter(
+    (el, _, arr) =>
+      !el.closest("h1") && !arr.some((o) => o !== el && o.contains(el)),
+  );
   if (rest.length)
     tl.from(
       rest,
-      { y: 26, autoAlpha: 0, stagger: 0.08, clearProps: CLEAR },
-      0.4,
+      { y: 16, autoAlpha: 0, stagger: 0.05, clearProps: CLEAR },
+      0.15,
     );
-  const decor = q(".page-flower, .project-emblem");
-  if (decor.length)
-    tl.from(
-      decor,
-      {
-        scale: 0.2,
-        autoAlpha: 0,
-        duration: 1.6,
-        ease: "elastic.out(1, 0.55)",
-        clearProps: "opacity,visibility",
-      },
-      0.3,
-    );
-  const photos = q(".photo-slot.has-photo");
-  photos.forEach((p) => {
-    tl.fromTo(
-      p,
-      { clipPath: "inset(100% 0% 0% 0%)" },
-      {
-        clipPath: "inset(0% 0% 0% 0%)",
-        duration: 1.4,
-        ease: "expo.inOut",
-        clearProps: "clipPath",
-      },
-      0.25,
-    );
-  });
   return tl;
 }
-
-export { isIntroDone };

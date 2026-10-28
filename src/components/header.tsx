@@ -20,6 +20,9 @@ export function Header() {
   const path = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [expandedGroup, setExpandedGroup] = useState<string | null>(null);
+  // Only one desktop dropdown may be open at a time.
+  const [openMenu, setOpenMenu] = useState<string | null>(null);
+  useEffect(() => setOpenMenu(null), [path]);
   const isHome = path === "/";
   const [scrolled, setScrolled] = useState(false);
   // On the homepage the header floats over the hero carousel and switches
@@ -105,7 +108,19 @@ export function Header() {
           <nav className="desktop-nav" aria-label="Main navigation">
             {navigation.map((item) =>
               item.links ? (
-                <Popover.Root key={item.label + path}>
+                <Popover.Root
+                  key={item.label + path}
+                  open={openMenu === item.label}
+                  onOpenChange={(open) =>
+                    setOpenMenu((current) =>
+                      open
+                        ? item.label
+                        : current === item.label
+                          ? null
+                          : current,
+                    )
+                  }
+                >
                   <Popover.Trigger
                     openOnHover
                     delay={150}
