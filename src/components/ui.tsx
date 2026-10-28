@@ -109,8 +109,10 @@ export function PhotoSlot({
   number = "01",
   variant = "sage",
   className = "",
+  priority = false,
 }: {
   label: string;
+  priority?: boolean;
   number?: string;
   variant?: string;
   className?: string;
@@ -118,14 +120,17 @@ export function PhotoSlot({
   const photo = photos[label];
   if (photo)
     return (
-      <div className={`photo-slot has-photo photo-${variant} ${className}`}>
+      <div
+        className={`photo-slot has-photo ${photo.contain ? "photo-contain" : ""} photo-${variant} ${className}`}
+      >
         <img
           className="slot-image"
           src={photo.src}
           alt={photo.alt}
-          width={960}
-          height={720}
-          loading="lazy"
+          width={photo.width || 960}
+          height={photo.height || 720}
+          loading={priority ? "eager" : "lazy"}
+          fetchPriority={priority ? "high" : "auto"}
           style={{ objectPosition: photo.objectPosition || "center" }}
         />
       </div>

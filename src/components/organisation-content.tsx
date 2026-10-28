@@ -1,3 +1,4 @@
+import { TeamCollection } from "./media-collections";
 import { Check } from "lucide-react";
 import { organisationCopy as copy } from "@/lib/organisation-copy";
 import { Button, Eyebrow, PhotoSlot, SectionHead, TextLink } from "./ui";
@@ -90,6 +91,7 @@ export function Governance() {
         )}
       </div>
       <h3 className="supplied-subheading">Management Team and Facilitators</h3>
+      <TeamCollection />
     </section>
   );
 }

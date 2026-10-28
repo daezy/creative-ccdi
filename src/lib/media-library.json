@@ -1,0 +1,1232 @@
+{
+  "catering-trainees": {
+    "src": "/images/library/catering-trainees.webp",
+    "alt": "Catering trainees with their finished cake",
+    "width": 960,
+    "height": 720,
+    "category": "Skills training",
+    "source": "images/projects/WhatsApp Image 2026-10-28 at 00.25.52 (1).jpeg",
+    "id": 39,
+    "contain": false
+  },
+  "fashion-design": {
+    "src": "/images/library/fashion-design.webp",
+    "alt": "Fashion design and garment display",
+    "width": 1280,
+    "height": 960,
+    "category": "Enterprise",
+    "source": "images/projects/WhatsApp Image 2026-10-28 at 00.25.52 (10).jpeg",
+    "id": 40,
+    "contain": false
+  },
+  "welfare-visit": {
+    "src": "/images/library/welfare-visit.webp",
+    "alt": "CCDI welfare outreach visit",
+    "width": 1080,
+    "height": 771,
+    "category": "Welfare outreach",
+    "source": "images/projects/WhatsApp Image 2026-10-28 at 00.25.52 (11).jpeg",
+    "id": 41,
+    "contain": false
+  },
+  "community-outreach": {
+    "src": "/images/library/community-outreach.webp",
+    "alt": "A community outreach gathering",
+    "width": 1080,
+    "height": 809,
+    "category": "Welfare outreach",
+    "source": "images/projects/WhatsApp Image 2026-10-28 at 00.25.52 (12).jpeg",
+    "id": 42,
+    "contain": false
+  },
+  "touch-of-love-banner": {
+    "src": "/images/library/touch-of-love-banner.webp",
+    "alt": "A Touch of Love welfare outreach banner",
+    "width": 1080,
+    "height": 344,
+    "category": "Programme flyers",
+    "source": "images/projects/WhatsApp Image 2026-10-28 at 00.25.52 (13).jpeg",
+    "id": 43,
+    "contain": true
+  },
+  "outreach-team": {
+    "src": "/images/library/outreach-team.webp",
+    "alt": "The outreach team preparing refreshments",
+    "width": 960,
+    "height": 720,
+    "category": "Welfare outreach",
+    "source": "images/projects/WhatsApp Image 2026-10-28 at 00.25.52 (14).jpeg",
+    "id": 44,
+    "contain": false
+  },
+  "outreach-conversation": {
+    "src": "/images/library/outreach-conversation.webp",
+    "alt": "Conversations during welfare outreach",
+    "width": 960,
+    "height": 720,
+    "category": "Welfare outreach",
+    "source": "images/projects/WhatsApp Image 2026-10-28 at 00.25.52 (15).jpeg",
+    "id": 45,
+    "contain": false
+  },
+  "welfare-supplies": {
+    "src": "/images/library/welfare-supplies.webp",
+    "alt": "The outreach team with welfare supplies",
+    "width": 960,
+    "height": 720,
+    "category": "Welfare outreach",
+    "source": "images/projects/WhatsApp Image 2026-10-28 at 00.25.52 (16).jpeg",
+    "id": 46,
+    "contain": false
+  },
+  "outreach-gathering": {
+    "src": "/images/library/outreach-gathering.webp",
+    "alt": "An outdoor community gathering",
+    "width": 540,
+    "height": 960,
+    "category": "Welfare outreach",
+    "source": "images/projects/WhatsApp Image 2026-10-28 at 00.25.52 (18).jpeg",
+    "id": 48,
+    "contain": false
+  },
+  "baking-trainees": {
+    "src": "/images/library/baking-trainees.webp",
+    "alt": "Trainees presenting their baked work",
+    "width": 960,
+    "height": 720,
+    "category": "Skills training",
+    "source": "images/projects/WhatsApp Image 2026-10-28 at 00.25.52 (19).jpeg",
+    "id": 49,
+    "contain": false
+  },
+  "four-arm-model": {
+    "src": "/images/library/four-arm-model.webp",
+    "alt": "CCDI Four-Integrated Project-Arm model",
+    "width": 720,
+    "height": 1080,
+    "category": "Programme flyers",
+    "source": "images/projects/WhatsApp Image 2026-10-28 at 00.25.52 (2).jpeg",
+    "id": 50,
+    "contain": true
+  },
+  "training-centre-entry": {
+    "src": "/images/library/training-centre-entry.webp",
+    "alt": "Outside the vocational training centre",
+    "width": 720,
+    "height": 960,
+    "category": "Skills training",
+    "source": "images/projects/WhatsApp Image 2026-10-28 at 00.25.52 (20).jpeg",
+    "id": 51,
+    "contain": false
+  },
+  "poultry-enterprise": {
+    "src": "/images/library/poultry-enterprise.webp",
+    "alt": "CCDI poultry farming project montage",
+    "width": 1440,
+    "height": 810,
+    "category": "Enterprise",
+    "source": "images/projects/WhatsApp Image 2026-10-28 at 00.25.52 (22).jpeg",
+    "id": 53,
+    "contain": false
+  },
+  "skills-graduation": {
+    "src": "/images/library/skills-graduation.webp",
+    "alt": "Skills training certificate presentation",
+    "width": 1440,
+    "height": 810,
+    "category": "Skills training",
+    "source": "images/projects/WhatsApp Image 2026-10-28 at 00.25.52 (23).jpeg",
+    "id": 54,
+    "contain": false
+  },
+  "handmade-accessories": {
+    "src": "/images/library/handmade-accessories.webp",
+    "alt": "Handmade footwear and accessories",
+    "width": 1050,
+    "height": 750,
+    "category": "Enterprise",
+    "source": "images/projects/WhatsApp Image 2026-10-28 at 00.25.52 (24).jpeg",
+    "id": 55,
+    "contain": false
+  },
+  "kitchen-services": {
+    "src": "/images/library/kitchen-services.webp",
+    "alt": "Our Kitchen services flyer",
+    "width": 766,
+    "height": 1080,
+    "category": "Programme flyers",
+    "source": "images/projects/WhatsApp Image 2026-10-28 at 00.25.52 (26).jpeg",
+    "id": 57,
+    "contain": true
+  },
+  "kitchen-menu": {
+    "src": "/images/library/kitchen-menu.webp",
+    "alt": "Our Kitchen menu and services",
+    "width": 1035,
+    "height": 1280,
+    "category": "Programme flyers",
+    "source": "images/projects/WhatsApp Image 2026-10-28 at 00.25.52 (27).jpeg",
+    "id": 58,
+    "contain": true
+  },
+  "catering-class": {
+    "src": "/images/library/catering-class.webp",
+    "alt": "A practical catering class",
+    "width": 1080,
+    "height": 771,
+    "category": "Skills training",
+    "source": "images/projects/WhatsApp Image 2026-10-28 at 00.25.52 (28).jpeg",
+    "id": 59,
+    "contain": false
+  },
+  "kitchen-catering-flyer": {
+    "src": "/images/library/kitchen-catering-flyer.webp",
+    "alt": "CCDI catering and snacks flyer",
+    "width": 1080,
+    "height": 876,
+    "category": "Programme flyers",
+    "source": "images/projects/WhatsApp Image 2026-10-28 at 00.25.52 (29).jpeg",
+    "id": 60,
+    "contain": true
+  },
+  "sewing-class": {
+    "src": "/images/library/sewing-class.webp",
+    "alt": "Learners working around a sewing machine",
+    "width": 960,
+    "height": 540,
+    "category": "Skills training",
+    "source": "images/projects/WhatsApp Image 2026-10-28 at 00.25.52 (3).jpeg",
+    "id": 61,
+    "contain": false
+  },
+  "catering-service": {
+    "src": "/images/library/catering-service.webp",
+    "alt": "A prepared catering buffet",
+    "width": 1080,
+    "height": 771,
+    "category": "Enterprise",
+    "source": "images/projects/WhatsApp Image 2026-10-28 at 00.25.52 (30).jpeg",
+    "id": 62,
+    "contain": false
+  },
+  "catering-facilitator": {
+    "src": "/images/library/catering-facilitator.webp",
+    "alt": "Catering trainees and their facilitator",
+    "width": 1080,
+    "height": 771,
+    "category": "Skills training",
+    "source": "images/projects/WhatsApp Image 2026-10-28 at 00.25.52 (31).jpeg",
+    "id": 63,
+    "contain": false
+  },
+  "event-service-team": {
+    "src": "/images/library/event-service-team.webp",
+    "alt": "The catering team at an event",
+    "width": 968,
+    "height": 648,
+    "category": "Enterprise",
+    "source": "images/projects/WhatsApp Image 2026-10-28 at 00.25.52 (32).jpeg",
+    "id": 64,
+    "contain": false
+  },
+  "refreshment-service": {
+    "src": "/images/library/refreshment-service.webp",
+    "alt": "Serving refreshments at an event",
+    "width": 1280,
+    "height": 856,
+    "category": "Enterprise",
+    "source": "images/projects/WhatsApp Image 2026-10-28 at 00.25.52 (33).jpeg",
+    "id": 65,
+    "contain": false
+  },
+  "catering-team": {
+    "src": "/images/library/catering-team.webp",
+    "alt": "The CCDI catering team",
+    "width": 968,
+    "height": 648,
+    "category": "Enterprise",
+    "source": "images/projects/WhatsApp Image 2026-10-28 at 00.25.52 (34).jpeg",
+    "id": 66,
+    "contain": false
+  },
+  "couples-celebration": {
+    "src": "/images/library/couples-celebration.webp",
+    "alt": "A couple at a family event",
+    "width": 960,
+    "height": 686,
+    "category": "Family & community",
+    "source": "images/projects/WhatsApp Image 2026-10-28 at 00.25.52 (36).jpeg",
+    "id": 68,
+    "contain": false
+  },
+  "couples-evening": {
+    "src": "/images/library/couples-evening.webp",
+    "alt": "A couples evening gathering",
+    "width": 960,
+    "height": 686,
+    "category": "Family & community",
+    "source": "images/projects/WhatsApp Image 2026-10-28 at 00.25.52 (37).jpeg",
+    "id": 69,
+    "contain": false
+  },
+  "couples-event": {
+    "src": "/images/library/couples-event.webp",
+    "alt": "A couple celebrating together",
+    "width": 960,
+    "height": 686,
+    "category": "Family & community",
+    "source": "images/projects/WhatsApp Image 2026-10-28 at 00.25.52 (38).jpeg",
+    "id": 70,
+    "contain": false
+  },
+  "family-celebration": {
+    "src": "/images/library/family-celebration.webp",
+    "alt": "A presentation at a family event",
+    "width": 960,
+    "height": 686,
+    "category": "Family & community",
+    "source": "images/projects/WhatsApp Image 2026-10-28 at 00.25.52 (39).jpeg",
+    "id": 71,
+    "contain": false
+  },
+  "community-speakers": {
+    "src": "/images/library/community-speakers.webp",
+    "alt": "Speakers addressing a community gathering",
+    "width": 827,
+    "height": 591,
+    "category": "Family & community",
+    "source": "images/projects/WhatsApp Image 2026-10-28 at 00.25.52 (4).jpeg",
+    "id": 72,
+    "contain": false
+  },
+  "community-seminar": {
+    "src": "/images/library/community-seminar.webp",
+    "alt": "A family and community seminar",
+    "width": 720,
+    "height": 960,
+    "category": "Family & community",
+    "source": "images/projects/WhatsApp Image 2026-10-28 at 00.25.52 (40).jpeg",
+    "id": 73,
+    "contain": false
+  },
+  "couples-presentation": {
+    "src": "/images/library/couples-presentation.webp",
+    "alt": "A presentation during a couples event",
+    "width": 960,
+    "height": 686,
+    "category": "Family & community",
+    "source": "images/projects/WhatsApp Image 2026-10-28 at 00.25.52 (41).jpeg",
+    "id": 74,
+    "contain": false
+  },
+  "event-arrivals": {
+    "src": "/images/library/event-arrivals.webp",
+    "alt": "Guests at a community event",
+    "width": 827,
+    "height": 591,
+    "category": "Family & community",
+    "source": "images/projects/WhatsApp Image 2026-10-28 at 00.25.52 (42).jpeg",
+    "id": 75,
+    "contain": false
+  },
+  "bliss-2016": {
+    "src": "/images/library/bliss-2016.webp",
+    "alt": "Couples Evening of Bliss 2016 event artwork",
+    "width": 1080,
+    "height": 762,
+    "category": "Programme flyers",
+    "source": "images/projects/WhatsApp Image 2026-10-28 at 00.25.52 (43).jpeg",
+    "id": 76,
+    "contain": true
+  },
+  "family-talk": {
+    "src": "/images/library/family-talk.webp",
+    "alt": "A speaker at a family gathering",
+    "width": 827,
+    "height": 591,
+    "category": "Family & community",
+    "source": "images/projects/WhatsApp Image 2026-10-28 at 00.25.52 (45).jpeg",
+    "id": 78,
+    "contain": false
+  },
+  "community-guests": {
+    "src": "/images/library/community-guests.webp",
+    "alt": "Guests gathering at a community event",
+    "width": 960,
+    "height": 720,
+    "category": "Family & community",
+    "source": "images/projects/WhatsApp Image 2026-10-28 at 00.25.52 (46).jpeg",
+    "id": 79,
+    "contain": false
+  },
+  "family-workshop": {
+    "src": "/images/library/family-workshop.webp",
+    "alt": "A family workshop session",
+    "width": 720,
+    "height": 960,
+    "category": "Family & community",
+    "source": "images/projects/WhatsApp Image 2026-10-28 at 00.25.52 (47).jpeg",
+    "id": 80,
+    "contain": false
+  },
+  "shared-celebration": {
+    "src": "/images/library/shared-celebration.webp",
+    "alt": "A shared moment at a community event",
+    "width": 1080,
+    "height": 723,
+    "category": "Family & community",
+    "source": "images/projects/WhatsApp Image 2026-10-28 at 00.25.52 (48).jpeg",
+    "id": 81,
+    "contain": false
+  },
+  "seminar-audience": {
+    "src": "/images/library/seminar-audience.webp",
+    "alt": "Participants attending a seminar",
+    "width": 827,
+    "height": 591,
+    "category": "Skills training",
+    "source": "images/projects/WhatsApp Image 2026-10-28 at 00.25.52 (5).jpeg",
+    "id": 82,
+    "contain": false
+  },
+  "learning-together": {
+    "src": "/images/library/learning-together.webp",
+    "alt": "A group learning session",
+    "width": 827,
+    "height": 591,
+    "category": "Skills training",
+    "source": "images/projects/WhatsApp Image 2026-10-28 at 00.25.52 (6).jpeg",
+    "id": 83,
+    "contain": false
+  },
+  "beadwork": {
+    "src": "/images/library/beadwork.webp",
+    "alt": "Handmade beadwork on display",
+    "width": 827,
+    "height": 591,
+    "category": "Enterprise",
+    "source": "images/projects/WhatsApp Image 2026-10-28 at 00.25.52 (7).jpeg",
+    "id": 84,
+    "contain": false
+  },
+  "handmade-bags": {
+    "src": "/images/library/handmade-bags.webp",
+    "alt": "Handmade bags and accessories",
+    "width": 827,
+    "height": 591,
+    "category": "Enterprise",
+    "source": "images/projects/WhatsApp Image 2026-10-28 at 00.25.52 (8).jpeg",
+    "id": 85,
+    "contain": false
+  },
+  "craft-workshop": {
+    "src": "/images/library/craft-workshop.webp",
+    "alt": "Participants displaying their craft work",
+    "width": 827,
+    "height": 591,
+    "category": "Skills training",
+    "source": "images/projects/WhatsApp Image 2026-10-28 at 00.25.52 (9).jpeg",
+    "id": 86,
+    "contain": false
+  },
+  "baking-group": {
+    "src": "/images/library/baking-group.webp",
+    "alt": "A group presenting their baking work",
+    "width": 1080,
+    "height": 724,
+    "category": "Skills training",
+    "source": "images/projects/WhatsApp Image 2026-10-28 at 00.25.52.jpeg",
+    "id": 87,
+    "contain": false
+  },
+  "couples-dance": {
+    "src": "/images/library/couples-dance.webp",
+    "alt": "A shared dance at a couples event",
+    "width": 960,
+    "height": 686,
+    "category": "Family & community",
+    "source": "images/projects/family-strengthening-programme.jpeg",
+    "id": 88,
+    "contain": false
+  },
+  "agriculture-project": {
+    "src": "/images/library/agriculture-project.webp",
+    "alt": "CCDI livestock and crop farming montage",
+    "width": 1440,
+    "height": 810,
+    "category": "Enterprise",
+    "source": "images/projects/select-one-social-enterprice.jpeg",
+    "id": 89,
+    "contain": false
+  },
+  "certification-event": {
+    "src": "/images/library/certification-event.webp",
+    "alt": "A skills certification celebration",
+    "width": 1080,
+    "height": 771,
+    "category": "Skills training",
+    "source": "images/projects/skills-certifications.jpeg",
+    "id": 90,
+    "contain": false
+  },
+  "ccdi-centre": {
+    "src": "/images/library/ccdi-centre.webp",
+    "alt": "The CCDI centre",
+    "width": 1080,
+    "height": 778,
+    "category": "CCDI community",
+    "source": "images/publications/WhatsApp Image 2026-10-21 at 15.13.39.jpeg",
+    "id": 91,
+    "contain": false
+  },
+  "outreach-volunteers": {
+    "src": "/images/library/outreach-volunteers.webp",
+    "alt": "Volunteers together during outreach",
+    "width": 960,
+    "height": 540,
+    "category": "Welfare outreach",
+    "source": "images/publications/WhatsApp Image 2026-10-21 at 15.17.02.jpeg",
+    "id": 101,
+    "contain": false
+  },
+  "enterprise-flyer": {
+    "src": "/images/library/enterprise-flyer.webp",
+    "alt": "CCDI enterprise services overview",
+    "width": 908,
+    "height": 1280,
+    "category": "Programme flyers",
+    "source": "images/publications/WhatsApp Image 2026-10-21 at 15.17.05 (1).jpeg",
+    "id": 108,
+    "contain": true
+  },
+  "vocational-school-flyer": {
+    "src": "/images/library/vocational-school-flyer.webp",
+    "alt": "Vocational training school information",
+    "width": 1080,
+    "height": 761,
+    "category": "Programme flyers",
+    "source": "images/publications/WhatsApp Image 2026-10-21 at 15.17.06.jpeg",
+    "id": 110,
+    "contain": true
+  },
+  "youth-women-programme": {
+    "src": "/images/library/youth-women-programme.webp",
+    "alt": "Youth and women empowerment programme flyer",
+    "width": 1066,
+    "height": 1280,
+    "category": "Programme flyers",
+    "source": "images/publications/WhatsApp Image 2026-10-21 at 15.17.07 (1).jpeg",
+    "id": 111,
+    "contain": true
+  },
+  "women-conference": {
+    "src": "/images/library/women-conference.webp",
+    "alt": "Women’s conference event flyer",
+    "width": 1080,
+    "height": 1076,
+    "category": "Programme flyers",
+    "source": "images/publications/WhatsApp Image 2026-10-21 at 15.17.07.jpeg",
+    "id": 112,
+    "contain": true
+  },
+  "reship-programme": {
+    "src": "/images/library/reship-programme.webp",
+    "alt": "CCDI RESHIP training and seminar flyer",
+    "width": 1080,
+    "height": 853,
+    "category": "Programme flyers",
+    "source": "images/publications/WhatsApp Image 2026-10-21 at 15.17.08 (1).jpeg",
+    "id": 113,
+    "contain": true
+  },
+  "helpers-conference": {
+    "src": "/images/library/helpers-conference.webp",
+    "alt": "Helpers of Helpmeets conference flyer",
+    "width": 1080,
+    "height": 1080,
+    "category": "Programme flyers",
+    "source": "images/publications/WhatsApp Image 2026-10-21 at 15.17.08.jpeg",
+    "id": 115,
+    "contain": true
+  },
+  "training-room": {
+    "src": "/images/library/training-room.webp",
+    "alt": "A practical learning session at the centre",
+    "width": 1280,
+    "height": 960,
+    "category": "Skills training",
+    "source": "images/publications/WhatsApp Image 2026-10-21 at 15.17.10 (1).jpeg",
+    "id": 118,
+    "contain": false
+  },
+  "catering-students": {
+    "src": "/images/library/catering-students.webp",
+    "alt": "Catering students at the training centre",
+    "width": 1280,
+    "height": 960,
+    "category": "Skills training",
+    "source": "images/publications/WhatsApp Image 2026-10-21 at 15.17.10 (2).jpeg",
+    "id": 119,
+    "contain": false
+  },
+  "young-learners": {
+    "src": "/images/library/young-learners.webp",
+    "alt": "Young learners at a practical session",
+    "width": 1280,
+    "height": 960,
+    "category": "Skills training",
+    "source": "images/publications/WhatsApp Image 2026-10-21 at 15.17.17 (2).jpeg",
+    "id": 126,
+    "contain": false
+  },
+  "certificate-presentation": {
+    "src": "/images/library/certificate-presentation.webp",
+    "alt": "A participant receiving a certificate",
+    "width": 827,
+    "height": 591,
+    "category": "Skills training",
+    "source": "images/publications/WhatsApp Image 2026-10-21 at 15.17.24.jpeg",
+    "id": 133,
+    "contain": false
+  },
+  "community-team": {
+    "src": "/images/library/community-team.webp",
+    "alt": "A community group gathering",
+    "width": 827,
+    "height": 591,
+    "category": "CCDI community",
+    "source": "images/publications/WhatsApp Image 2026-10-21 at 15.17.41.jpeg",
+    "id": 139,
+    "contain": false
+  },
+  "presentation-resources": {
+    "src": "/images/library/presentation-resources.webp",
+    "alt": "Programme resources on display",
+    "width": 720,
+    "height": 960,
+    "category": "CCDI community",
+    "source": "images/publications/WhatsApp Image 2026-10-21 at 15.19.46 (1).jpeg",
+    "id": 140,
+    "contain": false
+  },
+  "pastry-practice": {
+    "src": "/images/library/pastry-practice.webp",
+    "alt": "Pastry preparation during a practical class",
+    "width": 720,
+    "height": 960,
+    "category": "Skills training",
+    "source": "images/publications/WhatsApp Image 2026-10-21 at 15.19.46.jpeg",
+    "id": 142,
+    "contain": false
+  },
+  "practical-demonstration": {
+    "src": "/images/library/practical-demonstration.webp",
+    "alt": "A hands-on skills demonstration",
+    "width": 720,
+    "height": 960,
+    "category": "Skills training",
+    "source": "images/publications/WhatsApp Image 2026-10-21 at 15.19.47 (2).jpeg",
+    "id": 144,
+    "contain": false
+  },
+  "group-discussion": {
+    "src": "/images/library/group-discussion.webp",
+    "alt": "Discussion during a practical workshop",
+    "width": 960,
+    "height": 540,
+    "category": "Skills training",
+    "source": "images/publications/WhatsApp Image 2026-10-21 at 15.19.47.jpeg",
+    "id": 146,
+    "contain": false
+  },
+  "learning-workshop": {
+    "src": "/images/library/learning-workshop.webp",
+    "alt": "A workshop group learning together",
+    "width": 960,
+    "height": 540,
+    "category": "Skills training",
+    "source": "images/publications/WhatsApp Image 2026-10-21 at 15.19.48 (1).jpeg",
+    "id": 147,
+    "contain": false
+  },
+  "workshop-materials": {
+    "src": "/images/library/workshop-materials.webp",
+    "alt": "Learning materials during a practical session",
+    "width": 960,
+    "height": 540,
+    "category": "Skills training",
+    "source": "images/publications/WhatsApp Image 2026-10-21 at 15.19.48 (2).jpeg",
+    "id": 148,
+    "contain": false
+  },
+  "catering-participant": {
+    "src": "/images/library/catering-participant.webp",
+    "alt": "A participant during catering training",
+    "width": 540,
+    "height": 960,
+    "category": "Skills training",
+    "source": "images/publications/WhatsApp Image 2026-10-21 at 15.19.48 (3).jpeg",
+    "id": 149,
+    "contain": false
+  },
+  "cooking-practice": {
+    "src": "/images/library/cooking-practice.webp",
+    "alt": "Cooking practice during training",
+    "width": 960,
+    "height": 540,
+    "category": "Skills training",
+    "source": "images/publications/WhatsApp Image 2026-10-21 at 15.19.48.jpeg",
+    "id": 150,
+    "contain": false
+  },
+  "practical-workshop": {
+    "src": "/images/library/practical-workshop.webp",
+    "alt": "A group practical workshop",
+    "width": 960,
+    "height": 540,
+    "category": "Skills training",
+    "source": "images/publications/WhatsApp Image 2026-10-21 at 15.19.49 (2).jpeg",
+    "id": 152,
+    "contain": false
+  },
+  "tailoring-workshop": {
+    "src": "/images/library/tailoring-workshop.webp",
+    "alt": "A tailoring demonstration",
+    "width": 960,
+    "height": 540,
+    "category": "Skills training",
+    "source": "images/publications/WhatsApp Image 2026-10-21 at 15.19.49.jpeg",
+    "id": 153,
+    "contain": false
+  },
+  "decoration-practice": {
+    "src": "/images/library/decoration-practice.webp",
+    "alt": "Event decoration practice",
+    "width": 960,
+    "height": 540,
+    "category": "Skills training",
+    "source": "images/publications/WhatsApp Image 2026-10-21 at 15.19.50 (1).jpeg",
+    "id": 154,
+    "contain": false
+  },
+  "hands-on-learning": {
+    "src": "/images/library/hands-on-learning.webp",
+    "alt": "Participants learning a practical skill",
+    "width": 960,
+    "height": 540,
+    "category": "Skills training",
+    "source": "images/publications/WhatsApp Image 2026-10-21 at 15.19.50.jpeg",
+    "id": 155,
+    "contain": false
+  },
+  "welfare-volunteers": {
+    "src": "/images/library/welfare-volunteers.webp",
+    "alt": "Volunteers during a welfare visit",
+    "width": 960,
+    "height": 720,
+    "category": "Welfare outreach",
+    "source": "images/publications/WhatsApp Image 2026-10-21 at 15.19.56.jpeg",
+    "id": 159,
+    "contain": false
+  },
+  "volunteers-in-community": {
+    "src": "/images/library/volunteers-in-community.webp",
+    "alt": "The outreach team in the community",
+    "width": 960,
+    "height": 720,
+    "category": "Welfare outreach",
+    "source": "images/publications/WhatsApp Image 2026-10-21 at 15.19.57.jpeg",
+    "id": 160,
+    "contain": false
+  },
+  "event-decoration": {
+    "src": "/images/library/event-decoration.webp",
+    "alt": "Event decoration and venue styling",
+    "width": 591,
+    "height": 827,
+    "category": "Enterprise",
+    "source": "images/publications/WhatsApp Image 2026-10-21 at 15.19.58.jpeg",
+    "id": 161,
+    "contain": false
+  },
+  "family-event-guests": {
+    "src": "/images/library/family-event-guests.webp",
+    "alt": "Guests at a family event",
+    "width": 1080,
+    "height": 720,
+    "category": "Family & community",
+    "source": "images/publications/WhatsApp Image 2026-10-21 at 15.20.00.jpeg",
+    "id": 162,
+    "contain": false
+  },
+  "bread-making": {
+    "src": "/images/library/bread-making.webp",
+    "alt": "A learner presenting freshly baked bread",
+    "width": 720,
+    "height": 960,
+    "category": "Skills training",
+    "source": "images/publications/WhatsApp Image 2026-10-21 at 15.20.05.jpeg",
+    "id": 165,
+    "contain": false
+  },
+  "cake-decoration": {
+    "src": "/images/library/cake-decoration.webp",
+    "alt": "Cake decoration practice",
+    "width": 720,
+    "height": 960,
+    "category": "Skills training",
+    "source": "images/publications/WhatsApp Image 2026-10-21 at 15.20.09.jpeg",
+    "id": 166,
+    "contain": false
+  },
+  "venue-styling": {
+    "src": "/images/library/venue-styling.webp",
+    "alt": "Decorative event backdrop",
+    "width": 168,
+    "height": 168,
+    "category": "Enterprise",
+    "source": "images/publications/WhatsApp Image 2026-10-21 at 15.20.10.jpeg",
+    "id": 167,
+    "contain": false
+  },
+  "headwrap-training": {
+    "src": "/images/library/headwrap-training.webp",
+    "alt": "Headwrap styling practice",
+    "width": 720,
+    "height": 514,
+    "category": "Skills training",
+    "source": "images/publications/WhatsApp Image 2026-10-21 at 15.20.11 (1).jpeg",
+    "id": 168,
+    "contain": false
+  },
+  "beauty-training": {
+    "src": "/images/library/beauty-training.webp",
+    "alt": "Makeup application during beauty training",
+    "width": 720,
+    "height": 483,
+    "category": "Skills training",
+    "source": "images/publications/WhatsApp Image 2026-10-21 at 15.20.11 (2).jpeg",
+    "id": 169,
+    "contain": false
+  },
+  "cupcake-practice": {
+    "src": "/images/library/cupcake-practice.webp",
+    "alt": "A learner with baked cupcakes",
+    "width": 720,
+    "height": 960,
+    "category": "Skills training",
+    "source": "images/publications/WhatsApp Image 2026-10-21 at 15.20.11.jpeg",
+    "id": 170,
+    "contain": false
+  },
+  "bakery-practice": {
+    "src": "/images/library/bakery-practice.webp",
+    "alt": "Baking practice at the centre",
+    "width": 720,
+    "height": 540,
+    "category": "Skills training",
+    "source": "images/publications/WhatsApp Image 2026-10-21 at 15.20.12 (1).jpeg",
+    "id": 171,
+    "contain": false
+  },
+  "food-preparation": {
+    "src": "/images/library/food-preparation.webp",
+    "alt": "Food preparation during catering training",
+    "width": 360,
+    "height": 252,
+    "category": "Skills training",
+    "source": "images/publications/WhatsApp Image 2026-10-21 at 15.20.12 (3).jpeg",
+    "id": 173,
+    "contain": false
+  },
+  "cake-practice": {
+    "src": "/images/library/cake-practice.webp",
+    "alt": "A trainee decorating a cake",
+    "width": 960,
+    "height": 686,
+    "category": "Skills training",
+    "source": "images/publications/WhatsApp Image 2026-10-21 at 15.20.12 (4).jpeg",
+    "id": 174,
+    "contain": false
+  },
+  "skills-demonstration": {
+    "src": "/images/library/skills-demonstration.webp",
+    "alt": "A practical skills demonstration",
+    "width": 960,
+    "height": 720,
+    "category": "Skills training",
+    "source": "images/publications/WhatsApp Image 2026-10-21 at 15.20.14 (1).jpeg",
+    "id": 179,
+    "contain": false
+  },
+  "catering-mentorship": {
+    "src": "/images/library/catering-mentorship.webp",
+    "alt": "Learners and facilitator in the kitchen",
+    "width": 960,
+    "height": 720,
+    "category": "Skills training",
+    "source": "images/publications/WhatsApp Image 2026-10-21 at 15.20.14.jpeg",
+    "id": 181,
+    "contain": false
+  },
+  "fashion-work": {
+    "src": "/images/library/fashion-work.webp",
+    "alt": "A finished fashion design",
+    "width": 720,
+    "height": 960,
+    "category": "Enterprise",
+    "source": "images/publications/WhatsApp Image 2026-10-21 at 15.20.16.jpeg",
+    "id": 187,
+    "contain": false
+  },
+  "couples-blissful-day": {
+    "src": "/images/library/couples-blissful-day.webp",
+    "alt": "Guests at Couples Blissful Day Out",
+    "width": 1280,
+    "height": 854,
+    "category": "Family & community",
+    "source": "images/publications/WhatsApp Image 2026-10-28 at 00.23.34 (10).jpeg",
+    "id": 189,
+    "contain": false
+  },
+  "book-presentation": {
+    "src": "/images/library/book-presentation.webp",
+    "alt": "A book presentation at a community event",
+    "width": 1280,
+    "height": 854,
+    "category": "Family & community",
+    "source": "images/publications/WhatsApp Image 2026-10-28 at 00.23.34 (11).jpeg",
+    "id": 190,
+    "contain": false
+  },
+  "community-reading": {
+    "src": "/images/library/community-reading.webp",
+    "alt": "A speaker reading at a community event",
+    "width": 1280,
+    "height": 854,
+    "category": "Family & community",
+    "source": "images/publications/WhatsApp Image 2026-10-28 at 00.23.34 (12).jpeg",
+    "id": 191,
+    "contain": false
+  },
+  "community-award": {
+    "src": "/images/library/community-award.webp",
+    "alt": "A presentation at Couples Blissful Day Out",
+    "width": 1280,
+    "height": 854,
+    "category": "Family & community",
+    "source": "images/publications/WhatsApp Image 2026-10-28 at 00.23.34 (13).jpeg",
+    "id": 192,
+    "contain": false
+  },
+  "event-interview": {
+    "src": "/images/library/event-interview.webp",
+    "alt": "A conversation during Couples Blissful Day Out",
+    "width": 1280,
+    "height": 854,
+    "category": "Family & community",
+    "source": "images/publications/WhatsApp Image 2026-10-28 at 00.23.34 (14).jpeg",
+    "id": 193,
+    "contain": false
+  },
+  "community-recognition": {
+    "src": "/images/library/community-recognition.webp",
+    "alt": "Recognition during a community event",
+    "width": 1280,
+    "height": 854,
+    "category": "Family & community",
+    "source": "images/publications/WhatsApp Image 2026-10-28 at 00.23.34 (15).jpeg",
+    "id": 194,
+    "contain": false
+  },
+  "books-award": {
+    "src": "/images/library/books-award.webp",
+    "alt": "Publications and an award on display",
+    "width": 765,
+    "height": 1020,
+    "category": "Publications",
+    "source": "images/publications/WhatsApp Image 2026-10-28 at 00.23.34 (16).jpeg",
+    "id": 195,
+    "contain": true
+  },
+  "tailoring-design": {
+    "src": "/images/library/tailoring-design.webp",
+    "alt": "A finished garment at the training centre",
+    "width": 960,
+    "height": 1280,
+    "category": "Enterprise",
+    "source": "images/publications/WhatsApp Image 2026-10-28 at 00.23.34 (18).jpeg",
+    "id": 197,
+    "contain": false
+  },
+  "community-celebration": {
+    "src": "/images/library/community-celebration.webp",
+    "alt": "A community celebration and presentation",
+    "width": 1280,
+    "height": 854,
+    "category": "Family & community",
+    "source": "images/publications/WhatsApp Image 2026-10-28 at 00.23.34 (5).jpeg",
+    "id": 218,
+    "contain": false
+  },
+  "family-event-award": {
+    "src": "/images/library/family-event-award.webp",
+    "alt": "An award presentation at a family event",
+    "width": 1280,
+    "height": 854,
+    "category": "Family & community",
+    "source": "images/publications/WhatsApp Image 2026-10-28 at 00.23.34 (6).jpeg",
+    "id": 219,
+    "contain": false
+  },
+  "heart-of-gold": {
+    "src": "/images/library/heart-of-gold.webp",
+    "alt": "A Heart of Gold recognition award",
+    "width": 1280,
+    "height": 1115,
+    "category": "Publications",
+    "source": "images/publications/WhatsApp Image 2026-10-28 at 00.23.34 (9).jpeg",
+    "id": 222,
+    "contain": true
+  },
+  "skills-school-banner": {
+    "src": "/images/library/skills-school-banner.webp",
+    "alt": "Vocational and entrepreneurial skills training school banner",
+    "width": 959,
+    "height": 410,
+    "category": "Programme flyers",
+    "source": "images/WhatsApp Image 2026-10-28 at 00.30.58 (1).jpeg",
+    "id": 0,
+    "contain": true
+  },
+  "benevolent-outreach-flyer": {
+    "src": "/images/library/benevolent-outreach-flyer.webp",
+    "alt": "A Touch of Love benevolent outreach flyer",
+    "width": 720,
+    "height": 1080,
+    "category": "Programme flyers",
+    "source": "images/WhatsApp Image 2026-10-28 at 00.30.58 (2).jpeg",
+    "id": 1,
+    "contain": true
+  },
+  "childcare-initiative-flyer": {
+    "src": "/images/library/childcare-initiative-flyer.webp",
+    "alt": "Benevolent and Childcare Initiative flyer",
+    "width": 720,
+    "height": 1080,
+    "category": "Programme flyers",
+    "source": "images/WhatsApp Image 2026-10-28 at 00.30.58 (3).jpeg",
+    "id": 2,
+    "contain": true
+  },
+  "training-school-poster": {
+    "src": "/images/library/training-school-poster.webp",
+    "alt": "CCDI skills training school poster",
+    "width": 1080,
+    "height": 764,
+    "category": "Programme flyers",
+    "source": "images/major-programs-activities/WhatsApp Image 2026-10-28 at 00.30.57 (1).jpeg",
+    "id": 23,
+    "contain": true
+  },
+  "centre-opening": {
+    "src": "/images/library/centre-opening.webp",
+    "alt": "CCDI centre opening flyer",
+    "width": 1080,
+    "height": 761,
+    "category": "Programme flyers",
+    "source": "images/major-programs-activities/WhatsApp Image 2026-10-28 at 00.30.57 (2).jpeg",
+    "id": 24,
+    "contain": true
+  },
+  "vocational-admissions": {
+    "src": "/images/library/vocational-admissions.webp",
+    "alt": "Vocational training school flyer",
+    "width": 1080,
+    "height": 1080,
+    "category": "Programme flyers",
+    "source": "images/major-programs-activities/WhatsApp Image 2026-10-28 at 00.30.57 (3).jpeg",
+    "id": 25,
+    "contain": true
+  },
+  "blissful-day-flyer": {
+    "src": "/images/library/blissful-day-flyer.webp",
+    "alt": "Couples Blissful Day Out event flyer",
+    "width": 1080,
+    "height": 760,
+    "category": "Programme flyers",
+    "source": "images/major-programs-activities/WhatsApp Image 2026-10-28 at 00.30.57 (5).jpeg",
+    "id": 27,
+    "contain": true
+  },
+  "beauty-school-flyer": {
+    "src": "/images/library/beauty-school-flyer.webp",
+    "alt": "Creative Professional makeover studio flyer",
+    "width": 960,
+    "height": 720,
+    "category": "Programme flyers",
+    "source": "images/major-programs-activities/WhatsApp Image 2026-10-28 at 00.30.57.jpeg",
+    "id": 28,
+    "contain": true
+  },
+  "women-enterprise-training": {
+    "src": "/images/library/women-enterprise-training.webp",
+    "alt": "Women’s entrepreneurial life skills training flyer",
+    "width": 960,
+    "height": 675,
+    "category": "Programme flyers",
+    "source": "images/major-programs-activities/WhatsApp Image 2026-10-28 at 00.30.58 (1).jpeg",
+    "id": 29,
+    "contain": true
+  },
+  "catering-school-flyer": {
+    "src": "/images/library/catering-school-flyer.webp",
+    "alt": "CCDI catering school flyer",
+    "width": 1080,
+    "height": 1080,
+    "category": "Programme flyers",
+    "source": "images/major-programs-activities/WhatsApp Image 2026-10-28 at 00.30.58.jpeg",
+    "id": 30,
+    "contain": true
+  },
+  "godly-pattern": {
+    "src": "/images/library/godly-pattern.webp",
+    "alt": "Godly Pattern of the New Nature",
+    "width": 720,
+    "height": 1080,
+    "category": "Publications",
+    "source": "images/WhatsApp Image 2026-10-28 at 00.30.58 (4).jpeg",
+    "id": 3,
+    "contain": true
+  },
+  "grace-empowered": {
+    "src": "/images/library/grace-empowered.webp",
+    "alt": "Grace-Empowered Living",
+    "width": 720,
+    "height": 1080,
+    "category": "Publications",
+    "source": "images/WhatsApp Image 2026-10-28 at 00.30.58 (5).jpeg",
+    "id": 4,
+    "contain": true
+  },
+  "true-riches": {
+    "src": "/images/library/true-riches.webp",
+    "alt": "Entrust with True Riches",
+    "width": 853,
+    "height": 1280,
+    "category": "Publications",
+    "source": "images/WhatsApp Image 2026-10-28 at 00.30.58 (6).jpeg",
+    "id": 5,
+    "contain": true
+  },
+  "advancing-in-age": {
+    "src": "/images/library/advancing-in-age.webp",
+    "alt": "Advancing in Age, Yet Useful and Fruitful",
+    "width": 720,
+    "height": 1080,
+    "category": "Publications",
+    "source": "images/WhatsApp Image 2026-10-28 at 00.30.58 (7).jpeg",
+    "id": 6,
+    "contain": true
+  },
+  "purpose-fulfilled": {
+    "src": "/images/library/purpose-fulfilled.webp",
+    "alt": "Purpose Fulfilled",
+    "width": 720,
+    "height": 1080,
+    "category": "Publications",
+    "source": "images/WhatsApp Image 2026-10-28 at 00.30.58 (8).jpeg",
+    "id": 7,
+    "contain": true
+  },
+  "kept-from-falling": {
+    "src": "/images/library/kept-from-falling.webp",
+    "alt": "Kept from Falling",
+    "width": 720,
+    "height": 1080,
+    "category": "Publications",
+    "source": "images/WhatsApp Image 2026-10-28 at 00.30.58 (9).jpeg",
+    "id": 8,
+    "contain": true
+  },
+  "hope-dry-tree": {
+    "src": "/images/library/hope-dry-tree.webp",
+    "alt": "Hope for the afflicted, rejected, heartbroken — a dry tree",
+    "width": 720,
+    "height": 1080,
+    "category": "Publications",
+    "source": "images/publications/WhatsApp Image 2026-10-28 at 00.23.34 (1).jpeg",
+    "id": 188,
+    "contain": true
+  },
+  "helpers-helpmeet": {
+    "src": "/images/library/helpers-helpmeet.webp",
+    "alt": "The Helpers of Helpmeet",
+    "width": 1080,
+    "height": 761,
+    "category": "Publications",
+    "source": "images/publications/WhatsApp Image 2026-10-28 at 00.23.34 (2).jpeg",
+    "id": 199,
+    "contain": true
+  },
+  "team-portrait-1": {
+    "src": "/images/library/team-portrait-1.webp",
+    "alt": "CCDI management and facilitator portrait",
+    "width": 398,
+    "height": 485,
+    "category": "Team",
+    "source": "images/management-team-and-facilitators/PHOTO-2026-10-21-14-46-49 2.jpg",
+    "id": 33,
+    "contain": false
+  },
+  "team-portrait-2": {
+    "src": "/images/library/team-portrait-2.webp",
+    "alt": "CCDI management and facilitator portrait",
+    "width": 525,
+    "height": 1080,
+    "category": "Team",
+    "source": "images/management-team-and-facilitators/PHOTO-2026-10-21-14-46-49 3.jpg",
+    "id": 34,
+    "contain": false
+  },
+  "team-pair": {
+    "src": "/images/library/team-pair.webp",
+    "alt": "Members of the CCDI team",
+    "width": 973,
+    "height": 1051,
+    "category": "Team",
+    "source": "images/management-team-and-facilitators/PHOTO-2026-10-21-14-46-49.jpg",
+    "id": 35,
+    "contain": false
+  },
+  "team-group": {
+    "src": "/images/library/team-group.webp",
+    "alt": "CCDI team and facilitators together",
+    "width": 827,
+    "height": 591,
+    "category": "Team",
+    "source": "images/management-team-and-facilitators/PHOTO-2026-10-21-14-50-36.jpg",
+    "id": 36,
+    "contain": false
+  },
+  "team-portrait-3": {
+    "src": "/images/library/team-portrait-3.webp",
+    "alt": "CCDI management and facilitator portrait",
+    "width": 810,
+    "height": 1080,
+    "category": "Team",
+    "source": "images/management-team-and-facilitators/PHOTO-2026-10-21-14-50-58.jpg",
+    "id": 37,
+    "contain": false
+  },
+  "team-portrait-4": {
+    "src": "/images/library/team-portrait-4.webp",
+    "alt": "CCDI management and facilitator portrait",
+    "width": 960,
+    "height": 1280,
+    "category": "Team",
+    "source": "images/management-team-and-facilitators/PHOTO-2026-10-21-14-53-52.jpg",
+    "id": 38,
+    "contain": false
+  }
+}

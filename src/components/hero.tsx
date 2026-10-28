@@ -128,6 +128,7 @@ export function Hero() {
           <div className="hero-photo-main">
             <PhotoSlot
               label={slide.photo}
+              priority={active === 0}
               variant={slide.theme}
               number={`0${active + 1}`}
             />

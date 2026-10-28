@@ -1,3 +1,4 @@
+import { Publications, VideoCollection } from "@/components/media-collections";
 import {
   Commitments,
   VisionMission,
@@ -418,12 +419,8 @@ function PageContent({ slug }: { slug: string }) {
               href={`/blog/${a.slug}/`}
               key={a.slug}
             >
-              <div
-                className={`journal-art journal-art-${i}`}
-                aria-hidden="true"
-              >
-                <span>{["Aa", "↗", "&"][i]}</span>
-                <small>THE CCDI JOURNAL / 0{i + 1}</small>
+              <div className="journal-photo">
+                <PhotoSlot label={a.title} />
               </div>
               <div className="journal-card-label">
                 <span>{a.category}</span>
@@ -436,49 +433,9 @@ function PageContent({ slug }: { slug: string }) {
         </div>
       );
     case "videos":
-      return (
-        <EmptyFeature
-          title="Our stories, in motion."
-          description="Programme films and event highlights will be added here as the CCDI media collection is prepared. Visit our Facebook page for the public posts currently available."
-          icon="community"
-          action="Explore CCDI on Facebook"
-          href={facebook}
-        />
-      );
+      return <VideoCollection />;
     case "documents":
-      return (
-        <>
-          <div className="resource-list">
-            {[
-              [
-                "Programme guides",
-                "Information about learning pathways and programme participation.",
-              ],
-              [
-                "Event resources",
-                "Materials from CCDI workshops, seminars, and conferences.",
-              ],
-              [
-                "Impact & organisational reports",
-                "Reporting on our work, governance, and community outcomes.",
-              ],
-            ].map(([t, d]) => (
-              <article key={t}>
-                <BookOpen size={28} />
-                <div>
-                  <h2>{t}</h2>
-                  <p>{d}</p>
-                </div>
-                <span className="resource-status">Being prepared</span>
-              </article>
-            ))}
-          </div>
-          <p className="muted-note">
-            Documents will be available to download once approved for
-            publication. Contact CCDI if you need a particular resource.
-          </p>
-        </>
-      );
+      return <Publications />;
     case "donate":
       return (
         <div className="donate-grid">
@@ -553,14 +510,12 @@ function PageContent({ slug }: { slug: string }) {
                 </p>
               </div>
             </div>
-            <div className="contact-placeholder">
-              <MapPin size={25} />
-              <span>
-                Location details will be added
-                <br />
-                once confirmed by CCDI.
-              </span>
-            </div>
+            <figure className="contact-centre-photo">
+              <PhotoSlot label="CCDI centre" variant="sage" />
+              <figcaption>
+                The CCDI centre. Confirm your programme venue before visiting.
+              </figcaption>
+            </figure>
           </aside>
           <EnquiryForm />
         </div>
@@ -588,10 +543,9 @@ function PageContent({ slug }: { slug: string }) {
           </p>
           <h2>Photos and personal stories</h2>
           <p>
-            Image and story placeholders will be replaced with material approved
-            for publication. Identifying information about children and
-            vulnerable people should only be published with appropriate consent
-            and safeguarding review.
+            This website features photographs, programme videos, and personal
+            stories supplied by CCDI. Please contact CCDI with any question
+            about the use of an image or story.
           </p>
           <h2>Hosting and future updates</h2>
           <p>

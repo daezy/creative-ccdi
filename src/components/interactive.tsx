@@ -1,4 +1,5 @@
 "use client";
+import library from "@/lib/media-library.json";
 import { useEffect, useState, type FormEvent } from "react";
 import { Dialog } from "@base-ui/react/dialog";
 import {
@@ -63,31 +64,36 @@ export function TrainingGrid() {
     </>
   );
 }
-const galleryItems = [
-  { name: "Learning by doing", category: "Skills training", theme: "sage" },
-  { name: "Made with purpose", category: "Enterprise", theme: "gold" },
-  { name: "Growing in confidence", category: "Community", theme: "clay" },
-  { name: "A place to create", category: "Skills training", theme: "cream" },
-  { name: "Together, we thrive", category: "Community", theme: "sage" },
-  { name: "From skill to service", category: "Enterprise", theme: "gold" },
-];
+const galleryItems = Object.entries(library)
+  .filter(
+    ([, p]) =>
+      !["Programme flyers", "Publications", "Team"].includes(p.category),
+  )
+  .map(([id, p]) => ({ ...p, id }));
 export function Gallery() {
   const [filter, setFilter] = useState("All moments");
+  const [limit, setLimit] = useState(18);
+  const filtered = galleryItems.filter(
+    (g) => filter === "All moments" || g.category === filter,
+  );
   return (
     <>
       <div className="gallery-notice">
         <Camera size={18} aria-hidden="true" />
         <p>
-          Our photo collection is being prepared. These spaces will feature
-          CCDI’s own programme and event photography.
+          CCDI’s own photographs of practical learning, enterprise, welfare
+          outreach, and community life. Select a photograph to see it in full.
         </p>
       </div>
       <div className="filter-bar" aria-label="Filter gallery">
-        {["All moments", "Skills training", "Enterprise", "Community"].map(
+        {["All moments", ...new Set(galleryItems.map((g) => g.category))].map(
           (f) => (
             <button
               key={f}
-              onClick={() => setFilter(f)}
+              onClick={() => {
+                setFilter(f);
+                setLimit(18);
+              }}
               aria-pressed={filter === f}
               className={filter === f ? "active" : ""}
             >
@@ -96,45 +102,65 @@ export function Gallery() {
           ),
         )}
       </div>
-      <div className="gallery-grid" aria-live="polite">
-        {galleryItems
-          .filter((g) => filter === "All moments" || g.category === filter)
-          .map((g, i) => (
-            <Dialog.Root key={g.name}>
-              <Dialog.Trigger className="gallery-item">
-                <PhotoSlot
-                  label={g.name}
-                  number={`0${i + 1}`}
-                  variant={g.theme}
-                />
-                <span className="gallery-item-caption">
-                  <span>
-                    {g.name}
-                    <small>{g.category} · Image space</small>
-                  </span>
-                  <ArrowUpRight size={20} aria-hidden="true" />
+      <p className="media-result-count" aria-live="polite">
+        Showing {Math.min(limit, filtered.length)} of {filtered.length}{" "}
+        photographs
+      </p>
+      <div className="gallery-grid">
+        {filtered.slice(0, limit).map((g) => (
+          <Dialog.Root key={g.id}>
+            <Dialog.Trigger className="gallery-item">
+              <img
+                className="gallery-thumb"
+                src={g.src}
+                alt={g.alt}
+                width={g.width}
+                height={g.height}
+                loading="lazy"
+              />
+              <span className="gallery-item-caption">
+                <span>
+                  {g.alt}
+                  <small>{g.category}</small>
                 </span>
-              </Dialog.Trigger>
-              <Dialog.Portal>
-                <Dialog.Backdrop className="dialog-backdrop" />
-                <Dialog.Popup className="gallery-dialog">
-                  <Dialog.Close
-                    className="icon-button gallery-close"
-                    aria-label="Close image preview"
-                  >
-                    <X />
-                  </Dialog.Close>
-                  <PhotoSlot label={g.name} variant={g.theme} />
-                  <Dialog.Title>{g.name}</Dialog.Title>
-                  <Dialog.Description>
-                    Reserved for CCDI’s {g.category.toLowerCase()} photography.
-                    Original images will be added to this collection.
-                  </Dialog.Description>
-                </Dialog.Popup>
-              </Dialog.Portal>
-            </Dialog.Root>
-          ))}
+                <ArrowUpRight size={20} aria-hidden="true" />
+              </span>
+            </Dialog.Trigger>
+            <Dialog.Portal>
+              <Dialog.Backdrop className="dialog-backdrop" />
+              <Dialog.Popup className="gallery-dialog">
+                <Dialog.Close
+                  className="icon-button gallery-close"
+                  aria-label="Close image preview"
+                >
+                  <X />
+                </Dialog.Close>
+                <img
+                  className="gallery-full-image"
+                  src={g.src}
+                  alt={g.alt}
+                  width={g.width}
+                  height={g.height}
+                />
+                <Dialog.Title>{g.alt}</Dialog.Title>
+                <Dialog.Description>
+                  {g.category} · From the CCDI photo archive.
+                </Dialog.Description>
+              </Dialog.Popup>
+            </Dialog.Portal>
+          </Dialog.Root>
+        ))}
       </div>
+      {limit < filtered.length && (
+        <div className="gallery-load-more">
+          <button
+            className="button button-outline"
+            onClick={() => setLimit((n) => n + 18)}
+          >
+            Show more photographs <ArrowRight size={18} />
+          </button>
+        </div>
+      )}
     </>
   );
 }

@@ -1,3 +1,4 @@
+import { ProjectPhotos, VideoCollection } from "@/components/media-collections";
 import { projectCopy } from "@/lib/organisation-copy";
 import { CopyList } from "@/components/organisation-content";
 import { reship } from "@/lib/content";
@@ -144,6 +145,7 @@ export default async function Project({
             </ol>
           </section>
         )}
+        <ProjectPhotos slug={a.slug} />
         <section className="outcomes-panel">
           <Eyebrow>What we work towards</Eyebrow>
           <h2>Change that reaches further.</h2>
@@ -156,6 +158,20 @@ export default async function Project({
             ))}
           </ul>
         </section>
+        {a.slug !== "social-enterprise" && (
+          <section className="content-section">
+            <VideoCollection
+              category={
+                a.slug === "capacity-development"
+                  ? "Skills training"
+                  : a.slug === "benevolent-childcare"
+                    ? "Welfare outreach"
+                    : "Family & community"
+              }
+              compact
+            />
+          </section>
+        )}
         <section className="content-section">
           <SectionHead
             eyebrow="Connected by purpose"

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { articles } from "@/lib/content";
-import { Eyebrow, Button, Cta } from "@/components/ui";
+import { Eyebrow, Button, Cta, PhotoSlot } from "@/components/ui";
 export const dynamicParams = false;
 export function generateStaticParams() {
   return articles.map((a) => ({ slug: a.slug }));
@@ -55,12 +55,8 @@ export default async function Article({
           </div>
         </header>
         <div className="container article-content">
-          <div
-            className={`journal-art article-art journal-art-${i}`}
-            aria-hidden="true"
-          >
-            <span>{["Aa", "↗", "&"][i]}</span>
-            <small>THE CCDI JOURNAL / 0{i + 1}</small>
+          <div className="article-photo">
+            <PhotoSlot label={a.title} />
           </div>
           <div className="prose narrow">
             {a.body.map(([heading, text]) => (

@@ -1,0 +1,110 @@
+[
+  {
+    "id": "publication-preview",
+    "title": "A look inside The Helpers of Helpmeet",
+    "category": "Publications",
+    "src": "/videos/publication-preview.mp4",
+    "poster": "/images/library/publication-preview-poster.webp",
+    "duration": 11,
+    "source": "images/WhatsApp Video 2026-10-28 at 00.30.58 (1).mp4"
+  },
+  {
+    "id": "community-address",
+    "title": "A community event address",
+    "category": "Family & community",
+    "src": "/videos/community-address.mp4",
+    "poster": "/images/library/community-address-poster.webp",
+    "duration": 58,
+    "source": "images/WhatsApp Video 2026-10-28 at 00.30.58 (2).mp4"
+  },
+  {
+    "id": "touch-of-love-outreach",
+    "title": "A Touch of Love outreach highlights",
+    "category": "Welfare outreach",
+    "src": "/videos/touch-of-love-outreach.mp4",
+    "poster": "/images/library/touch-of-love-outreach-poster.webp",
+    "duration": 27,
+    "source": "images/WhatsApp Video 2026-10-28 at 00.30.58 (3).mp4"
+  },
+  {
+    "id": "welfare-outreach-moments",
+    "title": "Welfare outreach moments",
+    "category": "Welfare outreach",
+    "src": "/videos/welfare-outreach-moments.mp4",
+    "poster": "/images/library/welfare-outreach-moments-poster.webp",
+    "duration": 26,
+    "source": "images/WhatsApp Video 2026-10-28 at 00.30.58 (4).mp4"
+  },
+  {
+    "id": "skills-enterprise-showcase",
+    "title": "Skills and enterprise showcase",
+    "category": "Skills training",
+    "src": "/videos/skills-enterprise-showcase.mp4",
+    "poster": "/images/library/skills-enterprise-showcase-poster.webp",
+    "duration": 36,
+    "source": "images/WhatsApp Video 2026-10-28 at 00.30.58 (5).mp4"
+  },
+  {
+    "id": "capacity-development",
+    "title": "Capacity Development Initiative overview",
+    "category": "Skills training",
+    "src": "/videos/capacity-development.mp4",
+    "poster": "/images/library/capacity-development-poster.webp",
+    "duration": 48,
+    "source": "images/WhatsApp Video 2026-10-28 at 00.30.58 (6).mp4"
+  },
+  {
+    "id": "creative-community",
+    "title": "Creative Community Initiative highlights",
+    "category": "Family & community",
+    "src": "/videos/creative-community.mp4",
+    "poster": "/images/library/creative-community-poster.webp",
+    "duration": 35,
+    "source": "images/WhatsApp Video 2026-10-28 at 00.30.58 (7).mp4"
+  },
+  {
+    "id": "couples-evening-2014",
+    "title": "Couples Evening of Bliss 2014",
+    "category": "Family & community",
+    "src": "/videos/couples-evening-2014.mp4",
+    "poster": "/images/library/couples-evening-2014-poster.webp",
+    "duration": 47,
+    "source": "images/WhatsApp Video 2026-10-28 at 00.30.58.mp4"
+  },
+  {
+    "id": "couples-blissful-day-out",
+    "title": "Couples Blissful Day Out highlights",
+    "category": "Family & community",
+    "src": "/videos/couples-blissful-day-out.mp4",
+    "poster": "/images/library/couples-blissful-day-out-poster.webp",
+    "duration": 54,
+    "source": "images/major-programs-activities/WhatsApp Video 2026-10-28 at 00.30.58.mp4"
+  },
+  {
+    "id": "couples-evening-memories",
+    "title": "Couples event memories",
+    "category": "Family & community",
+    "src": "/videos/couples-evening-memories.mp4",
+    "poster": "/images/library/couples-evening-memories-poster.webp",
+    "duration": 30,
+    "source": "images/publications/WhatsApp Video 2026-10-21 at 15.17.00.mp4"
+  },
+  {
+    "id": "publication-unveiling",
+    "title": "Publication unveiling highlights",
+    "category": "Publications",
+    "src": "/videos/publication-unveiling.mp4",
+    "poster": "/images/library/publication-unveiling-poster.webp",
+    "duration": 66,
+    "source": "images/publications/WhatsApp Video 2026-10-28 at 00.23.34 (1).mp4"
+  },
+  {
+    "id": "heart-of-gold-award",
+    "title": "A Heart of Gold award",
+    "category": "Publications",
+    "src": "/videos/heart-of-gold-award.mp4",
+    "poster": "/images/library/heart-of-gold-award-poster.webp",
+    "duration": 26,
+    "source": "images/publications/WhatsApp Video 2026-10-28 at 00.23.34.mp4"
+  }
+]
