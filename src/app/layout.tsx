@@ -16,6 +16,7 @@ import {
   indexingEnabled,
 } from "@/lib/seo";
 import { StructuredData } from "@/components/structured-data";
+import "lenis/dist/lenis.css";
 import "./globals.css";
 export const metadata: Metadata = {
   ...pageMetadata("/"),

@@ -722,8 +722,9 @@ textarea:focus-visible {
 .slide-dots button {
   display: grid;
   place-items: center;
-  width: 25px;
-  height: 30px;
+  width: 44px;
+  height: 44px;
+  padding: 0;
   background: transparent;
 }
 .slide-dots button > span {
@@ -4195,12 +4196,12 @@ textarea::placeholder {
     justify-content: flex-end;
   }
   .slide-dots button {
-    width: 30px;
+    width: 44px;
     height: 44px;
   }
   .carousel-bar .icon-button {
-    width: 40px;
-    height: 40px;
+    width: 44px;
+    height: 44px;
   }
   .filter-bar > button {
     min-height: 44px;
@@ -8243,6 +8244,49 @@ body {
 }
 
 /* ---------- Page transition curtain ---------- */
+/* Touch layouts: readable fields, reachable controls and narrow-screen wrapping. */
+@media (max-width: 1024px) {
+  .enquiry-form :is(input, textarea, select),
+  .enquiry-form :is(input, textarea)::placeholder {
+    font-size: 16px;
+  }
+}
+@media (max-width: 760px) {
+  .mobile-trigger,
+  .mobile-panel-head .icon-button {
+    width: 44px;
+    height: 44px;
+  }
+  .mobile-panel {
+    padding-top: max(25px, env(safe-area-inset-top));
+    padding-left: max(25px, env(safe-area-inset-left));
+    padding-right: max(25px, env(safe-area-inset-right));
+  }
+  .gallery-viewer {
+    max-height: calc(100dvh - max(20px, env(safe-area-inset-top)) - max(20px, env(safe-area-inset-bottom)));
+  }
+}
+@media (max-width: 420px) {
+  .carousel-controls {
+    display: grid;
+    grid-template-columns: repeat(4, 44px);
+    gap: 8px;
+  }
+  .carousel-controls .slide-dots {
+    grid-column: 1 / span 3;
+    gap: 8px;
+    margin: 0;
+  }
+  .carousel-controls .slide-count {
+    grid-column: 4;
+    justify-self: end;
+    margin: 0;
+  }
+  .carousel-controls > .icon-button:first-of-type {
+    grid-column: 2;
+  }
+}
+
 .page-curtain {
   position: fixed;
   inset: 0;

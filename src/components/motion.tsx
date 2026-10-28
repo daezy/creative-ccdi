@@ -14,6 +14,7 @@ import { usePathname, useRouter } from "next/navigation";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { SplitText } from "gsap/SplitText";
+import Lenis from "lenis";
 import { flushIntro, onIntro, prefersReducedMotion } from "@/lib/motion-intro";
 
 declare global {
@@ -85,6 +86,14 @@ const CLIENT_ZONES =
 
 const norm = (p: string) => p.replace(/\/+$/, "") || "/";
 
+/** Smooth wheel/trackpad scrolling (phones keep native scrolling). */
+let lenis: Lenis | null = null;
+
+/** Last scroll position of each page, restored on back/forward. */
+const savedScroll = new Map<string, number>();
+/** The page currently on screen (the address can change before it renders). */
+let shownPath = "";
+
 /** Set by the browser's back/forward buttons, which should keep their position. */
 let historyNav = false;
 
@@ -93,8 +102,40 @@ function resetScroll() {
   const target = location.hash
     ? document.getElementById(decodeURIComponent(location.hash.slice(1)))
     : null;
+  if (lenis) {
+    lenis.scrollTo(target ?? 0, {
+      immediate: true,
+      force: true,
+      offset: target ? -100 : 0,
+    });
+    return;
+  }
   if (target) target.scrollIntoView({ behavior: "instant", block: "start" });
   else window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+}
+
+function restoreScroll(y: number) {
+  const go = () => {
+    if (lenis) lenis.scrollTo(y, { immediate: true, force: true });
+    else window.scrollTo({ top: y, left: 0, behavior: "instant" });
+  };
+  // The page may still be growing as images and fonts settle: keep trying for
+  // up to a second, and stop as soon as the visitor scrolls themselves.
+  let cancelled = false;
+  const cancel = () => {
+    cancelled = true;
+  };
+  window.addEventListener("wheel", cancel, { once: true, passive: true });
+  window.addEventListener("touchstart", cancel, { once: true, passive: true });
+  window.addEventListener("keydown", cancel, { once: true });
+  const start = performance.now();
+  const attempt = () => {
+    if (cancelled) return;
+    go();
+    if (Math.abs(window.scrollY - y) > 2 && performance.now() - start < 1000)
+      requestAnimationFrame(attempt);
+  };
+  attempt();
 }
 
 export function Motion() {
@@ -114,8 +155,13 @@ export function Motion() {
     window.__ccdiMotion = true;
     const onPop = () => {
       historyNav = true;
+      shownPath = ""; // stop recording until the new page is on screen
     };
     window.addEventListener("popstate", onPop);
+    const remember = () => {
+      if (shownPath) savedScroll.set(shownPath, window.scrollY);
+    };
+    window.addEventListener("scroll", remember, { passive: true });
     const s = state.current;
     s.reduced = prefersReducedMotion();
     const html = document.documentElement;
@@ -134,6 +180,36 @@ export function Motion() {
       getComputedStyle(pre).visibility !== "hidden";
 
     const cleanups: Array<() => void> = [];
+
+    // Smooth scrolling, driven by GSAP's ticker so scroll-linked animations
+    // stay in sync. Pauses while the preloader shows and whenever a dialog or
+    // menu locks the page (autoToggle follows the page's overflow).
+    lenis = new Lenis({
+      autoRaf: false,
+      lerp: 0.1,
+      wheelMultiplier: 1,
+      anchors: { offset: -100 },
+      autoToggle: true,
+      allowNestedScroll: true,
+      prevent: (node) =>
+        !!node.closest?.(
+          ".mobile-panel, .gallery-dialog, .nav-dropdown, [data-lenis-prevent]",
+        ),
+    });
+    const smooth = lenis;
+    smooth.on("scroll", ScrollTrigger.update);
+    const tick = (time: number) => smooth.raf(time * 1000);
+    gsap.ticker.add(tick);
+    gsap.ticker.lagSmoothing(0);
+    if (s.preloader) {
+      smooth.stop();
+      onIntro(() => smooth.start());
+    }
+    cleanups.push(() => {
+      gsap.ticker.remove(tick);
+      smooth.destroy();
+      lenis = null;
+    });
     const header = document.querySelector<HTMLElement>(".site-header");
 
     // Header + top bar drop in with the intro (only when the preloader hid them).
@@ -308,6 +384,7 @@ export function Motion() {
         return;
       e.preventDefault();
       s.curtainCovering = true;
+      shownPath = ""; // freeze this page's saved position before leaving
       const text = (a.getAttribute("aria-label") || a.textContent || "")
         .replace(/\s+/g, " ")
         .trim()
@@ -346,9 +423,12 @@ export function Motion() {
     const s = state.current;
     // Every newly opened page starts at the top. The site uses smooth
     // scrolling, which used to leave the new page part-way down.
+    shownPath = pathname;
     if (!navSeen.current) navSeen.current = true;
-    else if (historyNav) historyNav = false;
-    else {
+    else if (historyNav) {
+      historyNav = false;
+      restoreScroll(savedScroll.get(pathname) ?? 0);
+    } else {
       resetScroll();
       requestAnimationFrame(resetScroll);
     }
