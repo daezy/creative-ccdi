@@ -10,11 +10,11 @@ import {
 import { Button, Eyebrow, PhotoSlot } from "./ui";
 const slides = [
   {
-    first: "A skill today.",
-    second: "A world of",
-    accent: "possibility.",
+    first: "Creative Craft",
+    second: "Development",
+    accent: "Initiative.",
     description:
-      "We help people discover their potential, develop practical skills, and create purposeful lives. Because a stronger future begins with what’s already inside you.",
+      "We are a mission-driven organization committed to addressing youth unemployment, community empowerment, healthy living skills, rehabilitation, and education.",
     cta: "Explore our programmes",
     href: "/programmes/",
     photo: "Hands-on skills. Real-world possibility.",
@@ -22,11 +22,11 @@ const slides = [
     theme: "sage",
   },
   {
-    first: "Good work.",
-    second: "A greater",
-    accent: "purpose.",
+    first: "Where enterprise",
+    second: "meets",
+    accent: "empowerment.",
     description:
-      "From fashion and food to digital services and farming, we connect enterprise with empowerment to help communities build sustainable livelihoods.",
+      "This arm drives sustainability through income-generating activities such as fashion and tailoring production, catering and bakery services, ICT and digital services, agriculture, printing and publishing.",
     cta: "Discover our services",
     href: "/services/",
     photo: "Enterprise that empowers.",
@@ -34,11 +34,11 @@ const slides = [
     theme: "gold",
   },
   {
-    first: "Stronger homes.",
-    second: "A shared",
-    accent: "future.",
+    first: "Creative",
+    second: "Community",
+    accent: "Initiative.",
     description:
-      "We bring families and communities together through practical learning, healthier relationships, and opportunities for every generation to thrive.",
+      "Building strong, resilient, peaceful, healthy, and value-driven families and communities.",
     cta: "Meet our community arm",
     href: "/projects/creative-community/",
     photo: "Stronger families. Thriving communities.",
@@ -83,7 +83,7 @@ export function Hero() {
     >
       <div className="container hero-grid">
         <div className="hero-copy" key={active}>
-          <Eyebrow>Empowering people. Transforming communities.</Eyebrow>
+          <Eyebrow>Creative Craft Development Initiative (CCDI)</Eyebrow>
           <h1>
             {slide.first}
             <br />

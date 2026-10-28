@@ -1,4 +1,14 @@
 import {
+  Commitments,
+  VisionMission,
+  Governance,
+  IntegratedModel,
+  ImpactContent,
+  PartnershipContent,
+  JoinMovement,
+} from "@/components/organisation-content";
+import { organisationCopy as copy } from "@/lib/organisation-copy";
+import {
   ProgrammeCatalogue,
   ReportedProgress,
   FuturePlans,
@@ -139,21 +149,8 @@ function PageContent({ slug }: { slug: string }) {
             <div>
               <Eyebrow>Who we are</Eyebrow>
               <h2>Empowering lives through skills, purpose, and community.</h2>
-              <p className="large-copy">
-                Everyone has the ability to learn and master a skill when given
-                proper support and training.
-              </p>
-              <p>
-                Creative Craft Development Initiative (CCDI) is committed to
-                helping individuals and communities discover their potential,
-                develop practical skills, build capacity, and use their
-                abilities to create purposeful and sustainable lives.
-              </p>
-              <p>
-                Our work brings together youth empowerment, practical learning,
-                child welfare, family strengthening, and sustainable social
-                enterprise.
-              </p>
+              <p className="large-copy">{copy.whoWeAre}</p>
+              <p>{copy.belief}</p>
               <Button href="/projects/">Meet our four arms</Button>
             </div>
             <PhotoSlot
@@ -193,94 +190,30 @@ function PageContent({ slug }: { slug: string }) {
               </div>
             </div>
           </section>
-          <section className="content-section" id="governance">
+          <section className="content-section">
             <SectionHead
-              eyebrow="Governance & management"
-              title={
-                <>
-                  People behind
-                  <br />
-                  <em>the purpose.</em>
-                </>
-              }
-            >
-              CCDI operates under the supervision of its Board of Trustees and
-              Management Team.
-            </SectionHead>
-            <figure className="board-photo">
-              <img
-                src="/images/board-of-trustees.jpeg"
-                alt="CCDI Board of Trustees group photograph"
-                width={1280}
-                height={759}
-                loading="lazy"
-              />
-              <figcaption>CCDI Board of Trustees</figcaption>
-            </figure>
-            <div className="trustee-grid">
-              {["Gloria Omoze Omagbemi", "Temisan Ignatius Omagbemi"].map(
-                (name, i) => (
-                  <article className="trustee-card" key={name}>
-                    <PhotoSlot
-                      label={`${name} · Portrait space`}
-                      number={`0${i + 1}`}
-                      variant={i ? "cream" : "sage"}
-                    />
-                    <h3>{name}</h3>
-                    <p>
-                      {i
-                        ? "Trustee Secretary · Life Skill Coach"
-                        : "Chairman · Life Skills Coach"}
-                    </p>
-                  </article>
-                ),
-              )}
+              eyebrow="Explore About CCDI"
+              title="Our purpose in practice"
+            />
+            <div className="two-cards">
+              {[
+                ["Core Values", "/core-values/"],
+                ["Impact Statistics", "/impact/"],
+                ["Partnership", "/partners/"],
+                ["Vision & Mission", "/vision-mission/"],
+              ].map(([label, href]) => (
+                <article className="info-card" key={href}>
+                  <TextLink href={href}>{label}</TextLink>
+                </article>
+              ))}
             </div>
-            <p className="muted-note">
-              Management team and facilitator profiles will be added to this
-              section.
-            </p>
           </section>
+          <Governance />
+          <Commitments />
         </>
       );
     case "vision-mission":
-      return (
-        <>
-          <div className="statement-panel">
-            <Eyebrow>Our vision</Eyebrow>
-            <h2>
-              A world where everyone can discover, develop, and master
-              meaningful skills for a purposeful and productive life.
-            </h2>
-          </div>
-          <div className="split-content">
-            <div>
-              <Eyebrow>Our mission</Eyebrow>
-              <h2>Bridging the gap between potential and skills.</h2>
-              <p>
-                Through self-discovery, self-mastery, capacity building, and
-                skills for life, we create opportunities for practical learning,
-                entrepreneurship, and community transformation.
-              </p>
-            </div>
-            <div className="vision-list">
-              {[
-                "Children are protected and empowered.",
-                "Youth are skilled and self-reliant.",
-                "Families are stable and value-driven.",
-                "Communities thrive economically and socially.",
-              ].map((s, i) => (
-                <div key={s}>
-                  <span>0{i + 1}</span>
-                  <p>{s}</p>
-                  <ArrowUpRight size={20} />
-                </div>
-              ))}
-            </div>
-          </div>
-          <Reship />
-        </>
-      );
+      return <VisionMission />;
     case "core-values":
       return (
         <div className="values-grid">
@@ -298,25 +231,10 @@ function PageContent({ slug }: { slug: string }) {
     case "projects":
       return (
         <>
-          <p className="intro-paragraph">
-            People’s needs are connected. Our response is, too. Each CCDI arm
-            has a distinct mandate, and all four work together to build
-            capability, protect dignity, strengthen families, and support
-            sustainable development.
-          </p>
+          <p className="intro-paragraph">{copy.belief}</p>
           <ArmGrid />
-          <div className="statement-panel">
-            <Eyebrow>One integrated model</Eyebrow>
-            <h2>
-              Skills reduce vulnerability.
-              <br />
-              Care restores dignity.
-              <br />
-              Enterprise supports sustainability.
-              <br />
-              Community strengthens the future.
-            </h2>
-          </div>
+          <IntegratedModel />
+          <Commitments />
         </>
       );
     case "skills-training":
@@ -408,175 +326,14 @@ function PageContent({ slug }: { slug: string }) {
     case "impact":
       return (
         <>
-          <div className="impact-summary">
-            <div>
-              <span>04</span>
-              <h2>Integrated arms</h2>
-              <p>
-                Working together across skills, enterprise, care, and community.
-              </p>
-            </div>
-            <div>
-              <span>06</span>
-              <h2>Training areas</h2>
-              <p>
-                Practical pathways from creative skills to productive
-                enterprise.
-              </p>
-            </div>
-            <div>
-              <span>01</span>
-              <h2>Shared purpose</h2>
-              <p>Helping people live with greater confidence and capability.</p>
-            </div>
-          </div>
-          <section className="content-section">
-            <SectionHead
-              eyebrow="The change we work towards"
-              title={
-                <>
-                  Progress you can
-                  <br />
-                  <em>put into practice.</em>
-                </>
-              }
-            />
-            <div className="two-cards">
-              {arms.map((a) => (
-                <article className="info-card" key={a.slug}>
-                  <Icon name={a.icon} />
-                  <h3>{a.name}</h3>
-                  <ul className="check-list">
-                    {a.outcomes.map((o) => (
-                      <li key={o}>
-                        <Check size={16} />
-                        {o}
-                      </li>
-                    ))}
-                  </ul>
-                </article>
-              ))}
-            </div>
-          </section>
+          <ImpactContent />
           <ReportedProgress />
           <FuturePlans />
-          <div className="statement-panel">
-            <Eyebrow>Our impact philosophy</Eyebrow>
-            <h2>Learn → Develop → Master → Apply → Impact</h2>
-            <p>
-              From potential to capability. From capability to productivity.
-              From productivity to meaningful community impact.
-            </p>
-          </div>
-          <div className="editorial-note">
-            <ShieldCheck size={24} />
-            <div>
-              <h3>A commitment to measurable impact</h3>
-              <p>
-                Verified reach figures and detailed impact reports will be added
-                as CCDI’s reporting materials are prepared.
-              </p>
-              <TextLink href="/financial-transparency/">
-                Our accountability commitment
-              </TextLink>
-            </div>
-          </div>
+          <Commitments />
         </>
       );
     case "partners":
-      return (
-        <>
-          <div className="split-content">
-            <div>
-              <Eyebrow>Partner with CCDI</Eyebrow>
-              <h2>
-                Shared purpose.
-                <br />
-                Stronger possibilities.
-              </h2>
-              <p>
-                We welcome individuals, businesses, professional organisations,
-                educational institutions, government agencies, foundations,
-                NGOs, churches, and other development-focused organisations.
-              </p>
-              <p>
-                Whether you contribute expertise, learning resources, programme
-                support, or enterprise opportunities, collaboration can help
-                more people put their abilities to work.
-              </p>
-              <Button href="/contact/?interest=Partnership">
-                Start a partnership conversation
-              </Button>
-            </div>
-            <PhotoSlot
-              label="Partners working alongside the CCDI community"
-              variant="gold"
-            />
-          </div>
-          <section className="content-section">
-            <SectionHead
-              eyebrow="Ways to collaborate"
-              title={
-                <>
-                  Bring your strengths.
-                  <br />
-                  <em>Build something lasting.</em>
-                </>
-              }
-            />
-            <div className="values-grid">
-              {[
-                [
-                  "Training & capacity development",
-                  "Support practical training, workshops, seminars, and professional development.",
-                ],
-                [
-                  "Entrepreneurship & social enterprise",
-                  "Help people develop businesses and sustainable livelihood opportunities.",
-                ],
-                [
-                  "Family & community development",
-                  "Strengthen programmes supporting relationships, families, and communities.",
-                ],
-                [
-                  "Youth & vulnerable-person support",
-                  "Support child welfare, education, youth empowerment, and psychosocial development.",
-                ],
-                [
-                  "Mentorship & expertise",
-                  "Share professional experience, guidance, resources, and learning opportunities.",
-                ],
-              ].map(([t, d], i) => (
-                <article key={t} className="value-card">
-                  <span className="number-label">0{i + 1}</span>
-                  <h2>{t}</h2>
-                  <p>{d}</p>
-                </article>
-              ))}
-            </div>
-          </section>
-          <div className="partner-space">
-            <span className="number-label">PARTNERS & SPONSORS</span>
-            <p>
-              A shared space for the organisations helping make this work
-              possible.
-            </p>
-            <div>
-              {[
-                "Partner logo",
-                "Sponsor logo",
-                "Partner logo",
-                "Sponsor logo",
-              ].map((l, i) => (
-                <span key={i}>
-                  {l}
-                  <ArrowUpRight size={16} />
-                </span>
-              ))}
-            </div>
-          </div>
-        </>
-      );
+      return <PartnershipContent />;
     case "volunteer":
       return (
         <>

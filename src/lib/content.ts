@@ -88,7 +88,7 @@ export const arms = [
     eyebrow: "Enterprise with purpose",
     title: "Where enterprise meets empowerment.",
     description:
-      "Income-generating services create practical business experience, support our programmes, and help build sustainable livelihoods.",
+      "Where Enterprise Meets Empowerment. Purpose driven Lasting Community Impact.",
     activities: [
       "Interior and exterior decoration",
       "Event planning and management",
@@ -331,31 +331,31 @@ export const pageInfo: Record<
 > = {
   about: {
     label: "About CCDI",
-    title: "Potential lives in everyone.",
+    title: "About CCDI",
     description:
       "We help people discover it, develop it, and put it to work for a purposeful life.",
   },
   "vision-mission": {
     label: "Our direction",
-    title: "A shared vision. A purposeful future.",
+    title: "Vision & Mission",
     description:
       "A world where everyone can discover, develop, and master meaningful skills for a productive life.",
   },
   "core-values": {
     label: "What guides us",
-    title: "Our values, lived every day.",
+    title: "Our Core Values",
     description:
       "The principles behind how we learn, lead, care, and build stronger communities.",
   },
   impact: {
     label: "Our impact",
-    title: "From learning to lasting change.",
+    title: "Our Impact Statistics",
     description:
       "Turning potential into capability, and capability into meaningful community impact.",
   },
   projects: {
     label: "The CCDI model",
-    title: "Four arms. One shared purpose.",
+    title: "Four-Integrated Project-Arm Structure",
     description:
       "An integrated approach to skills, sustainable enterprise, child welfare, and stronger communities.",
   },
@@ -415,7 +415,7 @@ export const pageInfo: Record<
   },
   partners: {
     label: "Grow with us",
-    title: "Together, we can go further.",
+    title: "Partner With CCDI",
     description:
       "Meaningful transformation grows through shared expertise, resources, and commitment.",
   },

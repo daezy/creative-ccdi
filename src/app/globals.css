@@ -4654,3 +4654,61 @@ textarea::placeholder {
   font-size: 12px;
   color: var(--muted);
 }
+
+/* Organisation-supplied long-form content. */
+.supplied-prose {
+  max-width: 880px;
+  margin-bottom: 38px;
+}
+.supplied-prose p {
+  line-height: 1.8;
+  margin: 0 0 22px;
+}
+.supplied-subheading {
+  margin-top: 40px;
+}
+.supplied-impact-grid {
+  display: grid;
+  gap: 24px;
+}
+.supplied-impact-grid .info-card {
+  max-width: 100%;
+}
+.supplied-impact-grid h3 {
+  margin-top: 26px;
+}
+.supplied-purposes ol {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.supplied-purposes li {
+  display: grid;
+  grid-template-columns: 44px 1fr;
+  gap: 20px;
+  padding: 28px 0;
+  border-top: 1px solid var(--line);
+}
+.supplied-purposes li p {
+  max-width: 850px;
+  line-height: 1.8;
+  margin: 0;
+}
+.supplied-purposes li h3 {
+  margin: 0 0 12px;
+}
+.supplied-commitment .section-head {
+  margin-bottom: 24px;
+}
+.supplied-commitment .check-list {
+  margin-bottom: 30px;
+}
+.hero-copy h1 {
+  overflow-wrap: normal;
+}
+@media (max-width: 600px) {
+  .supplied-purposes li {
+    gap: 12px;
+    grid-template-columns: 28px 1fr;
+  }
+}

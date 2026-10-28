@@ -1,3 +1,6 @@
+import { projectCopy } from "@/lib/organisation-copy";
+import { CopyList } from "@/components/organisation-content";
+import { reship } from "@/lib/content";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -38,6 +41,7 @@ export default async function Project({
   const { slug } = await params;
   const a = arms.find((a) => a.slug === slug);
   if (!a) notFound();
+  const detail = projectCopy[a.slug];
   return (
     <>
       <section className={`project-hero project-theme-${a.theme}`}>
@@ -54,7 +58,7 @@ export default async function Project({
               <Eyebrow>
                 CCDI ARM {a.number} / {a.fullName}
               </Eyebrow>
-              <h1>{a.title}</h1>
+              <h1>{a.fullName}</h1>
               <p>{a.description}</p>
               <Button
                 href={`/contact/?interest=${encodeURIComponent(a.fullName)}`}
@@ -88,16 +92,9 @@ export default async function Project({
         <section className="split-content content-section">
           <div>
             <Eyebrow>{a.division}</Eyebrow>
-            <h2>
-              Purpose you can
-              <br />
-              <em>put into practice.</em>
-            </h2>
-            <p>
-              Part of CCDI’s integrated model for empowering people,
-              strengthening families, and creating opportunities for productive
-              living.
-            </p>
+            <h2>{a.division}</h2>
+            <p>{detail.intro}</p>
+            {"body" in detail && <p>{detail.body}</p>}
             <Button
               href={`/contact/?interest=${encodeURIComponent(a.fullName)}`}
             >
@@ -105,7 +102,7 @@ export default async function Project({
             </Button>
           </div>
           <div className="activity-list">
-            {a.activities.map((item, i) => (
+            {detail.coreFunctions.map((item, i) => (
               <div key={item}>
                 <span className="number-label">
                   {String(i + 1).padStart(2, "0")}
@@ -116,21 +113,48 @@ export default async function Project({
             ))}
           </div>
         </section>
+        {a.slug === "capacity-development" && (
+          <section className="content-section">
+            <Eyebrow>Our RESHIP Framework</Eyebrow>
+            <h2>Practical, market-relevant life skills</h2>
+            <CopyList items={reship.map(([, skill]) => skill)} />
+          </section>
+        )}
+        {detail.purposes.length > 0 && (
+          <section className="content-section supplied-purposes">
+            <SectionHead eyebrow={a.fullName} title="Our purposes" />
+            <ol>
+              {detail.purposes.map((purpose, i) => (
+                <li key={i}>
+                  <span className="number-label">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <div>
+                    {Array.isArray(purpose) ? (
+                      <>
+                        <h3>{purpose[0]}</h3>
+                        <p>{purpose[1]}</p>
+                      </>
+                    ) : (
+                      <p>{purpose}</p>
+                    )}
+                  </div>
+                </li>
+              ))}
+            </ol>
+          </section>
+        )}
         <section className="outcomes-panel">
           <Eyebrow>What we work towards</Eyebrow>
           <h2>Change that reaches further.</h2>
           <ul className="check-list">
-            {a.outcomes.map((o) => (
+            {detail.outcomes.map((o) => (
               <li key={o}>
                 <Check size={19} />
                 {o}
               </li>
             ))}
           </ul>
-          <p>
-            These are the intended outcomes of our programmes, rather than
-            independently verified impact figures.
-          </p>
         </section>
         <section className="content-section">
           <SectionHead

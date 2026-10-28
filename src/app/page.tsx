@@ -1,3 +1,10 @@
+import {
+  Commitments,
+  Governance,
+  StrategicFocus,
+  JoinMovement,
+} from "@/components/organisation-content";
+import { organisationCopy as copy } from "@/lib/organisation-copy";
 import Link from "next/link";
 import { ArrowUpRight, ArrowRight, Check, MoveUpRight } from "lucide-react";
 import { Hero } from "@/components/hero";
@@ -48,22 +55,10 @@ export default function Home() {
             </div>
           </div>
           <div className="about-copy">
-            <Eyebrow>A little about us</Eyebrow>
-            <h2>
-              There’s more
-              <br />
-              in <em>every person.</em>
-            </h2>
-            <p className="large-copy">
-              A talent waiting to be discovered. A skill waiting to be
-              developed. A future waiting to take shape.
-            </p>
-            <p>
-              Creative Craft Development Initiative helps individuals and
-              communities build practical abilities for purposeful, productive
-              lives. We bring together skills development, enterprise, care, and
-              community support—so people can move forward with confidence.
-            </p>
+            <Eyebrow>Creative Craft Development Initiative (CCDI)</Eyebrow>
+            <h2>Who we are</h2>
+            <p className="large-copy">{copy.homeIntro}</p>
+            <p>{copy.homeReach}</p>
             <div className="about-checks">
               <span>
                 <Check size={17} aria-hidden="true" />
@@ -82,23 +77,22 @@ export default function Home() {
           </div>
         </div>
       </section>
+      <StrategicFocus />
       <section className="section arms-section">
         <div className="container">
           <SectionHead
             eyebrow="Our integrated approach"
             title={
               <>
-                Different paths.
+                Four-Integrated
                 <br />
-                The same <em>possibility.</em>
+                <em>Project-Arm Structure.</em>
               </>
             }
             href="/projects/"
             linkLabel="Meet our four arms"
           >
-            Four connected arms. Each with a distinct role.
-            <br />
-            All working towards lasting transformation.
+            {copy.integratedIntro}
           </SectionHead>
           <div className="arms-grid">
             {arms.map((a) => (
@@ -112,7 +106,7 @@ export default function Home() {
                   <Icon name={a.icon} size={30} />
                 </div>
                 <div>
-                  <h3>{a.name}</h3>
+                  <h3>{a.fullName}</h3>
                   <p>{a.description}</p>
                 </div>
                 <span className="arm-link">
@@ -145,26 +139,15 @@ export default function Home() {
           </div>
           <div className="impact-facts">
             <div>
-              <span className="fact-number">
-                04<span>↗</span>
-              </span>
-              <h3>Connected arms</h3>
-              <p>One holistic model for people and communities.</p>
+              <span className="fact-number">18</span>
+              <h3>Years of impact</h3>
             </div>
             <div>
-              <span className="fact-number">
-                06<span>✳</span>
-              </span>
-              <h3>Practical training areas</h3>
-              <p>From creative skills to digital and enterprise learning.</p>
-            </div>
-            <div>
-              <span className="fact-number">
-                01<span>♡</span>
-              </span>
-              <h3>Shared belief</h3>
+              <span className="fact-number">3,000+</span>
+              <h3>Beneficiaries annually</h3>
               <p>
-                Everyone deserves the opportunity to develop their potential.
+                Through vocational training, skills acquisition, and empowerment
+                programs.
               </p>
             </div>
           </div>
@@ -301,42 +284,11 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <section className="section journal-section">
+      <section className="section">
         <div className="container">
-          <SectionHead
-            eyebrow="From the CCDI journal"
-            title={
-              <>
-                A little perspective.
-                <br />A lot of <em>possibility.</em>
-              </>
-            }
-            href="/blog/"
-            linkLabel="Read the journal"
-          />
-          <div className="journal-grid">
-            {articles.map((a, i) => (
-              <Link
-                href={`/blog/${a.slug}/`}
-                className="journal-card"
-                key={a.slug}
-              >
-                <div
-                  className={`journal-art journal-art-${i}`}
-                  aria-hidden="true"
-                >
-                  <span>{["Aa", "↗", "&"][i]}</span>
-                  <small>THE CCDI JOURNAL / 0{i + 1}</small>
-                </div>
-                <div className="journal-card-label">
-                  <span>{a.category}</span>
-                  <ArrowUpRight size={18} aria-hidden="true" />
-                </div>
-                <h3>{a.title}</h3>
-                <p>{a.description}</p>
-              </Link>
-            ))}
-          </div>
+          <Governance />
+          <Commitments />
+          <JoinMovement />
         </div>
       </section>
       <Cta />
