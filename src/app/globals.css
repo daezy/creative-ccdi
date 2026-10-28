@@ -5729,7 +5729,7 @@ textarea::placeholder {
 }
 .site-header.is-transparent {
   background: transparent;
-  border-bottom-color: rgb(255 255 255 / 0.16);
+  border-bottom-color: transparent;
   color: #fff;
 }
 .site-header.is-transparent .brand img {
@@ -5763,5 +5763,131 @@ textarea::placeholder {
   .site-header,
   .home-hero {
     --header-h: 73px;
+  }
+}
+
+/* Top contact bar */
+.announcement {
+  background: var(--paper);
+  color: var(--green-dark);
+  font-size: 12px;
+  letter-spacing: 0.2px;
+}
+.announcement .container {
+  min-height: 40px;
+  gap: 20px;
+}
+.announcement-contact {
+  display: flex;
+  align-items: center;
+  gap: 26px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  min-width: 0;
+}
+.announcement-contact li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+}
+.announcement-contact svg,
+.announcement-social > span + a svg {
+  color: var(--green);
+  flex-shrink: 0;
+}
+.announcement .announcement-contact a {
+  display: inline;
+  color: var(--green-dark);
+}
+.announcement-sep {
+  margin: 0 6px;
+  color: rgb(7 62 41 / 0.45);
+}
+.announcement-address {
+  color: #355640;
+}
+.announcement-social {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+.announcement-social > span {
+  color: #355640;
+}
+.announcement .announcement-social a {
+  display: grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: rgb(7 91 55 / 0.1);
+  color: var(--green-dark);
+  transition: background-color 160ms ease;
+}
+@media (hover: hover) and (pointer: fine) {
+  .announcement .announcement-contact a:hover {
+    color: var(--green-dark);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  .announcement .announcement-social a:hover {
+    background: rgb(7 91 55 / 0.18);
+  }
+}
+@media (max-width: 1000px) {
+  .announcement-contact li.announcement-address {
+    display: none;
+  }
+}
+@media (max-width: 760px) {
+  .announcement .container {
+    min-height: 36px;
+    font-size: 11px;
+  }
+  .announcement-contact li.announcement-email,
+  .announcement-social > span {
+    display: none;
+  }
+}
+@media (max-width: 420px) {
+  .announcement-contact li > span:not(:first-of-type) {
+    display: none;
+  }
+}
+/* Close the 1px seam (header border) so no white line shows above the hero. */
+.site-header-overlay {
+  margin-bottom: calc(-1 * var(--header-h) - 1px);
+}
+/* Impact facts: size the number column to the widest figure so labels never overlap. */
+.impact-facts {
+  grid-template-columns: max-content minmax(0, 1fr);
+}
+.impact-facts > div {
+  grid-column: 1 / -1;
+  grid-template-columns: subgrid;
+  column-gap: 40px;
+  align-items: start;
+}
+.impact-facts h3 {
+  align-self: end;
+}
+@media (max-width: 1000px) {
+  .impact-facts > div {
+    column-gap: 24px;
+  }
+}
+@media (max-width: 600px) {
+  .impact-facts {
+    grid-template-columns: 1fr;
+  }
+  .impact-facts > div {
+    grid-template-columns: 1fr;
+    row-gap: 10px;
+  }
+  .fact-number {
+    grid-row: auto;
   }
 }

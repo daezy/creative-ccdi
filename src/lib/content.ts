@@ -1,5 +1,16 @@
 export const facebook =
   "https://www.facebook.com/people/Creative-Craft-Development-Initiative/100069171407112/";
+/** From the CCDI membership and student registration forms. */
+export const contact = {
+  address: "No. 9, Sanusi Adeyemo Street, Satellite Town, Lagos, Nigeria",
+  addressShort: "Satellite Town, Lagos",
+  phones: [
+    { label: "0706 125 2687", href: "tel:+2347061252687" },
+    { label: "0802 626 4133", href: "tel:+2348026264133" },
+  ],
+  email: "info@creativecdi.org",
+};
+export const socials = [{ label: "Facebook", href: facebook }];
 export const siteUrl =
   process.env.NEXT_PUBLIC_SITE_URL ||
   "https://ccdi-skills-and-community.nicebook16.chatgpt.site";

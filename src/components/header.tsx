@@ -4,8 +4,18 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Popover } from "@base-ui/react/popover";
 import { Dialog } from "@base-ui/react/dialog";
-import { ArrowUpRight, ChevronDown, Heart, Menu, X } from "lucide-react";
-import { navigation, facebook } from "@/lib/content";
+import {
+  ArrowUpRight,
+  ChevronDown,
+  Facebook,
+  Heart,
+  Mail,
+  MapPin,
+  Menu,
+  Phone,
+  X,
+} from "lucide-react";
+import { navigation, contact, socials } from "@/lib/content";
 export function Header() {
   const path = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -40,10 +50,39 @@ export function Header() {
       </a>
       <div className="announcement">
         <div className="container">
-          <span>Self-discovery. Capacity building. Skills for life.</span>
-          <a href={facebook} target="_blank" rel="noreferrer">
-            Meet our community <ArrowUpRight size={13} aria-hidden="true" />
-          </a>
+          <ul className="announcement-contact" aria-label="Contact CCDI">
+            <li>
+              <Phone size={13} aria-hidden="true" />
+              {contact.phones.map((p, i) => (
+                <span key={p.href}>
+                  {i > 0 && <span className="announcement-sep">/</span>}
+                  <a href={p.href}>{p.label}</a>
+                </span>
+              ))}
+            </li>
+            <li className="announcement-email">
+              <Mail size={13} aria-hidden="true" />
+              <a href={`mailto:${contact.email}`}>{contact.email}</a>
+            </li>
+            <li className="announcement-address" title={contact.address}>
+              <MapPin size={13} aria-hidden="true" />
+              <span>{contact.addressShort}</span>
+            </li>
+          </ul>
+          <div className="announcement-social">
+            <span>Follow us</span>
+            {socials.map((s) => (
+              <a
+                key={s.href}
+                href={s.href}
+                target="_blank"
+                rel="noreferrer"
+                aria-label={`CCDI on ${s.label}`}
+              >
+                <Facebook size={14} aria-hidden="true" />
+              </a>
+            ))}
+          </div>
         </div>
       </div>
       <header
