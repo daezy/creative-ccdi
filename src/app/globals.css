@@ -5891,3 +5891,65 @@ textarea::placeholder {
     grid-row: auto;
   }
 }
+
+/* Source-document guidance belongs alongside the relevant programme copy. */
+.document-content {
+  line-height: 1.8;
+}
+.document-content > h2 {
+  max-width: 24ch;
+  margin-bottom: 1.1rem;
+}
+.document-content h3 {
+  margin: 1.75rem 0 0.65rem;
+}
+.document-content p {
+  max-width: 78ch;
+  margin-bottom: 1rem;
+}
+.document-content ul {
+  padding-left: 1.3rem;
+}
+.document-content li {
+  padding-left: 0.25rem;
+  margin-bottom: 0.65rem;
+}
+.document-content li::marker {
+  color: var(--green);
+}
+.document-content-columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(1.5rem, 4vw, 4rem);
+}
+.document-topics {
+  border-top: 1px solid var(--line, #d9e1d9);
+  margin-top: 1.75rem;
+}
+.document-topics details {
+  border-bottom: 1px solid var(--line, #d9e1d9);
+  padding: 1.25rem 0;
+}
+.document-topics summary {
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+.document-topics details[open] summary {
+  margin-bottom: 1rem;
+}
+.document-topics summary:focus-visible {
+  outline: 2px solid var(--green);
+  outline-offset: 6px;
+}
+.media-consent-note {
+  border-top: 1px solid var(--line, #d9e1d9);
+  margin-top: 4rem;
+  padding-top: 2.5rem;
+}
+@media (max-width: 700px) {
+  .document-content-columns {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+}

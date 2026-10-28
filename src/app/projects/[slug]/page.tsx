@@ -1,3 +1,5 @@
+import { TextLink } from "@/components/ui";
+import { RegistrationContent } from "@/components/document-content";
 import { FormCallout } from "@/components/document-library";
 import { ProjectPhotos, VideoCollection } from "@/components/media-collections";
 import { projectCopy } from "@/lib/organisation-copy";
@@ -146,7 +148,27 @@ export default async function Project({
             </ol>
           </section>
         )}
-        {a.slug === "capacity-development" && <FormCallout kind="student" />}
+        {a.slug === "capacity-development" && (
+          <>
+            <RegistrationContent />
+            <FormCallout kind="student" />
+          </>
+        )}
+        {a.slug === "benevolent-childcare" && (
+          <section className="document-content content-section">
+            <Eyebrow>Safe participation</Eyebrow>
+            <h2>Protecting children in every activity.</h2>
+            <p>
+              CCDI’s safeguarding policy places children’s best interests first
+              and sets standards for staff and volunteers, reporting concerns,
+              and obtaining permission for photographs and video. Read these
+              alongside our programme information before taking part.
+            </p>
+            <TextLink href="/child-protection/">
+              Read the child safeguarding policy
+            </TextLink>
+          </section>
+        )}
         <ProjectPhotos slug={a.slug} />
         <section className="outcomes-panel">
           <Eyebrow>What we work towards</Eyebrow>

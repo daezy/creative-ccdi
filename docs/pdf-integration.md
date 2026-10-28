@@ -18,3 +18,16 @@ The registration and membership document headers provide the following organisat
 The website's technical privacy explanation is retained alongside a link to the full supplied framework. No analytics, newsletter, application-submission or payment feature is added merely because it is described in the PDF.
 
 Validation: SHA-256 / byte equality checks passed between each original PDF, its public copy, its static-export copy, and the body served by the local preview. All four URLs returned HTTP 200 with application/pdf content type. Production build, TypeScript and static link checks passed. PDF view/download links, previews, metadata and consent-page link were inspected in the browser.
+
+## Content integrated into page copy
+
+The PDFs now supplement the existing organisation and programme text rather than serving only as downloads. `src/components/document-content.tsx` contains source-based, server-rendered sections:
+
+- Skills Training and Capacity Development: registration areas, personal/contact and next-of-kin information to prepare, declaration, applicant signature, official-use fields and return guidance.
+- Volunteer: membership categories, sign-up roles, contribution frequency choices, responsibilities, voluntary/non-employment status, termination/withdrawal provisions, application guidance and the conduct code grouped into accessible disclosures.
+- Partners: membership and contribution options, shared responsibilities, confidentiality and voluntary participation, followed by the membership form.
+- Privacy: organisational scope, data categories, processing principles and bases, storage/access provisions, retention, sharing, individual rights and breach reporting. These describe what the supplied policy requires, rather than asserting implementation has been independently verified. The separate explanation of the actual static website remains.
+- Child Protection: under-18 definition, equal protection, staff/volunteer conduct, recruitment and training, disclosure response, escalation, media protection and review. The Benevolent & Childcare page links these standards to its existing programme text.
+- Gallery, Videos and Child Protection: photo/video consent choices, guardian involvement, written withdrawal and limitations concerning previously printed materials. These explain the supplied consent form without asserting that consent records for individual assets have been audited.
+
+Blank focal-person/effective-date fields remain unfilled. General contact routes ask CCDI for the appropriate designated contact. No online collection of completed applications, sensitive next-of-kin details or safeguarding disclosures has been introduced.

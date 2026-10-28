@@ -1,4 +1,12 @@
 import {
+  RegistrationContent,
+  MembershipContent,
+  MemberConduct,
+  OrganisationPrivacy,
+  SafeguardingContent,
+  MediaConsent,
+} from "@/components/document-content";
+import {
   DocumentLibrary,
   FormCallout,
   FrameworkLinks,
@@ -280,6 +288,7 @@ function PageContent({ slug }: { slug: string }) {
             />
             <TrainingGrid />
           </section>
+          <RegistrationContent />
           <FormCallout kind="student" />
           <Reship />
           <Faq />
@@ -405,6 +414,8 @@ function PageContent({ slug }: { slug: string }) {
               ))}
             </div>
           </section>
+          <MembershipContent />
+          <MemberConduct />
           <FormCallout kind="membership" />
           <div className="editorial-note">
             <ShieldCheck size={24} />
@@ -416,7 +427,12 @@ function PageContent({ slug }: { slug: string }) {
         </>
       );
     case "gallery":
-      return <Gallery />;
+      return (
+        <>
+          <Gallery />
+          <MediaConsent brief />
+        </>
+      );
     case "testimonials":
       return <Testimonials />;
     case "blog":
@@ -442,7 +458,12 @@ function PageContent({ slug }: { slug: string }) {
         </div>
       );
     case "videos":
-      return <VideoCollection />;
+      return (
+        <>
+          <VideoCollection />
+          <MediaConsent brief />
+        </>
+      );
     case "documents":
       return (
         <>
@@ -560,6 +581,7 @@ function PageContent({ slug }: { slug: string }) {
     case "privacy-policy":
       return (
         <div className="prose narrow">
+          <OrganisationPrivacy />
           <h2>About this website</h2>
           <p>
             This website introduces Creative Craft Development Initiative and
@@ -619,6 +641,8 @@ function PageContent({ slug }: { slug: string }) {
             child through the website enquiry form. Ask CCDI directly for an
             appropriate and confidential way to raise a concern.
           </p>
+          <SafeguardingContent />
+          <MediaConsent />
           <FrameworkLinks safeguarding />
           <Button href="/projects/benevolent-childcare/">
             Explore the initiative

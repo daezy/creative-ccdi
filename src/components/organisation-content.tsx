@@ -1,3 +1,5 @@
+import { MembershipContent } from "./document-content";
+import { FormCallout } from "./document-library";
 import { TeamCollection } from "./media-collections";
 import { Check } from "lucide-react";
 import { organisationCopy as copy } from "@/lib/organisation-copy";
@@ -267,6 +269,8 @@ export function PartnershipContent() {
         <p>{copy.becomePartner}</p>
         <Button href="/contact/?interest=Partnership">Partner with us</Button>
       </section>
+      <MembershipContent partner />
+      <FormCallout kind="membership" />
       <JoinMovement />
       <Commitments />
     </>
