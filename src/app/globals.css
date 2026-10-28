@@ -4951,3 +4951,13 @@ textarea::placeholder {
     transition: none;
   }
 }
+
+.gallery-thumb-contain {
+  object-fit: contain;
+  background: var(--paper);
+  padding: 12px;
+}
+.gallery-load-more {
+  gap: 16px;
+  flex-wrap: wrap;
+}

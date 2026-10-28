@@ -64,29 +64,26 @@ export function TrainingGrid() {
     </>
   );
 }
-const galleryItems = Object.entries(library)
-  .filter(
-    ([, p]) =>
-      !["Programme flyers", "Publications", "Team"].includes(p.category),
-  )
-  .map(([id, p]) => ({ ...p, id }));
+const galleryItems = Object.entries(library).map(([id, p]) => ({ ...p, id }));
 export function Gallery() {
-  const [filter, setFilter] = useState("All moments");
+  const [filter, setFilter] = useState("All images");
   const [limit, setLimit] = useState(18);
   const filtered = galleryItems.filter(
-    (g) => filter === "All moments" || g.category === filter,
+    (g) => filter === "All images" || g.category === filter,
   );
   return (
     <>
       <div className="gallery-notice">
         <Camera size={18} aria-hidden="true" />
         <p>
-          CCDI’s own photographs of practical learning, enterprise, welfare
-          outreach, and community life. Select a photograph to see it in full.
+          The complete CCDI image collection: programme photographs, event
+          moments, team portraits, publications, flyers, and brand references.
+          Alternate shots and supplied copies are included. Select any image to
+          see it in full.
         </p>
       </div>
       <div className="filter-bar" aria-label="Filter gallery">
-        {["All moments", ...new Set(galleryItems.map((g) => g.category))].map(
+        {["All images", ...new Set(galleryItems.map((g) => g.category))].map(
           (f) => (
             <button
               key={f}
@@ -103,15 +100,14 @@ export function Gallery() {
         )}
       </div>
       <p className="media-result-count" aria-live="polite">
-        Showing {Math.min(limit, filtered.length)} of {filtered.length}{" "}
-        photographs
+        Showing {Math.min(limit, filtered.length)} of {filtered.length} images
       </p>
       <div className="gallery-grid">
         {filtered.slice(0, limit).map((g) => (
           <Dialog.Root key={g.id}>
             <Dialog.Trigger className="gallery-item">
               <img
-                className="gallery-thumb"
+                className={`gallery-thumb ${g.contain ? "gallery-thumb-contain" : ""}`}
                 src={g.src}
                 alt={g.alt}
                 width={g.width}
@@ -157,7 +153,13 @@ export function Gallery() {
             className="button button-outline"
             onClick={() => setLimit((n) => n + 18)}
           >
-            Show more photographs <ArrowRight size={18} />
+            Show more images <ArrowRight size={18} />
+          </button>
+          <button
+            className="button button-green"
+            onClick={() => setLimit(filtered.length)}
+          >
+            Show all {filtered.length} images
           </button>
         </div>
       )}
