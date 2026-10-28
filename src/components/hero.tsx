@@ -1,5 +1,10 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { SplitText } from "gsap/SplitText";
+import { DrawSVGPlugin } from "gsap/DrawSVGPlugin";
+import { onIntro, prefersReducedMotion } from "@/lib/motion-intro";
 import {
   ArrowLeft,
   ArrowRight,
@@ -10,6 +15,133 @@ import {
 import { Button, Eyebrow, PhotoSlot } from "./ui";
 import library from "@/lib/media-library.json";
 const SLIDE_MS = 6500;
+if (typeof window !== "undefined")
+  gsap.registerPlugin(ScrollTrigger, SplitText, DrawSVGPlugin);
+const RADIUS = "round 80px 6px 6px 6px";
+
+/** First-load entrance, started when the preloader lifts. */
+function playIntro(root: HTMLElement, delay: number) {
+  const h1 = root.querySelector<HTMLElement>(".hero-copy h1")!;
+  const split = SplitText.create(h1, { type: "words", mask: "words" });
+  const tl = gsap.timeline({
+    delay,
+    defaults: { ease: "expo.out", duration: 1.2 },
+    onComplete: () => split.revert(),
+  });
+  tl.from(
+    ".hero-backdrop",
+    { scale: 1.16, duration: 2.6, ease: "power3.out" },
+    0,
+  )
+    .from(".hero-copy .eyebrow", { x: -24, autoAlpha: 0, duration: 0.9 }, 0.1)
+    .from(split.words, { yPercent: 115, stagger: 0.06, duration: 1.3 }, 0.2)
+    .from(
+      ".hero-accent > svg path",
+      { drawSVG: "0%", duration: 1.1, ease: "power2.inOut" },
+      0.95,
+    )
+    .from(".hero-description", { y: 26, autoAlpha: 0 }, 0.55)
+    .from(".hero-actions > *", { y: 26, autoAlpha: 0, stagger: 0.08 }, 0.65)
+    .from(".hero-bottom > *", { y: 18, autoAlpha: 0, stagger: 0.06 }, 0.8)
+    .fromTo(
+      ".hero-photo-main",
+      { clipPath: `inset(100% 0% 0% 0% ${RADIUS})` },
+      {
+        clipPath: `inset(0% 0% 0% 0% ${RADIUS})`,
+        duration: 1.5,
+        ease: "expo.inOut",
+        clearProps: "clipPath",
+      },
+      0.25,
+    )
+    .from(".hero-photo-main img", { scale: 1.4, duration: 2.2 }, 0.25)
+    .from(".hero-photo-caption", { yPercent: 100, duration: 0.9 }, 1.15)
+    .from(
+      ".hero-photo-small",
+      {
+        y: 140,
+        rotation: -28,
+        autoAlpha: 0,
+        duration: 1.4,
+        ease: "back.out(1.3)",
+      },
+      0.75,
+    )
+    .from(
+      ".hero-stamp",
+      { scale: 0, rotation: -220, duration: 1.5, ease: "back.out(1.6)" },
+      1.0,
+    )
+    .from(".hero-note", { y: 22, autoAlpha: 0 }, 1.2)
+    .from(".carousel-bar", { y: 22, autoAlpha: 0 }, 1.05);
+  // Scroll away: content lifts and fades, photography drifts slower.
+  gsap.to(".hero-grid", {
+    yPercent: -10,
+    opacity: 0.25,
+    ease: "none",
+    scrollTrigger: {
+      trigger: root,
+      start: "top top",
+      end: "bottom top",
+      scrub: true,
+    },
+  });
+  gsap.to(".hero-backdrop", {
+    yPercent: 18,
+    ease: "none",
+    scrollTrigger: {
+      trigger: root,
+      start: "top top",
+      end: "bottom top",
+      scrub: true,
+    },
+  });
+}
+
+/** Slide change: headline re-sets word by word, photos wipe in. */
+function playSlide(root: HTMLElement) {
+  const copy = root.querySelector<HTMLElement>(".hero-copy")!;
+  const h1 = copy.querySelector<HTMLElement>("h1")!;
+  const split = SplitText.create(h1, { type: "words", mask: "words" });
+  const tl = gsap.timeline({
+    defaults: { ease: "expo.out" },
+    onComplete: () => split.revert(),
+  });
+  tl.from(split.words, { yPercent: 115, duration: 1.05, stagger: 0.045 }, 0)
+    .from(
+      copy.querySelector(".hero-accent > svg path"),
+      { drawSVG: "0%", duration: 0.9, ease: "power2.inOut" },
+      0.45,
+    )
+    .from(
+      copy.querySelectorAll(".hero-description, .hero-actions > *"),
+      { y: 20, autoAlpha: 0, duration: 0.9, stagger: 0.07 },
+      0.15,
+    )
+    .fromTo(
+      ".hero-photo-main",
+      { clipPath: `inset(0% 0% 0% 100% ${RADIUS})` },
+      {
+        clipPath: `inset(0% 0% 0% 0% ${RADIUS})`,
+        duration: 1.15,
+        ease: "expo.inOut",
+        clearProps: "clipPath",
+      },
+      0,
+    )
+    .from(".hero-photo-main img", { scale: 1.25, duration: 1.7 }, 0)
+    .from(
+      ".hero-photo-small",
+      {
+        y: 50,
+        rotation: -18,
+        autoAlpha: 0,
+        duration: 1.1,
+        ease: "back.out(1.6)",
+      },
+      0.2,
+    );
+}
 const slides = [
   {
     first: "Creative Craft",
@@ -56,6 +188,29 @@ export function Hero() {
   const [playing, setPlaying] = useState(true);
   const [focused, setFocused] = useState(false);
   const [reducedMotion, setReducedMotion] = useState(false);
+  const [introDone, setIntroDone] = useState(false);
+  const rootRef = useRef<HTMLElement>(null);
+  const introPlayed = useRef(false);
+  const lastSlide = useRef(0);
+  // Entrance: waits for the preloader, then plays once.
+  useLayoutEffect(() => {
+    const root = rootRef.current;
+    if (!root) return;
+    let ctx: gsap.Context | undefined;
+    const off = onIntro(() => {
+      setIntroDone(true);
+      introPlayed.current = true;
+      if (prefersReducedMotion()) return;
+      const delay = document.documentElement.classList.contains("intro-done")
+        ? 0.45
+        : 0.05;
+      ctx = gsap.context(() => playIntro(root, delay), root);
+    });
+    return () => {
+      off();
+      ctx?.revert();
+    };
+  }, []);
   useEffect(() => {
     const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
     setReducedMotion(mq.matches);
@@ -64,7 +219,15 @@ export function Hero() {
     mq.addEventListener("change", onChange);
     return () => mq.removeEventListener("change", onChange);
   }, []);
-  const running = playing && !focused && !reducedMotion;
+  const running = playing && !focused && !reducedMotion && introDone;
+  useLayoutEffect(() => {
+    if (lastSlide.current === active) return;
+    lastSlide.current = active;
+    const root = rootRef.current;
+    if (!root || !introPlayed.current || prefersReducedMotion()) return;
+    const ctx = gsap.context(() => playSlide(root), root);
+    return () => ctx.revert();
+  }, [active]);
   // A timeout keyed on the active slide restarts the full interval after
   // every change, so manual navigation never cuts the next slide short.
   useEffect(() => {
@@ -81,6 +244,7 @@ export function Hero() {
   }
   return (
     <section
+      ref={rootRef}
       className="home-hero"
       aria-label="Welcome to CCDI"
       aria-roledescription="carousel"

@@ -1,6 +1,12 @@
 import type { Metadata, Viewport } from "next";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
+import { Motion } from "@/components/motion";
+import {
+  Preloader,
+  PageCurtain,
+  motionBootScript,
+} from "@/components/preloader";
 import { siteUrl, facebook } from "@/lib/content";
 import "./globals.css";
 export const metadata: Metadata = {
@@ -39,11 +45,21 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en-NG">
+    <html lang="en-NG" suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: motionBootScript }} />
+      </head>
       <body>
+        <Preloader />
+        <div className="scroll-progress" aria-hidden="true" />
         <Header />
         <main id="main">{children}</main>
         <Footer />
+        <PageCurtain />
+        <div className="cursor" aria-hidden="true">
+          <span className="cursor-label" />
+        </div>
+        <Motion />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
