@@ -31,7 +31,7 @@ Source for this correction: the About CCDI / Home Page / Four-Integrated Project
 
 ## Items requiring clarification or more material
 
-- “12,000+” and “12+” have ambiguous labels in the supplied statistics block. Do not assign a metric to either without clarification.
+- Confirmed by the user on 28 October 2026: “12,000+” means People reached; “12+” means Community reach. Both are displayed on Home and Impact Statistics.
 - “18+ Years & Above — Target Beneficiaries” is ambiguous in that block. The Home Page separately and clearly states 18 years of impact and 3,000+ beneficiaries annually; those are displayed as supplied.
 - Social Enterprise purposes stop at “To generate sustainable income that supports CCDI's programmes and…”. Do not complete the missing sentence or invent the remaining purposes. The complete services and outcomes are displayed.
 - Source includes alternate third-arm names. Use the later “Benevolent and Childcare Initiative”, retaining its supplied Child Protection, Young Entrepreneurs & Welfare division.

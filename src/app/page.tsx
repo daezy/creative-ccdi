@@ -150,6 +150,14 @@ export default function Home() {
                 programs.
               </p>
             </div>
+            <div>
+              <span className="fact-number">12,000+</span>
+              <h3>People reached</h3>
+            </div>
+            <div>
+              <span className="fact-number">12+</span>
+              <h3>Community reach</h3>
+            </div>
           </div>
         </div>
       </section>

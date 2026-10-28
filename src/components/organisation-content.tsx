@@ -157,7 +157,7 @@ export function ImpactContent() {
           <p key={p}>{p}</p>
         ))}
       </div>
-      <div className="impact-summary">
+      <div className="impact-summary impact-summary-confirmed">
         <div>
           <span>18</span>
           <h2>Years of impact</h2>
@@ -165,6 +165,14 @@ export function ImpactContent() {
         <div>
           <span>3,000+</span>
           <h2>Beneficiaries annually</h2>
+        </div>
+        <div>
+          <span>12,000+</span>
+          <h2>People reached</h2>
+        </div>
+        <div>
+          <span>12+</span>
+          <h2>Community reach</h2>
         </div>
       </div>
       <p className="intro-paragraph">{copy.homeReach}</p>
