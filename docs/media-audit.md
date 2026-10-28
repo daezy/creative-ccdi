@@ -2,7 +2,7 @@
 
 All 223 supplied image files are individually represented in the gallery. All 12 videos remain on the Videos page. No image is excluded because of duplicate content, alternate framing, resolution, or filename.
 
-Originals remain unchanged in `images/`. WebP delivery copies are stored in `public/images/library/`. The gallery offers category filters, progressive loading, a Show all action, and full-image previews. Brand artwork and the original layout reference are labelled separately from programme photography.
+Originals remain unchanged in `images/`. WebP delivery copies are stored in `public/images/library/`. The gallery displays all 223 images in named collections, with category filters, natural image proportions, lazy loading, and full-image previews. Captions appear only in the preview. Brand artwork and the original layout reference are labelled separately from programme photography.
 
 Descriptions and categories come from visual review. Filenames are retained only for source traceability and are not used to classify duplicates.
 
