@@ -22,6 +22,10 @@ export type Article = {
   richBody?: PortableTextBlock[];
 };
 
+// Changes every build, so Next's fetch cache can never serve posts from an
+// earlier build (the GROQ comment only changes the request URL).
+const BUILD_STAMP = Date.now();
+
 // Only published documents are read. Never expose editor credentials to the site.
 export const getArticles = cache(async (): Promise<Article[]> => {
   if (process.env.SANITY_USE_LOCAL_CONTENT === "true") return localArticles;
@@ -33,14 +37,17 @@ export const getArticles = cache(async (): Promise<Article[]> => {
     "slug": slug.current, title, description, category, author, publishedAt,
     "coverImage": select(defined(coverImage.asset) => {"url": coverImage.asset->url, "alt": coverImage.alt}),
     "richBody": body
-  }`;
+  }
+  // build ${BUILD_STAMP}`;
   const url = new URL(
     `https://${project}.api.sanity.io/v2025-02-19/data/query/${encodeURIComponent(dataset)}`,
   );
   url.searchParams.set("query", query);
   url.searchParams.set("perspective", "published");
   const response = await fetch(url, {
-    cache: "no-store",
+    // Static export: fetch once at build time. ("no-store" marks the page as
+    // dynamic, which a static site cannot render.)
+    cache: "force-cache",
     signal: AbortSignal.timeout(20000),
   });
   if (!response.ok)
