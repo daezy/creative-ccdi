@@ -45,6 +45,11 @@ self.addEventListener("fetch", (event) => {
   const req = event.request;
   if (req.method !== "GET") return;
   const url = new URL(req.url);
+  // Blog cover photos come from Sanity's image CDN.
+  if (url.hostname === "cdn.sanity.io") {
+    event.respondWith(media(event, req));
+    return;
+  }
   if (url.origin !== self.location.origin) return;
   const path = url.pathname;
 
@@ -76,9 +81,10 @@ function stamped(res) {
 }
 
 async function store(cacheName, key, res, max) {
-  if (!res || res.status !== 200 || res.type === "opaque") return;
+  if (!res || (res.status !== 200 && res.type !== "opaque")) return;
   const cache = await caches.open(cacheName);
-  await cache.put(key, stamped(res));
+  // Opaque (cross-origin) responses can't be re-wrapped; store them as-is.
+  await cache.put(key, res.type === "opaque" ? res : stamped(res));
   await trim(cacheName, max);
 }
 
@@ -94,8 +100,9 @@ async function media(event, req) {
   const key = req.url.split("#")[0];
   const cached = await caches.match(key, { cacheName: CACHES.media });
   if (cached) {
+    // Sanity image URLs contain a content hash, so they never need re-checking.
     const age = Date.now() - Number(cached.headers.get(STAMP) || 0);
-    if (age > MEDIA_RECHECK_MS)
+    if (cached.type !== "opaque" && age > MEDIA_RECHECK_MS)
       event.waitUntil(
         fetch(key, { cache: "no-cache" })
           .then((res) => store(CACHES.media, key, res, LIMITS.media))

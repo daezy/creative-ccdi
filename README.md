@@ -170,3 +170,5 @@ Generated output (`out/`, `.next/`), dependencies (`node_modules/`), environment
 The supplied logo, photographs, videos, testimonials and organisation documents belong to their respective owners. No reuse licence is granted by this repository.
 
 Skills and welfare photography uses the six visually reviewed additions from `images/skills/` and `images/welfare/`. `armPhoto()` in `src/lib/media.ts` selects stable, varied images for carousel, overview, project and related-arm placements. The gallery retains every supplied image.
+
+The shared commitments section uses a green introduction panel and numbered promise rows. On the homepage it joins the participation invitation in one responsive block; organisation-supplied wording and action destinations are unchanged.

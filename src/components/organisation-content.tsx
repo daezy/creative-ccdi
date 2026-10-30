@@ -1,6 +1,14 @@
 import { MembershipContent } from "./document-content";
 import { FormCallout } from "./document-library";
-import { Check, ArrowRight } from "lucide-react";
+import {
+  Check,
+  ArrowRight,
+  WalletCards,
+  ChartNoAxesCombined,
+  Sprout,
+  ShieldCheck,
+  Handshake,
+} from "lucide-react";
 import { organisationCopy as copy } from "@/lib/organisation-copy";
 import { Button, Eyebrow, PhotoSlot, SectionHead, TextLink } from "./ui";
 
@@ -17,13 +25,48 @@ export function CopyList({ items }: { items: readonly string[] }) {
   );
 }
 export function Commitments() {
+  const icons = [
+    WalletCards,
+    ChartNoAxesCombined,
+    Sprout,
+    ShieldCheck,
+    Handshake,
+  ];
   return (
     <section className="content-section supplied-commitment">
-      <SectionHead eyebrow="Our commitment" title="We are committed to:" />
-      <CopyList items={copy.commitments} />
-      <TextLink href="/financial-transparency/">
-        Financial transparency
-      </TextLink>
+      <div className="commitment-intro">
+        <Eyebrow light>Our commitment</Eyebrow>
+        <ShieldCheck
+          className="commitment-seal"
+          size={48}
+          strokeWidth={1.25}
+          aria-hidden="true"
+        />
+        <h2>We are committed to:</h2>
+        <TextLink href="/financial-transparency/">
+          Financial transparency
+        </TextLink>
+      </div>
+      <ol className="commitment-list">
+        {copy.commitments.map((commitment, i) => {
+          const CommitmentIcon = icons[i];
+          return (
+            <li key={commitment}>
+              <span className="commitment-number" aria-hidden="true">
+                {String(i + 1).padStart(2, "0")}
+              </span>
+              <span className="commitment-icon">
+                <CommitmentIcon
+                  size={23}
+                  strokeWidth={1.5}
+                  aria-hidden="true"
+                />
+              </span>
+              <h3>{commitment}</h3>
+            </li>
+          );
+        })}
+      </ol>
     </section>
   );
 }
@@ -227,16 +270,27 @@ export function ImpactContent() {
 }
 export function JoinMovement() {
   return (
-    <section className="statement-panel">
-      <Eyebrow>Join the movement</Eyebrow>
-      <h2>Discover. Develop. Empower. Transform.</h2>
-      <p>{copy.join}</p>
-      <div className="hero-actions">
-        <Button href="/donate/">Donate / Support us</Button>
-        <Button href="/partners/" variant="outline">
-          Partner with us
-        </Button>
-        <TextLink href="/volunteer/">Volunteer</TextLink>
+    <section className="movement-invitation">
+      <div className="movement-heading">
+        <Eyebrow>Join the movement</Eyebrow>
+        <h2>
+          <span>Discover. Develop.</span>{" "}
+          <span>
+            Empower. <em>Transform.</em>
+          </span>
+        </h2>
+      </div>
+      <div className="movement-copy">
+        <p>{copy.join}</p>
+        <div className="movement-actions">
+          <Button href="/donate/" variant="gold">
+            Donate / Support us
+          </Button>
+          <Button href="/partners/" variant="outline">
+            Partner with us
+          </Button>
+          <TextLink href="/volunteer/">Volunteer</TextLink>
+        </div>
       </div>
     </section>
   );

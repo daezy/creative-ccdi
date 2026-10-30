@@ -20,6 +20,8 @@ const errors = [];
 const images = new Set();
 let articles = 0;
 for (const [route, page] of Object.entries(pages)) {
+  // Blog routes and copy now come from Sanity and may change independently.
+  if (page.type === "article") continue;
   try {
     const file = path.join("out", route, "index.html");
     const html = fs.readFileSync(file, "utf8");
@@ -132,11 +134,66 @@ for (const [route, page] of Object.entries(pages)) {
   }
 }
 const urls = [...sitemap.matchAll(/<loc>(.*?)<\/loc>/g)].map(([, url]) => url);
-assert.equal(
-  urls.length,
-  Object.keys(pages).length,
-  "Sitemap route count mismatch",
-);
+const blogDirectory = "out/blog";
+const blogSlugs = fs
+  .readdirSync(blogDirectory, { withFileTypes: true })
+  .filter(
+    (entry) =>
+      entry.isDirectory() &&
+      fs.existsSync(path.join(blogDirectory, entry.name, "index.html")),
+  )
+  .map((entry) => entry.name);
+for (const slug of blogSlugs) {
+  const route = `/blog/${slug}/`;
+  try {
+    const html = fs.readFileSync(
+      path.join(blogDirectory, slug, "index.html"),
+      "utf8",
+    );
+    const head = html.split("</head>")[0];
+    const meta = (name) =>
+      decode(
+        head.match(
+          new RegExp(`<meta (?:name|property)="${name}" content="([^"]*)"`),
+        )?.[1],
+      );
+    const canonical = `${origin}${route}`;
+    assert.ok(
+      head.includes(`<link rel="canonical" href="${canonical}"`),
+      "Wrong article canonical",
+    );
+    assert.ok(meta("description"), "Missing article description");
+    assert.equal(meta("og:type"), "article");
+    assert.equal(meta("og:url"), canonical);
+    assert.equal(meta("twitter:card"), "summary_large_image");
+    assert.equal(meta("og:image"), meta("twitter:image"));
+    assert.ok(
+      meta("og:image")?.startsWith("https://"),
+      "Missing article preview",
+    );
+    assert.ok(urls.includes(canonical), "Article missing from sitemap");
+    const data = [
+      ...html.matchAll(
+        /<script type="application\/ld\+json">([\s\S]*?)<\/script>/g,
+      ),
+    ].flatMap(([, json]) => JSON.parse(json)["@graph"] || []);
+    const post = data.find((item) => item["@type"] === "BlogPosting");
+    assert.equal(post?.url, canonical);
+    assert.equal(post?.headline, meta("og:title")?.replace(/ \| CCDI$/, ""));
+    assert.ok(
+      data.find((item) => item["@type"] === "BreadcrumbList")?.itemListElement
+        ?.length >= 3,
+      "Missing article breadcrumbs",
+    );
+    articles++;
+  } catch (error) {
+    errors.push(`${route}: ${error.message}`);
+  }
+}
+const expectedPages =
+  Object.values(pages).filter((page) => page.type !== "article").length +
+  blogSlugs.length;
+assert.equal(urls.length, expectedPages, "Sitemap route count mismatch");
 assert.equal(new Set(urls).size, urls.length, "Duplicate sitemap URL");
 assert.ok(robots.includes(`Sitemap: ${origin}/sitemap.xml`));
 assert.ok(robots.includes(indexing ? "Allow: /" : "Disallow: /"));
@@ -164,5 +221,5 @@ if (errors.length) {
   process.exit(1);
 }
 console.log(
-  `SEO verified: ${Object.keys(pages).length} canonical pages, ${images.size} 1200×630 preview images, ${articles} articles, structured data, sitemap images, icons, robots and 404 noindex.`,
+  `SEO verified: ${expectedPages} canonical pages, ${images.size} static 1200×630 preview images, ${articles} articles, structured data, sitemap images, icons, robots and 404 noindex.`,
 );

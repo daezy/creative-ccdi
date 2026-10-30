@@ -1,11 +1,12 @@
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
-import { articles } from "@/lib/content";
+import { getArticles } from "@/lib/blog";
+import { ArticleImage } from "./article-image";
 import { publicationIds } from "@/lib/media";
 import library from "@/lib/media-library.json";
 import videos from "@/lib/video-library.json";
 import { responsive } from "@/lib/responsive";
-import { Eyebrow, PhotoSlot, SectionHead, TextLink } from "./ui";
+import { Eyebrow, SectionHead, TextLink } from "./ui";
 
 export function HomePublications() {
   const film = videos.find((video) => video.id === "publication-unveiling")!;
@@ -87,7 +88,8 @@ export function HomePublications() {
   );
 }
 
-export function HomeJournal() {
+export async function HomeJournal() {
+  const articles = (await getArticles()).slice(0, 3);
   return (
     <section
       className="section home-journal"
@@ -113,7 +115,7 @@ export function HomeJournal() {
               key={article.slug}
             >
               <div className="journal-photo">
-                <PhotoSlot label={article.title} />
+                <ArticleImage article={article} />
               </div>
               <div className="journal-card-label">
                 <span>{article.category}</span>

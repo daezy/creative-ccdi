@@ -243,8 +243,10 @@ export default function Home() {
       <section className="section story-foundations">
         <div className="container">
           <StrategicFocus />
-          <Commitments />
-          <JoinMovement />
+          <div className="commitment-invitation" id="our-commitment">
+            <Commitments />
+            <JoinMovement />
+          </div>
         </div>
       </section>
       <HomePublications />

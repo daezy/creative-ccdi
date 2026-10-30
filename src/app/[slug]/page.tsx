@@ -63,10 +63,11 @@ import {
   values,
   training,
   reship,
-  articles,
   contact,
   socials,
 } from "@/lib/content";
+import { getArticles } from "@/lib/blog";
+import { ArticleImage } from "@/components/article-image";
 import {
   Button,
   Eyebrow,
@@ -145,7 +146,7 @@ const servicePhotos = [
   "seminar-audience",
   "agriculture-project",
 ] as const;
-function PageContent({ slug }: { slug: string }) {
+async function PageContent({ slug }: { slug: string }) {
   switch (slug) {
     case "about":
       return (
@@ -440,6 +441,7 @@ function PageContent({ slug }: { slug: string }) {
     case "testimonials":
       return <Testimonials />;
     case "blog":
+      const articles = await getArticles();
       return (
         <div className="journal-grid">
           {articles.map((a, i) => (
@@ -449,7 +451,7 @@ function PageContent({ slug }: { slug: string }) {
               key={a.slug}
             >
               <div className="journal-photo">
-                <PhotoSlot label={a.title} />
+                <ArticleImage article={a} />
               </div>
               <div className="journal-card-label">
                 <span>{a.category}</span>

@@ -10,3 +10,6 @@ dist/
 # Original local image collection is preserved separately from approved web assets.
 /images/
 .DS_Store
+
+# Sanity Studio dev-server output
+studio/.sanity/
