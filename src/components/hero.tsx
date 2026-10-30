@@ -16,6 +16,8 @@ import {
 } from "lucide-react";
 import { Button, Eyebrow, PhotoSlot } from "./ui";
 import library from "@/lib/media-library.json";
+import { arms } from "@/lib/content";
+import { organisationCopy } from "@/lib/organisation-copy";
 const SLIDE_MS = 6500;
 if (typeof window !== "undefined")
   gsap.registerPlugin(ScrollTrigger, SplitText, DrawSVGPlugin);
@@ -103,46 +105,58 @@ function playSlide(root: HTMLElement) {
     );
 }
 
-const slides = [
+const armVisuals = [
   {
-    first: "Creative Craft",
+    first: "Capacity",
     second: "Development",
-    accent: "Initiative.",
-    description:
-      "We are a mission-driven organization committed to addressing youth unemployment, community empowerment, healthy living skills, rehabilitation, and education.",
-    cta: "Explore our programmes",
-    href: "/programmes/",
-    photo: "Hands-on skills. Real-world possibility.",
-    small: "Learning together",
-    theme: "sage",
     background: library["training-room"],
+    theme: "sage",
   },
   {
-    first: "Where enterprise",
-    second: "meets",
-    accent: "empowerment.",
-    description:
-      "This arm drives sustainability through income-generating activities such as fashion and tailoring production, catering and bakery services, ICT and digital services, agriculture, printing and publishing.",
-    cta: "Discover our services",
-    href: "/services/",
-    photo: "Enterprise that empowers.",
-    small: "Creating with purpose",
-    theme: "gold",
+    first: "Social",
+    second: "Enterprise",
     background: library["event-service-team"],
+    theme: "gold",
+  },
+  {
+    first: "Benevolent &",
+    second: "Childcare",
+    background: library["community-outreach"],
+    theme: "clay",
   },
   {
     first: "Creative",
     second: "Community",
-    accent: "Initiative.",
-    description:
-      "Building strong, resilient, peaceful, healthy, and value-driven families and communities.",
-    cta: "Meet our community arm",
-    href: "/projects/creative-community/",
-    photo: "Stronger families. Thriving communities.",
-    small: "Growing together",
-    theme: "clay",
     background: library["community-celebration"],
+    theme: "sage",
   },
+];
+const slides = [
+  {
+    label: "Creative Craft Development Initiative",
+    first: "Creative Craft",
+    second: "Development",
+    accent: "Initiative.",
+    description: organisationCopy.homeIntro,
+    cta: "Explore our programmes",
+    href: "/programmes/",
+    photo: "Creative Craft Development Initiative logo",
+    small: "Learning together",
+    theme: "sage",
+    background: library["seminar-audience"],
+    isLogo: true,
+  },
+  ...arms.map((arm, i) => ({
+    ...armVisuals[i],
+    label: arm.fullName,
+    accent: "Initiative.",
+    description: arm.description,
+    cta: "Explore this project arm",
+    href: `/projects/${arm.slug}/`,
+    photo: arm.photo,
+    small: "Learning together",
+    isLogo: false,
+  })),
 ];
 export function Hero() {
   const [active, setActive] = useState(0);
@@ -296,13 +310,26 @@ export function Hero() {
           </div>
         </div>
         <div className="hero-visual">
-          <div className="hero-photo-main">
-            <PhotoSlot
-              label={slide.photo}
-              priority={active === 0}
-              variant={slide.theme}
-              number={`0${active + 1}`}
-            />
+          <div
+            className={`hero-photo-main${slide.isLogo ? " hero-logo-panel" : ""}`}
+          >
+            {slide.isLogo ? (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img
+                className="hero-company-logo"
+                src="/images/ccdi-logo-transparent.png"
+                alt="Creative Craft Development Initiative (CCDI) logo"
+                width={1319}
+                height={1192}
+                fetchPriority="high"
+              />
+            ) : (
+              <PhotoSlot
+                label={slide.photo}
+                variant={slide.theme}
+                number={`0${active + 1}`}
+              />
+            )}
             <div className="hero-photo-caption">
               <span className="status-dot" /> Where potential finds purpose.
             </div>
@@ -344,8 +371,8 @@ export function Hero() {
           <div className="slide-dots">
             {slides.map((s, i) => (
               <button
-                key={s.first}
-                aria-label={`Show slide ${i + 1}: ${s.first}`}
+                key={s.label}
+                aria-label={`Show slide ${i + 1}: ${s.label}`}
                 aria-pressed={active === i}
                 onClick={() => change(i)}
               >
@@ -355,7 +382,7 @@ export function Hero() {
           </div>
           <span className="slide-count" aria-live="polite">
             0{active + 1}
-            <span> / 03</span>
+            <span> / {String(slides.length).padStart(2, "0")}</span>
           </span>
           <button
             className="icon-button"
