@@ -7,12 +7,12 @@ import {
 } from "@/components/home-story";
 import {
   Commitments,
-  Governance,
   StrategicFocus,
   JoinMovement,
 } from "@/components/organisation-content";
 import { organisationCopy as copy } from "@/lib/organisation-copy";
 import { PurposeOverview } from "@/components/purpose-overview";
+import { HomePublications, HomeJournal } from "@/components/home-updates";
 import Link from "next/link";
 import { ArrowUpRight, Check, Asterisk } from "lucide-react";
 import { Hero } from "@/components/hero";
@@ -83,7 +83,12 @@ export default function Home() {
                 Purposeful living
               </span>
             </div>
-            <Button href="/about/">Our story & purpose</Button>
+            <div className="about-intro-actions">
+              <Button href="/about/">Our story & purpose</Button>
+              <TextLink href="/about/#governance">
+                Board of Trustees & Management
+              </TextLink>
+            </div>
           </div>
         </div>
       </section>
@@ -238,11 +243,12 @@ export default function Home() {
       <section className="section story-foundations">
         <div className="container">
           <StrategicFocus />
-          <Governance />
           <Commitments />
           <JoinMovement />
         </div>
       </section>
+      <HomePublications />
+      <HomeJournal />
       <Cta />
     </>
   );

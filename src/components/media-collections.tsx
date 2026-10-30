@@ -2,6 +2,7 @@ import { ArrowUpRight } from "lucide-react";
 import { responsive, SIZES } from "@/lib/responsive";
 import library from "@/lib/media-library.json";
 import videos from "@/lib/video-library.json";
+import { publicationIds } from "@/lib/media";
 import { Eyebrow, SectionHead, TextLink } from "./ui";
 
 export function VideoCollection({
@@ -51,16 +52,6 @@ export function VideoCollection({
   );
 }
 export function Publications() {
-  const books = [
-    "godly-pattern",
-    "grace-empowered",
-    "true-riches",
-    "advancing-in-age",
-    "purpose-fulfilled",
-    "kept-from-falling",
-    "hope-dry-tree",
-    "helpers-helpmeet",
-  ] as const;
   return (
     <>
       <SectionHead
@@ -71,7 +62,7 @@ export function Publications() {
         supplied archive.
       </SectionHead>
       <div className="publication-grid">
-        {books.map((id) => {
+        {publicationIds.map((id) => {
           const p = library[id];
           return (
             <a

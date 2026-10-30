@@ -6,6 +6,8 @@ The CCDI website, built with **Next.js App Router, React and TypeScript** and ex
 
 The homepage carousel has six slides: the CCDI introduction, management with vision and mission, and one slide for each of the four project arms. Carousel content lives in `src/components/hero.tsx`; it reuses the organisation’s supplied statements and approved photographs.
 
+The homepage also previews all eight supplied publication covers, a publication-unveiling film and the three existing journal articles. The publication list is shared with the resources page; article previews reuse the blog data. The standalone board/management section lives on the About page and is linked from “Who we are.”
+
 ## Getting started
 
 Requires **Node.js 20.9 or newer** and npm. Node.js 24 is used in the current development environment.

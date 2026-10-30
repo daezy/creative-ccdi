@@ -1,4 +1,14 @@
 import library from "./media-library.json";
+export const publicationIds = [
+  "godly-pattern",
+  "grace-empowered",
+  "true-riches",
+  "advancing-in-age",
+  "purpose-fulfilled",
+  "kept-from-falling",
+  "hope-dry-tree",
+  "helpers-helpmeet",
+] as const;
 /** Add approved photographs here. The key is the label passed to PhotoSlot.
  * Put files in public/images/ and use a root-relative src, e.g. /images/training.jpg.
  * Keep alt text factual, and do not identify children without approved consent.
