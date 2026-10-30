@@ -1,5 +1,11 @@
 "use client";
-import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import {
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
+  type ReactNode,
+} from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { SplitText } from "gsap/SplitText";
@@ -23,10 +29,25 @@ if (typeof window !== "undefined")
   gsap.registerPlugin(ScrollTrigger, SplitText, DrawSVGPlugin);
 const RADIUS = "round 80px 6px 6px 6px";
 
+function HeroAccent({ children }: { children: ReactNode }) {
+  return (
+    <span className="hero-accent">
+      {children}
+      <svg viewBox="0 0 500 18" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M4 13 Q230 -3 494 9" />
+      </svg>
+    </span>
+  );
+}
+
 /** First-load entrance, started when the preloader lifts. */
 function playIntro(root: HTMLElement, delay: number) {
   const h1 = root.querySelector<HTMLElement>(".hero-copy h1")!;
-  const split = SplitText.create(h1, { type: "words", mask: "words" });
+  const split = SplitText.create(h1, {
+    type: "words",
+    mask: "words",
+    ignore: h1.querySelectorAll(".hero-accent"),
+  });
   const tl = gsap.timeline({
     delay,
     defaults: { ease: "power3.out", duration: 0.9 },
@@ -35,10 +56,11 @@ function playIntro(root: HTMLElement, delay: number) {
   tl.from(".hero-backdrop", { scale: 1.08, duration: 2, ease: "power2.out" }, 0)
     .from(".hero-copy .eyebrow", { y: 12, autoAlpha: 0 }, 0.1)
     .from(
-      split.words,
+      split.words.length ? split.words : [h1],
       { yPercent: 110, stagger: 0.05, duration: 1.1, ease: "power4.out" },
       0.15,
     )
+    .from(".hero-accent", { autoAlpha: 0, duration: 0.45 }, 0.15)
     .from(
       ".hero-accent > svg path",
       { drawSVG: "0%", duration: 0.9, ease: "power2.inOut" },
@@ -82,16 +104,31 @@ function playIntro(root: HTMLElement, delay: number) {
 function playSlide(root: HTMLElement) {
   const copy = root.querySelector<HTMLElement>(".hero-copy")!;
   const h1 = copy.querySelector<HTMLElement>("h1")!;
-  const split = SplitText.create(h1, { type: "words", mask: "words" });
+  const split = SplitText.create(h1, {
+    type: "words",
+    mask: "words",
+    ignore: h1.querySelectorAll(".hero-accent"),
+  });
   gsap
     .timeline({
       defaults: { ease: "power3.out" },
       onComplete: () => split.revert(),
     })
     .from(
-      split.words,
+      split.words.length ? split.words : [h1],
       { yPercent: 110, duration: 0.8, stagger: 0.035, ease: "power4.out" },
       0,
+    )
+    .from(
+      copy.querySelectorAll(".hero-accent"),
+      { autoAlpha: 0, duration: 0.45 },
+      0.1,
+    )
+    .fromTo(
+      copy.querySelectorAll(".hero-accent > svg path"),
+      { drawSVG: "0%" },
+      { drawSVG: "100%", duration: 0.9, ease: "power2.inOut" },
+      0.4,
     )
     .from(
       copy.querySelectorAll(".hero-description, .hero-actions"),
@@ -109,23 +146,31 @@ const heroArms = [
   {
     ...arms[0],
     title: "Capacity Development Initiative",
+    heading: "Capacity Development",
+    accent: "Initiative",
     tagline:
       "Bridging the Gap Between Potential and Skills Through Self-Discovery, Self-Mastery, capacity building and Skills for Life",
   },
   {
     ...arms[1],
     title: "CCDI Social Enterprise",
+    heading: "CCDI Social",
+    accent: "Enterprise",
     tagline:
       "Where Enterprise Meets Empowerment. Purpose driven Lasting Community Impact",
   },
   {
     ...arms[2],
     title: "Welfare, Benevolence and Childcare Initiative Arm",
+    heading: "Welfare, Benevolence and Childcare",
+    accent: "Initiative Arm",
     tagline: "Protecting Children, Empowering Youth, Transforming Futures.",
   },
   {
     ...arms[3],
     title: "Creative Community Initiative",
+    heading: "Creative Community",
+    accent: "Initiative",
     tagline:
       "Building strong, resilient, peaceful, healthy, and value-driven families and communities",
   },
@@ -270,16 +315,7 @@ export function Hero() {
                 <br />
                 Development
                 <br />
-                <span className="hero-accent">
-                  Initiative.
-                  <svg
-                    viewBox="0 0 500 18"
-                    preserveAspectRatio="none"
-                    aria-hidden="true"
-                  >
-                    <path d="M4 13 Q230 -3 494 9" />
-                  </svg>
-                </span>
+                <HeroAccent>Initiative.</HeroAccent>
               </h1>
               <p className="hero-description">{organisationCopy.homeIntro}</p>
               <div className="hero-actions">
@@ -364,7 +400,9 @@ export function Hero() {
           <div className="container hero-grid hero-management" key="management">
             <div className="hero-copy">
               <Eyebrow light>Creative Craft Development Initiative</Eyebrow>
-              <h1>CCDI</h1>
+              <h1>
+                <HeroAccent>CCDI</HeroAccent>
+              </h1>
               <h2 className="hero-management-subheading">
                 Empowering Lives Through Skills, Purpose, and Community.
               </h2>
@@ -410,7 +448,9 @@ export function Hero() {
           <div className="container hero-grid hero-project" key={arm!.slug}>
             <div className="hero-copy">
               <Eyebrow light>CCDI / Project Arm {arm!.number}</Eyebrow>
-              <h1 className="hero-project-title">{arm!.title}</h1>
+              <h1 className="hero-project-title">
+                {arm!.heading} <HeroAccent>{arm!.accent}</HeroAccent>
+              </h1>
               <p className="hero-description hero-project-tagline">
                 {arm!.tagline}
               </p>
