@@ -12,6 +12,7 @@ import {
   JoinMovement,
 } from "@/components/organisation-content";
 import { organisationCopy as copy } from "@/lib/organisation-copy";
+import { PurposeOverview } from "@/components/purpose-overview";
 import Link from "next/link";
 import { ArrowUpRight, Check, Asterisk } from "lucide-react";
 import { Hero } from "@/components/hero";
@@ -45,6 +46,7 @@ export default function Home() {
           </a>
         </div>
       </section>
+      <PurposeOverview />
       <section className="section about-section story-introduction">
         <div className="container about-grid">
           <div className="about-visual">
