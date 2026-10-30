@@ -13,3 +13,4 @@ dist/
 
 # Sanity Studio dev-server output
 studio/.sanity/
+studio/*.command
