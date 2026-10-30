@@ -4,6 +4,8 @@
 
 The CCDI website, built with **Next.js App Router, React and TypeScript** and exported as a static site. It presents the organisation’s skills development, social enterprise, benevolent and childcare, and community initiatives using supplied copy, photographs, videos, testimonials and documents.
 
+The homepage carousel has six slides: the CCDI introduction, management with vision and mission, and one slide for each of the four project arms. Carousel content lives in `src/components/hero.tsx`; it reuses the organisation’s supplied statements and approved photographs.
+
 ## Getting started
 
 Requires **Node.js 20.9 or newer** and npm. Node.js 24 is used in the current development environment.

@@ -18,7 +18,7 @@ import { Button, Eyebrow, PhotoSlot } from "./ui";
 import library from "@/lib/media-library.json";
 import { arms } from "@/lib/content";
 import { organisationCopy } from "@/lib/organisation-copy";
-const SLIDE_MS = 6500;
+
 if (typeof window !== "undefined")
   gsap.registerPlugin(ScrollTrigger, SplitText, DrawSVGPlugin);
 const RADIUS = "round 80px 6px 6px 6px";
@@ -99,63 +99,57 @@ function playSlide(root: HTMLElement) {
       0.15,
     )
     .from(
-      ".hero-photo-main img, .hero-photo-small img",
+      ".hero-photo-main img, .hero-photo-small img, .hero-management-photo img, .hero-arm-card img",
       { autoAlpha: 0, duration: 0.7, ease: "power1.out" },
       0,
     );
 }
 
-const armVisuals = [
+const heroArms = [
   {
-    first: "Capacity",
-    second: "Development",
-    background: library["training-room"],
-    theme: "sage",
+    ...arms[0],
+    title: "Capacity Development Initiative",
+    tagline:
+      "Bridging the Gap Between Potential and Skills Through Self-Discovery, Self-Mastery, capacity building and Skills for Life",
   },
   {
-    first: "Social",
-    second: "Enterprise",
-    background: library["event-service-team"],
-    theme: "gold",
+    ...arms[1],
+    title: "CCDI Social Enterprise",
+    tagline:
+      "Where Enterprise Meets Empowerment. Purpose driven Lasting Community Impact",
   },
   {
-    first: "Benevolent &",
-    second: "Childcare",
-    background: library["community-outreach"],
-    theme: "clay",
+    ...arms[2],
+    title: "Welfare, Benevolence and Childcare Initiative Arm",
+    tagline: "Protecting Children, Empowering Youth, Transforming Futures.",
   },
   {
-    first: "Creative",
-    second: "Community",
-    background: library["community-celebration"],
-    theme: "sage",
+    ...arms[3],
+    title: "Creative Community Initiative",
+    tagline:
+      "Building strong, resilient, peaceful, healthy, and value-driven families and communities",
   },
 ];
 const slides = [
   {
     label: "Creative Craft Development Initiative",
-    first: "Creative Craft",
-    second: "Development",
-    accent: "Initiative.",
-    description: organisationCopy.homeIntro,
-    cta: "Explore our programmes",
-    href: "/programmes/",
-    photo: "Creative Craft Development Initiative logo",
-    small: "Learning together",
-    theme: "sage",
     background: library["seminar-audience"],
-    isLogo: true,
+    duration: 6500,
   },
-  ...arms.map((arm, i) => ({
-    ...armVisuals[i],
-    label: arm.fullName,
-    accent: "Initiative.",
-    description: arm.description,
-    cta: "Explore this project arm",
-    href: `/projects/${arm.slug}/`,
-    photo: arm.photo,
-    small: "Learning together",
-    isLogo: false,
+  {
+    label: "CCDI Vision, Mission & Management",
+    background: library["archive-020"],
+    duration: 18000,
+  },
+  ...heroArms.map((arm, i) => ({
+    label: arm.title,
+    background: [
+      library["training-room"],
+      library["event-service-team"],
+      library["community-outreach"],
+      library["community-celebration"],
+    ][i],
+    duration: 12000,
   })),
 ];
 export function Hero() {
@@ -199,6 +193,9 @@ export function Hero() {
     mq.addEventListener("change", onChange);
     return () => mq.removeEventListener("change", onChange);
   }, []);
+  const slide = slides[active];
+  const arm = active > 1 ? heroArms[active - 2] : null;
+  const slideMs = slide.duration;
   const running = playing && !focused && !reducedMotion && introDone;
   useLayoutEffect(() => {
     if (lastSlide.current === active) return;
@@ -214,10 +211,10 @@ export function Hero() {
     if (!running) return;
     const id = setTimeout(
       () => setActive((v) => (v + 1) % slides.length),
-      SLIDE_MS,
+      slideMs,
     );
     return () => clearTimeout(id);
-  }, [running, active]);
+  }, [running, active, slideMs]);
   useEffect(() => {
     const next = (active + 1) % slides.length;
     setBgLoaded((l) => (l.includes(active) ? l : [...l, active]));
@@ -227,7 +224,6 @@ export function Hero() {
     );
     return () => window.clearTimeout(id);
   }, [active]);
-  const slide = slides[active];
   function change(n: number) {
     setActive((n + slides.length) % slides.length);
   }
@@ -238,7 +234,7 @@ export function Hero() {
       aria-label="Welcome to CCDI"
       aria-roledescription="carousel"
       data-running={running ? "true" : "false"}
-      style={{ ["--slide-ms" as string]: `${SLIDE_MS}ms` }}
+      style={{ ["--slide-ms" as string]: `${slideMs}ms` }}
       onFocusCapture={(e) => {
         if ((e.target as HTMLElement).matches(":focus-visible"))
           setFocused(true);
@@ -262,108 +258,183 @@ export function Hero() {
           />
         ))}
       </div>
-      <div className="container hero-grid">
-        <div className="hero-copy" key={active}>
-          <Eyebrow light>Creative Craft Development Initiative (CCDI)</Eyebrow>
-          <h1>
-            {slide.first}
-            <br />
-            {slide.second}
-            <br />
-            <span className="hero-accent">
-              {slide.accent}
-              <svg
-                viewBox="0 0 500 18"
-                preserveAspectRatio="none"
-                aria-hidden="true"
-              >
-                <path d="M4 13 Q230 -3 494 9" />
-              </svg>
-            </span>
-          </h1>
-          <p className="hero-description">{slide.description}</p>
-          <div className="hero-actions">
-            <Button href={slide.href} variant="gold">
-              {slide.cta}
-            </Button>
-            <a className="hero-secondary" href="/about/">
-              Get to know CCDI <ArrowDownRight size={18} aria-hidden="true" />
-            </a>
-          </div>
-          <div className="hero-bottom">
-            <div className="small-orbit" aria-hidden="true">
-              <span>
-                <Asterisk size="1em" aria-hidden="true" />
-              </span>
+      <div className="hero-carousel-stage">
+        {active === 0 ? (
+          <div className="container hero-grid">
+            <div className="hero-copy" key={active}>
+              <Eyebrow light>
+                Creative Craft Development Initiative (CCDI)
+              </Eyebrow>
+              <h1>
+                Creative Craft
+                <br />
+                Development
+                <br />
+                <span className="hero-accent">
+                  Initiative.
+                  <svg
+                    viewBox="0 0 500 18"
+                    preserveAspectRatio="none"
+                    aria-hidden="true"
+                  >
+                    <path d="M4 13 Q230 -3 494 9" />
+                  </svg>
+                </span>
+              </h1>
+              <p className="hero-description">{organisationCopy.homeIntro}</p>
+              <div className="hero-actions">
+                <Button href="/programmes/" variant="gold">
+                  Explore our programmes
+                </Button>
+                <a className="hero-secondary" href="/about/">
+                  Get to know CCDI{" "}
+                  <ArrowDownRight size={18} aria-hidden="true" />
+                </a>
+              </div>
+              <div className="hero-bottom">
+                <div className="small-orbit" aria-hidden="true">
+                  <span>
+                    <Asterisk size="1em" aria-hidden="true" />
+                  </span>
+                </div>
+                <p>
+                  Discover. Develop.
+                  <br />
+                  <strong>Empower. Transform.</strong>
+                </p>
+                <span className="hero-line" />
+                <span className="hero-location">
+                  Rooted in Nigeria.
+                  <br />
+                  Built around people.
+                </span>
+              </div>
             </div>
-            <p>
-              Discover. Develop.
-              <br />
-              <strong>Empower. Transform.</strong>
-            </p>
-            <span className="hero-line" />
-            <span className="hero-location">
-              Rooted in Nigeria.
-              <br />
-              Built around people.
-            </span>
-          </div>
-        </div>
-        <div className="hero-visual">
-          <div
-            className={`hero-photo-main${slide.isLogo ? " hero-logo-panel" : ""}`}
-          >
-            {slide.isLogo ? (
-              // eslint-disable-next-line @next/next/no-img-element
-              <img
-                className="hero-company-logo"
-                src="/images/ccdi-logo-transparent.png"
-                alt="Creative Craft Development Initiative (CCDI) logo"
-                width={1319}
-                height={1192}
-                fetchPriority="high"
-              />
-            ) : (
-              <PhotoSlot
-                label={slide.photo}
-                variant={slide.theme}
-                number={`0${active + 1}`}
-              />
-            )}
-            <div className="hero-photo-caption">
-              <span className="status-dot" /> Where potential finds purpose.
-            </div>
-          </div>
-          <div className="hero-photo-small">
-            <PhotoSlot label={slide.small} variant="cream" number="02" />
-          </div>
-          <div className="hero-stamp">
-            <svg viewBox="0 0 100 100" aria-hidden="true">
-              <defs>
-                <path
-                  id="stamp-circle"
-                  d="M50,50 m-37,0 a37,37 0 1,1 74,0 a37,37 0 1,1 -74,0"
+            <div className="hero-visual">
+              <div className="hero-photo-main hero-logo-panel">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  className="hero-company-logo"
+                  src="/images/ccdi-logo-transparent.png"
+                  alt="Creative Craft Development Initiative (CCDI) logo"
+                  width={1319}
+                  height={1192}
+                  fetchPriority="high"
                 />
-              </defs>
-              <text>
-                <textPath href="#stamp-circle">
-                  SELF DISCOVERY · SKILLS FOR LIFE ·{" "}
-                </textPath>
-              </text>
-            </svg>
-            <span aria-hidden="true">
-              <ArrowUpRight size="1em" />
-            </span>
+                <div className="hero-photo-caption">
+                  <span className="status-dot" /> Where potential finds purpose.
+                </div>
+              </div>
+              <div className="hero-photo-small">
+                <PhotoSlot
+                  label="Learning together"
+                  variant="cream"
+                  number="02"
+                />
+              </div>
+              <div className="hero-stamp">
+                <svg viewBox="0 0 100 100" aria-hidden="true">
+                  <defs>
+                    <path
+                      id="stamp-circle"
+                      d="M50,50 m-37,0 a37,37 0 1,1 74,0 a37,37 0 1,1 -74,0"
+                    />
+                  </defs>
+                  <text>
+                    <textPath href="#stamp-circle">
+                      SELF DISCOVERY · SKILLS FOR LIFE ·{" "}
+                    </textPath>
+                  </text>
+                </svg>
+                <span aria-hidden="true">
+                  <ArrowUpRight size="1em" />
+                </span>
+              </div>
+              <div className="hero-note">
+                <span>THE CCDI WAY</span>
+                <p>
+                  Potential is everywhere.
+                  <br />
+                  <strong>Opportunity should be, too.</strong>
+                </p>
+              </div>
+            </div>
           </div>
-          <div className="hero-note">
-            <span>THE CCDI WAY</span>
-            <p>
-              Potential is everywhere.
-              <br />
-              <strong>Opportunity should be, too.</strong>
-            </p>
+        ) : active === 1 ? (
+          <div className="container hero-grid hero-management" key="management">
+            <div className="hero-copy">
+              <Eyebrow light>Creative Craft Development Initiative</Eyebrow>
+              <h1>CCDI</h1>
+              <h2 className="hero-management-subheading">
+                Empowering Lives Through Skills, Purpose, and Community.
+              </h2>
+              <p className="hero-description hero-belief">
+                We believe everyone has the ability to learn and master a skill
+                given proper support and training.
+              </p>
+              <div className="hero-actions">
+                <Button href="/vision-mission/" variant="gold">
+                  Our vision & mission
+                </Button>
+                <a className="hero-secondary" href="/about/#governance">
+                  Meet our management{" "}
+                  <ArrowUpRight size={18} aria-hidden="true" />
+                </a>
+              </div>
+            </div>
+            <div className="hero-management-detail">
+              <figure className="hero-management-photo">
+                <img
+                  src="/images/library/archive-020.webp"
+                  width={1280}
+                  height={759}
+                  alt="CCDI Board of Trustees and Management Team group photograph"
+                />
+                <figcaption>
+                  CCDI Board of Trustees & Management Team
+                </figcaption>
+              </figure>
+              <div className="hero-statements">
+                <div>
+                  <h3>Our vision</h3>
+                  <p>{organisationCopy.vision}</p>
+                </div>
+                <div>
+                  <h3>Our mission</h3>
+                  <p>{organisationCopy.mission}</p>
+                </div>
+              </div>
+            </div>
           </div>
-        </div>
+        ) : (
+          <div className="container hero-grid hero-project" key={arm!.slug}>
+            <div className="hero-copy">
+              <Eyebrow light>CCDI / Project Arm {arm!.number}</Eyebrow>
+              <h1 className="hero-project-title">{arm!.title}</h1>
+              <p className="hero-description hero-project-tagline">
+                {arm!.tagline}
+              </p>
+              <div className="hero-actions">
+                <Button href={`/projects/${arm!.slug}/`} variant="gold">
+                  Explore this project arm
+                </Button>
+                <a className="hero-secondary" href="/projects/">
+                  Our four integrated arms{" "}
+                  <ArrowUpRight size={18} aria-hidden="true" />
+                </a>
+              </div>
+            </div>
+            <div className="hero-visual">
+              <div className="hero-photo-main">
+                <PhotoSlot label={arm!.photo} />
+                <div className="hero-photo-caption">
+                  <span className="status-dot" />
+                  {arm!.title}
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
       <div className="container carousel-bar">
         <span>ONE MISSION. MANY POSSIBILITIES.</span>
