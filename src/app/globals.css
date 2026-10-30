@@ -316,7 +316,7 @@ textarea:focus-visible {
   width: 52px;
   height: 48px;
   object-fit: contain;
-  mix-blend-mode: multiply;
+  mix-blend-mode: normal;
 }
 .brand-type {
   display: block;
@@ -5922,9 +5922,8 @@ textarea::placeholder {
 }
 .site-header.is-transparent .brand img {
   mix-blend-mode: normal;
-  background: #fff;
-  border-radius: 6px;
-  padding: 3px;
+  background: transparent;
+  padding: 0;
 }
 .site-header.is-transparent .nav-link.current {
   color: var(--gold);

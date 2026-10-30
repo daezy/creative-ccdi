@@ -10,8 +10,8 @@ export function Footer() {
           <div className="footer-intro">
             <Link href="/" className="footer-logo" aria-label="CCDI home">
               <img
-                src="/images/ccdi-logo-120.webp"
-                srcSet="/images/ccdi-logo-120.webp 1x, /images/ccdi-logo-240.webp 2x"
+                src="/images/ccdi-logo-232.png"
+                srcSet="/images/ccdi-logo-232.png 1x, /images/ccdi-logo-432.png 2x"
                 alt=""
                 width={108}
                 height={98}

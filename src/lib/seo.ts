@@ -66,9 +66,9 @@ export const siteStructuredData = {
       url: absoluteUrl("/"),
       logo: {
         "@type": "ImageObject",
-        url: absoluteUrl("/images/ccdi-logo-corrected.png"),
+        url: absoluteUrl("/images/ccdi-logo-transparent.png"),
         width: 1319,
-        height: 1193,
+        height: 1192,
       },
       description: seoPages["/"].description,
       email: contact.email,

@@ -1,4 +1,4 @@
-<img src="public/images/ccdi-logo-corrected.png" alt="Creative Craft Development Initiative logo" width="96" />
+<img src="public/images/ccdi-logo-transparent.png" alt="Creative Craft Development Initiative logo" width="96" />
 
 # Creative Craft Development Initiative (CCDI)
 
@@ -52,7 +52,7 @@ All 28 pages have independent search titles, descriptions, absolute canonical UR
 
 `src/lib/seo-pages.json` controls route-specific metadata and preview copy. `src/lib/seo.ts` builds metadata and structured data. `npm run generate:social` regenerates cards, favicon/touch icons and small logo assets; `npm run build` runs it automatically. When adding a route, add its SEO entry too. Run both checks after building:
 
-All icon formats use `public/images/ccdi-logo-corrected.png` as their source: the multi-size `favicon.ico`, PNG/SVG favicon fallbacks, Apple touch icon and manifest icons. Legacy social-card URLs also display the current artwork with the actual logo.
+All icon formats use `public/images/ccdi-logo-transparent.png` as their source: the multi-size `favicon.ico`, PNG/SVG favicon fallbacks, Apple touch icon and manifest icons. Legacy social-card URLs also display the current artwork with the actual logo.
 
 ```bash
 npm run check:export

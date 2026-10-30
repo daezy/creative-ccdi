@@ -97,7 +97,8 @@ export function Header() {
         <div className="container header-inner">
           <Link href="/" className="brand" aria-label="CCDI home">
             <img
-              src="/images/ccdi-logo-120.webp"
+              src="/images/ccdi-logo-116.png"
+              srcSet="/images/ccdi-logo-116.png 1x, /images/ccdi-logo-232.png 2x"
               width="58"
               height="53"
               alt=""

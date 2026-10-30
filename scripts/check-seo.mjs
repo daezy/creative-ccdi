@@ -100,7 +100,7 @@ for (const [route, page] of Object.entries(pages)) {
     const org = get("Organization");
     assert.equal(org?.url, `${origin}/`);
     assert.equal(org?.address.addressCountry, "NG");
-    assert.ok(org?.logo.url.endsWith("ccdi-logo-corrected.png"));
+    assert.ok(org?.logo.url.endsWith("ccdi-logo-transparent.png"));
     assert.equal(get("WebSite")?.["@id"], `${origin}/#website`);
     assert.ok(
       graphs.some((g) => g["@id"] === `${canonical}#webpage`),

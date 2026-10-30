@@ -40,14 +40,14 @@ export const metadata: Metadata = {
   icons: {
     icon: [
       {
-        url: "/favicon.ico?v=ccdi-logo",
+        url: "/favicon.ico?v=ccdi-transparent",
         sizes: "16x16 32x32 48x48",
         type: "image/x-icon",
       },
       { url: "/icons/favicon-48.png", sizes: "48x48", type: "image/png" },
       { url: "/icons/icon-192.png", sizes: "192x192", type: "image/png" },
     ],
-    shortcut: "/favicon.ico?v=ccdi-logo",
+    shortcut: "/favicon.ico?v=ccdi-transparent",
     apple: [
       {
         url: "/icons/apple-touch-icon.png",

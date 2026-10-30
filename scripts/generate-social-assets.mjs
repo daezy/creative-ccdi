@@ -10,7 +10,7 @@ const pages = JSON.parse(
     "utf8",
   ),
 );
-const logo = `data:image/png;base64,${(await fs.readFile(new URL("../public/images/ccdi-logo-corrected.png", import.meta.url))).toString("base64")}`;
+const logo = `data:image/png;base64,${(await fs.readFile(new URL("../public/images/ccdi-logo-transparent.png", import.meta.url))).toString("base64")}`;
 const origin = new URL(
   process.env.NEXT_PUBLIC_SITE_URL || "https://creativecdi.org",
 ).origin;
@@ -86,7 +86,7 @@ for (const [path, page] of Object.entries(pages)) {
         {
           style: {
             display: "flex",
-            background: "#ffffff",
+            background: "transparent",
             padding: 12,
             width: 240,
             height: 240,
@@ -141,7 +141,7 @@ for (const [name, size] of [
         style: {
           width: "100%",
           height: "100%",
-          background: "white",
+          background: "transparent",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
@@ -150,7 +150,7 @@ for (const [name, size] of [
       h("img", {
         src: logo,
         width: size,
-        height: Math.round((size * 1193) / 1319),
+        height: Math.round((size * 1192) / 1319),
       }),
     ),
     { width: size, height: size },
@@ -161,7 +161,7 @@ for (const [name, size] of [
   );
 }
 console.log(
-  `Generated ${Object.keys(pages).length} social preview cards and 6 icons using the corrected CCDI logo.`,
+  `Generated ${Object.keys(pages).length} social preview cards and 6 icons using the transparent CCDI logo.`,
 );
 // Keep conventional and legacy URLs on the same approved artwork too.
 const iconFrames = await Promise.all(
@@ -211,7 +211,7 @@ await fs.writeFile(
   `<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630"><image width="1200" height="630" href="data:image/png;base64,${homePng.toString("base64")}"/></svg>\n`,
 );
 for (const width of [116, 232, 432]) {
-  const height = Math.round((width * 1193) / 1319);
+  const height = Math.round((width * 1192) / 1319);
   const image = new ImageResponse(
     h(
       "div",
