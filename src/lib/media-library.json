@@ -2228,5 +2228,65 @@
     "source": "images/text-logo.jpeg",
     "id": 234,
     "contain": true
+  },
+  "skills-training-showcase": {
+    "src": "/images/library/skills-training-showcase.webp",
+    "alt": "CCDI trainees and facilitators with a practical skills display",
+    "width": 1080,
+    "height": 724,
+    "category": "Skills training",
+    "source": "images/skills/WhatsApp Image 2026-10-29 at 15.26.55 (1).jpeg",
+    "id": 235,
+    "contain": false
+  },
+  "skills-certification-graduates": {
+    "src": "/images/library/skills-certification-graduates.webp",
+    "alt": "CCDI participants holding their certificates at a presentation",
+    "width": 1080,
+    "height": 771,
+    "category": "Skills training",
+    "source": "images/skills/WhatsApp Image 2026-10-29 at 15.26.55.jpeg",
+    "id": 236,
+    "contain": false
+  },
+  "skills-baking-team": {
+    "src": "/images/library/skills-baking-team.webp",
+    "alt": "Three CCDI baking trainees in aprons with a finished cake",
+    "width": 960,
+    "height": 720,
+    "category": "Skills training",
+    "source": "images/skills/WhatsApp Image 2026-10-29 at 15.26.56.jpeg",
+    "id": 237,
+    "contain": false
+  },
+  "welfare-donation-team": {
+    "src": "/images/library/welfare-donation-team.webp",
+    "alt": "CCDI outreach team handing over welfare supplies",
+    "width": 960,
+    "height": 720,
+    "category": "Welfare outreach",
+    "source": "images/welfare/WhatsApp Image 2026-10-29 at 15.29.56 (1).jpeg",
+    "id": 238,
+    "contain": false
+  },
+  "welfare-community-visit": {
+    "src": "/images/library/welfare-community-visit.webp",
+    "alt": "CCDI volunteers and community members during an outreach visit",
+    "width": 540,
+    "height": 960,
+    "category": "Welfare outreach",
+    "source": "images/welfare/WhatsApp Image 2026-10-29 at 15.29.56 (2).jpeg",
+    "id": 239,
+    "contain": true
+  },
+  "welfare-support-visit": {
+    "src": "/images/library/welfare-support-visit.webp",
+    "alt": "CCDI outreach team during a welfare support visit",
+    "width": 960,
+    "height": 720,
+    "category": "Welfare outreach",
+    "source": "images/welfare/WhatsApp Image 2026-10-29 at 15.29.56.jpeg",
+    "id": 240,
+    "contain": false
   }
 }

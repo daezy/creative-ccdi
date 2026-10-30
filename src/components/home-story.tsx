@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ArrowUpRight, ArrowRight } from "lucide-react";
 import { arms } from "@/lib/content";
+import { armPhoto } from "@/lib/media";
 import { organisationCopy as copy } from "@/lib/organisation-copy";
 import { communityTestimonials } from "@/lib/testimonials";
 import { Eyebrow, PhotoSlot, TextLink } from "./ui";
@@ -31,7 +32,10 @@ export function WorkChapters() {
               key={arm.slug}
             >
               <div className="work-chapter-image">
-                <PhotoSlot label={arm.photo} />
+                <PhotoSlot
+                  label={arm.photo}
+                  photo={armPhoto(arm.slug, "overview")}
+                />
                 <span className="chapter-index">
                   {arm.number} / {arm.name}
                 </span>

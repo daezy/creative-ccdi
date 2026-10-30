@@ -1,8 +1,8 @@
 # Complete CCDI media collection
 
-All 223 supplied image files are individually represented in the gallery. All 12 videos remain on the Videos page. No image is excluded because of duplicate content, alternate framing, resolution, or filename.
+All 229 supplied image files are individually represented in the gallery. All 12 videos remain on the Videos page. No image is excluded because of duplicate content, alternate framing, resolution, or filename.
 
-Originals remain unchanged in `images/`. WebP delivery copies are stored in `public/images/library/`. The gallery displays all 223 images in named collections, with category filters, natural image proportions, lazy loading, and full-image previews. Captions appear only in the preview. Brand artwork and the original layout reference are labelled separately from programme photography.
+Originals remain unchanged in `images/`. WebP delivery copies are stored in `public/images/library/`. The gallery displays all 229 images in named collections, with category filters, natural image proportions, lazy loading, and full-image previews. Captions appear only in the preview. Brand artwork and the original layout reference are labelled separately from programme photography.
 
 Descriptions and categories come from visual review. Filenames are retained only for source traceability and are not used to classify duplicates.
 
@@ -235,3 +235,13 @@ The previously placed page photographs, team collection, publications and videos
 | images/testimonials/testimonial-temisan.jpeg | Testimonials | /images/library/archive-232.webp |
 | images/testimonials/testimonial-uchenna.jpeg | Testimonials | /images/library/archive-233.webp |
 | images/text-logo.jpeg | Brand & references | /images/library/archive-234.webp |
+| images/skills/WhatsApp Image 2026-10-29 at 15.26.55 (1).jpeg | Skills training | /images/library/skills-training-showcase.webp |
+| images/skills/WhatsApp Image 2026-10-29 at 15.26.55.jpeg | Skills training | /images/library/skills-certification-graduates.webp |
+| images/skills/WhatsApp Image 2026-10-29 at 15.26.56.jpeg | Skills training | /images/library/skills-baking-team.webp |
+| images/welfare/WhatsApp Image 2026-10-29 at 15.29.56 (1).jpeg | Welfare outreach | /images/library/welfare-donation-team.webp |
+| images/welfare/WhatsApp Image 2026-10-29 at 15.29.56 (2).jpeg | Welfare outreach | /images/library/welfare-community-visit.webp |
+| images/welfare/WhatsApp Image 2026-10-29 at 15.29.56.jpeg | Welfare outreach | /images/library/welfare-support-visit.webp |
+
+## Skills and welfare update — 30 October 2026
+
+Six additions were reviewed visually, without using filenames to judge duplicate content. The certificate presentation and donation handover lead the corresponding carousel slides. Training, baking and welfare-visit photographs alternate across project overviews, initiative pages, programmes, skills training, impact, donation and related-arm cards. The portrait outreach photograph retains its full frame in the gallery and initiative collection. New skills and welfare carousel photographs use their natural proportions on phones to avoid cropping people, certificates and supplies. Original media remains available; the gallery now contains 229 images.

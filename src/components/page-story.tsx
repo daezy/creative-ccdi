@@ -15,7 +15,7 @@ type PageDesign = {
 export const pageDesigns: Record<string, PageDesign> = {
   about: {
     family: "identity",
-    image: "outreach-volunteers",
+    image: "welfare-support-visit",
     links: [
       ["Who we are", "our-story"],
       ["Board of Trustees & Management Team", "governance"],
@@ -36,12 +36,12 @@ export const pageDesigns: Record<string, PageDesign> = {
   },
   projects: {
     family: "work",
-    image: "training-room",
+    image: "skills-certification-graduates",
     links: [["Four-Integrated Project-Arm Structure", "page-details"]],
   },
   "skills-training": {
     family: "work",
-    image: "baking-trainees",
+    image: "skills-training-showcase",
     links: [
       ["Explore your interests", "training-areas"],
       ["Joining a programme", "registration-guidance"],
@@ -49,7 +49,7 @@ export const pageDesigns: Record<string, PageDesign> = {
   },
   programmes: {
     family: "work",
-    image: "craft-workshop",
+    image: "skills-baking-team",
     links: [
       ["Youth empowerment", "youth-empowerment"],
       ["Women’s empowerment", "women-empowerment"],
@@ -64,7 +64,7 @@ export const pageDesigns: Record<string, PageDesign> = {
   },
   impact: {
     family: "impact",
-    image: "community-celebration",
+    image: "welfare-donation-team",
     links: [
       ["Our impact statistics at a glance", "page-details"],
       ["Reported achievements", "reported-achievements"],
@@ -73,7 +73,7 @@ export const pageDesigns: Record<string, PageDesign> = {
   },
   partners: {
     family: "participate",
-    image: "outreach-team",
+    image: "skills-certification-graduates",
     links: [
       ["Our partnership opportunities", "partnership-opportunities"],
       ["Membership & service", "membership-guidance"],
@@ -81,7 +81,7 @@ export const pageDesigns: Record<string, PageDesign> = {
   },
   volunteer: {
     family: "participate",
-    image: "sewing-class",
+    image: "welfare-donation-team",
     links: [
       ["Find your contribution", "contribution"],
       ["Membership & service", "membership-guidance"],
@@ -90,7 +90,7 @@ export const pageDesigns: Record<string, PageDesign> = {
   },
   donate: {
     family: "participate",
-    image: "welfare-visit",
+    image: "welfare-support-visit",
     links: [["Support that opens doors", "page-details"]],
   },
   testimonials: {

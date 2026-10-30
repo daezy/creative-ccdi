@@ -6766,6 +6766,19 @@ body {
   object-fit: contain;
   padding: 26px 26px 78px;
 }
+@media (max-width: 760px) {
+  .story-hero .hero-photo-main.hero-arm-group {
+    height: auto;
+  }
+  .hero-arm-group > .photo-slot {
+    height: auto;
+    min-height: 0;
+    aspect-ratio: var(--arm-photo-ratio);
+  }
+  .hero-arm-group .hero-photo-caption {
+    position: static;
+  }
+}
 .story-hero .hero-photo-small,
 .story-hero .hero-stamp,
 .story-hero .hero-note {

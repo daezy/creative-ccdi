@@ -87,7 +87,7 @@ Run the build before `check:export`; the checker reads the generated `out/` dire
 - 28 pre-rendered content pages with page-specific titles, descriptions and canonical URLs, plus a sitemap and robots.txt.
 - A homepage showreel and photographic layouts across the four initiative pages, programmes, services, impact and participation pages.
 - The supplied CCDI logo, local fonts, responsive layouts, keyboard focus styles and reduced-motion support.
-- A catalogue of 223 images, grouped gallery collections, mixed image proportions and a keyboard-accessible image viewer.
+- A catalogue of 229 images, grouped gallery collections, mixed image proportions and a keyboard-accessible image viewer.
 - 12 programme and event videos with native playback controls.
 - Five community testimonials and two leadership reflections, including their full supplied stories and identified portraits.
 - Four original PDF documents, with their guidance also integrated into relevant training, membership, privacy and safeguarding pages.
@@ -168,3 +168,5 @@ The site is portable: `next.config.ts` enables `output: "export"`, trailing-slas
 Generated output (`out/`, `.next/`), dependencies (`node_modules/`), environment files and the original local image collection are excluded from Git. Commit source changes and `package-lock.json`; regenerate build output when deploying.
 
 The supplied logo, photographs, videos, testimonials and organisation documents belong to their respective owners. No reuse licence is granted by this repository.
+
+Skills and welfare photography uses the six visually reviewed additions from `images/skills/` and `images/welfare/`. `armPhoto()` in `src/lib/media.ts` selects stable, varied images for carousel, overview, project and related-arm placements. The gallery retains every supplied image.

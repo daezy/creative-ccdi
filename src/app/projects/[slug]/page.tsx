@@ -10,6 +10,7 @@ import { CopyList } from "@/components/organisation-content";
 import { reship } from "@/lib/content";
 import type { Metadata } from "next";
 import Link from "next/link";
+import { armPhoto } from "@/lib/media";
 import { notFound } from "next/navigation";
 import { Check, ArrowUpRight, ArrowDownRight } from "lucide-react";
 import { arms } from "@/lib/content";
@@ -71,7 +72,12 @@ export default async function Project({
               </Button>
             </div>
             <div className="project-photo project-lead-photo">
-              <PhotoSlot label={a.photo} priority number={a.number} />
+              <PhotoSlot
+                label={a.photo}
+                photo={armPhoto(a.slug, "project")}
+                priority
+                number={a.number}
+              />
               <span className="project-photo-index">
                 {a.number} / {a.name}
               </span>
@@ -243,7 +249,10 @@ export default async function Project({
                   key={other.slug}
                 >
                   <div className="related-arm-photo">
-                    <PhotoSlot label={other.photo} />
+                    <PhotoSlot
+                      label={other.photo}
+                      photo={armPhoto(other.slug, "related")}
+                    />
                   </div>
                   <Icon name={other.icon} />
                   <h3>{other.fullName}</h3>

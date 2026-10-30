@@ -116,6 +116,7 @@ export function Publications() {
                   height={p.height}
                   loading="lazy"
                   decoding="async"
+                  style={{ objectFit: p.contain ? "contain" : "cover" }}
                   {...responsive(p.src, p.width, SIZES.third)}
                 />
                 <h3>{p.alt}</h3>
@@ -136,6 +137,9 @@ export function Publications() {
 export function ProjectPhotos({ slug }: { slug: string }) {
   const groups: Record<string, string[]> = {
     "capacity-development": [
+      "skills-training-showcase",
+      "skills-certification-graduates",
+      "skills-baking-team",
       "sewing-class",
       "catering-class",
       "beauty-training",
@@ -152,6 +156,9 @@ export function ProjectPhotos({ slug }: { slug: string }) {
       "beadwork",
     ],
     "benevolent-childcare": [
+      "welfare-support-visit",
+      "welfare-community-visit",
+      "welfare-donation-team",
       "welfare-visit",
       "outreach-team",
       "welfare-supplies",
@@ -188,6 +195,7 @@ export function ProjectPhotos({ slug }: { slug: string }) {
                   height={p.height}
                   loading="lazy"
                   decoding="async"
+                  style={{ objectFit: p.contain ? "contain" : "cover" }}
                   {...responsive(p.src, p.width, SIZES.third)}
                 />
               </a>

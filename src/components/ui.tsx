@@ -108,18 +108,20 @@ export function SectionHead({
 }
 export function PhotoSlot({
   label,
+  photo: suppliedPhoto,
   number = "01",
   variant = "sage",
   className = "",
   priority = false,
 }: {
   label: string;
+  photo?: import("@/lib/media").Photo;
   priority?: boolean;
   number?: string;
   variant?: string;
   className?: string;
 }) {
-  const photo = photos[label];
+  const photo = suppliedPhoto ?? photos[label];
   // Eager images render client-side so they are not preloaded on every page.
   const Img = priority ? EagerImage : "img";
   if (photo)

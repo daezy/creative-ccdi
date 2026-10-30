@@ -23,6 +23,7 @@ import {
 import { Button, Eyebrow, PhotoSlot } from "./ui";
 import library from "@/lib/media-library.json";
 import { arms } from "@/lib/content";
+import { armPhoto } from "@/lib/media";
 import { organisationCopy } from "@/lib/organisation-copy";
 
 if (typeof window !== "undefined")
@@ -188,12 +189,14 @@ const slides = [
   },
   ...heroArms.map((arm, i) => ({
     label: arm.title,
-    background: [
-      library["training-room"],
-      library["event-service-team"],
-      library["community-outreach"],
-      library["community-celebration"],
-    ][i],
+    background:
+      armPhoto(arm.slug, "hero") ??
+      [
+        library["training-room"],
+        library["event-service-team"],
+        library["community-outreach"],
+        library["community-celebration"],
+      ][i],
     duration: 12000,
   })),
 ];
@@ -240,6 +243,7 @@ export function Hero() {
   }, []);
   const slide = slides[active];
   const arm = active > 1 ? heroArms[active - 2] : null;
+  const currentArmPhoto = arm ? armPhoto(arm.slug, "hero") : undefined;
   const slideMs = slide.duration;
   const running = playing && !focused && !reducedMotion && introDone;
   useLayoutEffect(() => {
@@ -465,8 +469,17 @@ export function Hero() {
               </div>
             </div>
             <div className="hero-visual">
-              <div className="hero-photo-main">
-                <PhotoSlot label={arm!.photo} />
+              <div
+                className={`hero-photo-main${currentArmPhoto ? " hero-arm-group" : ""}`}
+                style={
+                  currentArmPhoto
+                    ? {
+                        ["--arm-photo-ratio" as string]: `${currentArmPhoto.width} / ${currentArmPhoto.height}`,
+                      }
+                    : undefined
+                }
+              >
+                <PhotoSlot label={arm!.photo} photo={currentArmPhoto} />
                 <div className="hero-photo-caption">
                   <span className="status-dot" />
                   {arm!.title}
