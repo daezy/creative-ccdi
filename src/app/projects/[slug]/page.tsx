@@ -1,3 +1,4 @@
+import { OfficialEmail } from "@/components/official-email";
 import { pageMetadata } from "@/lib/seo";
 import { PageStructuredData } from "@/components/structured-data";
 import { CommunityEvidence } from "@/components/page-story";
@@ -262,6 +263,9 @@ export default async function Project({
               ))}
           </div>
         </section>
+      </div>
+      <div className="container">
+        <OfficialEmail department="projects" />
       </div>
       <Cta />
     </>

@@ -8,8 +8,20 @@ export const contact = {
     { label: "0706 125 2687", href: "tel:+2347061252687" },
     { label: "0802 626 4133", href: "tel:+2348026264133" },
   ],
-  email: "creativecraft_dt@yahoo.com",
+  email: "info@creativecdi.org",
 };
+/** Official role addresses; provision the mailbox and forwarders in cPanel. */
+export const officialEmails = {
+  administration: { label: "Administration", email: "office@creativecdi.org" },
+  leadership: { label: "Leadership", email: "director@creativecdi.org" },
+  projects: { label: "Our Projects", email: "projects@creativecdi.org" },
+  finance: { label: "Finance", email: "finance@creativecdi.org" },
+  partnerships: {
+    label: "Partnerships",
+    email: "partnerships@creativecdi.org",
+  },
+  support: { label: "Support CCDI", email: "donate@creativecdi.org" },
+} as const;
 /** Stable profile destination of the supplied TikTok share link. */
 export const tiktok = "https://www.tiktok.com/@user5333967161017";
 export const whatsapp =

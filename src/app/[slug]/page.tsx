@@ -1,3 +1,4 @@
+import { OfficialEmail } from "@/components/official-email";
 import { pageMetadata } from "@/lib/seo";
 import { PageStructuredData } from "@/components/structured-data";
 import { ContactMap } from "@/components/contact-map";
@@ -122,6 +123,14 @@ export default async function Page({
         id="page-details"
       >
         <PageContent slug={slug} />
+        {["projects", "skills-training", "programmes", "services"].includes(
+          slug,
+        ) && <OfficialEmail department="projects" />}
+        {slug === "partners" && <OfficialEmail department="partnerships" />}
+        {slug === "donate" && <OfficialEmail department="support" />}
+        {slug === "financial-transparency" && (
+          <OfficialEmail department="finance" />
+        )}
         {communityEvidenceByPage[slug] && (
           <CommunityEvidence id={communityEvidenceByPage[slug]} />
         )}
@@ -215,6 +224,10 @@ async function PageContent({ slug }: { slug: string }) {
             </div>
           </section>
           <Governance />
+          <div className="two-cards">
+            <OfficialEmail department="administration" />
+            <OfficialEmail department="leadership" />
+          </div>
           <Commitments />
         </>
       );

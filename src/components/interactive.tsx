@@ -14,7 +14,7 @@ import {
   ArrowUp,
   Heart,
 } from "lucide-react";
-import { training, facebook } from "@/lib/content";
+import { training, facebook, contact } from "@/lib/content";
 import { PhotoSlot, Icon, Button } from "./ui";
 export function TrainingGrid() {
   const [filter, setFilter] = useState("All skills");
@@ -274,7 +274,7 @@ export function EnquiryForm() {
       setCopied(true);
     } catch {
       setError(
-        "Your message is ready below. Select and copy it, then send it to CCDI on Facebook.",
+        "Your message is ready below. Select and copy it, then send it to CCDI by email or Facebook.",
       );
     }
   }
@@ -291,9 +291,12 @@ export function EnquiryForm() {
       <div className="form-heading">
         <h2>What would you like to explore?</h2>
         <p>
-          Write your enquiry, copy it, then send it through CCDI’s Facebook
-          page. Your enquiry is only sent when you send it there.
+          Write your enquiry, copy it, then send it by email or through CCDI’s
+          Facebook page. Preparing a message here does not send it.
         </p>
+        <a className="text-link" href={`mailto:${contact.email}`}>
+          Email {contact.email} <ArrowUpRight size={16} aria-hidden="true" />
+        </a>
         <a
           className="text-link"
           href={facebook}
@@ -312,7 +315,7 @@ export function EnquiryForm() {
           <span>2</span>Copy
         </li>
         <li>
-          <span>3</span>Send on Facebook
+          <span>3</span>Send to CCDI
         </li>
       </ol>
       <div className="form-row">
@@ -401,8 +404,8 @@ export function EnquiryForm() {
       <div role="status" className="form-status">
         {copied && (
           <p>
-            Your message is copied. Open CCDI’s Facebook page and paste it into
-            a message.
+            Your message is copied. Paste it into an email to {contact.email}
+            or a message on CCDI’s Facebook page.
           </p>
         )}
         {error && <p>{error}</p>}
@@ -418,6 +421,12 @@ export function EnquiryForm() {
               onFocus={(e) => e.target.select()}
             />
           </label>
+          <a
+            href={`mailto:${contact.email}?subject=${encodeURIComponent(`CCDI enquiry: ${interest}`)}&body=${encodeURIComponent(draft)}`}
+            className="button button-outline"
+          >
+            Continue by email <ArrowUpRight size={17} />
+          </a>
           <a
             href={facebook}
             target="_blank"
