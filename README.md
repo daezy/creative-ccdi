@@ -180,3 +180,5 @@ General enquiries use `info@creativecdi.org` in the header, footer, Contact page
 Hosting setup is separate: create the `info@creativecdi.org` mailbox in cPanel, then create the other six addresses above as forwarders to that mailbox. Use the plural `partnerships` consistently. These website changes do not provision mailboxes or forwarders. Verify delivery to all seven addresses once the hosting setup is complete.
 
 The management carousel slide uses the team photograph as a full-width backdrop, with its supplied introduction, vision and mission in a green panel below the faces. Mobile framing preserves the full group; the other five slides retain their existing layouts.
+
+See [Launch security checklist](docs/launch-security.md) for the prepared Apache protections, hosting/account actions, backup checks, privacy responsibilities and future donation safeguards. Hosting-side controls remain pending verification.
