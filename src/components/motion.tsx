@@ -239,7 +239,7 @@ export function Motion() {
         Promise.all([
           loaded,
           fonts,
-          wait(Math.max(0, 2150 - performance.now())),
+          wait(Math.max(0, 2900 - performance.now())),
         ]),
         wait(4800),
       ]).then(() => {
@@ -258,11 +258,20 @@ export function Motion() {
         })
           .to(
             pre.querySelectorAll(".preloader-word span"),
-            { yPercent: -110, duration: 0.5, stagger: 0.05, ease: "power3.in" },
+            {
+              y: -14,
+              scale: 0.6,
+              autoAlpha: 0,
+              duration: 0.45,
+              stagger: 0.05,
+              ease: "power3.in",
+            },
             "+=0.05",
           )
           .to(
-            pre.querySelectorAll(".preloader-tag, .preloader-bar"),
+            pre.querySelectorAll(
+              ".preloader-name, .preloader-tag, .preloader-bar",
+            ),
             { autoAlpha: 0, duration: 0.3 },
             "<",
           )

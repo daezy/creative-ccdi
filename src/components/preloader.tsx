@@ -85,11 +85,12 @@ export function Emblem({
   );
 }
 
+/** The four flyer badges: one per project arm, each in its arm colour. */
 const LETTERS = [
-  { ch: "C", color: "#0b7d37" },
-  { ch: "C", color: "#f28c00" },
-  { ch: "D", color: "#e10600" },
-  { ch: "I", color: "#f5c400" },
+  { ch: "C", bg: "#0b6b33", hi: "#34a862", lo: "#05461f", fg: "#ffffff" },
+  { ch: "C", bg: "#f28c00", hi: "#ffb54d", lo: "#c95a00", fg: "#ffffff" },
+  { ch: "D", bg: "#d90f14", hi: "#ff5a52", lo: "#940a0d", fg: "#ffffff" },
+  { ch: "I", bg: "#f6c60e", hi: "#fff27f", lo: "#cf9500", fg: "#1b1b1b" },
 ];
 
 export function Preloader() {
@@ -101,12 +102,36 @@ export function Preloader() {
           {LETTERS.map((l, i) => (
             <span
               key={i}
-              style={{ color: l.color, "--i": i } as React.CSSProperties}
+              className={l.ch === "I" ? "pl-badge pl-badge-serif" : "pl-badge"}
+              style={
+                {
+                  "--i": i,
+                  "--bg": l.bg,
+                  "--hi": l.hi,
+                  "--lo": l.lo,
+                  "--fg": l.fg,
+                } as React.CSSProperties
+              }
             >
               {l.ch}
             </span>
           ))}
         </div>
+        <p className="preloader-name">
+          {["Creative", "Craft", "Development", "Initiative"].map((w, i) => (
+            <span
+              key={w}
+              style={
+                {
+                  "--i": i,
+                  color: ["#0b6b33", "#d97700", "#c80d12", "#b88600"][i],
+                } as React.CSSProperties
+              }
+            >
+              {w}
+            </span>
+          ))}
+        </p>
         <p className="preloader-tag">
           Self Discovery · Capacity Building · Skills for Life
         </p>

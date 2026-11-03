@@ -6307,21 +6307,78 @@ textarea::placeholder {
 }
 .preloader-word {
   display: flex;
-  gap: 0.02em;
-  margin-top: 26px;
-  overflow: hidden;
-  padding: 0 0.08em 0.04em;
+  gap: 0.24em;
+  margin-top: 24px;
+  padding: 0.12em 0.45em 0.4em;
   font-family: "Manrope Variable", Arial, sans-serif;
   font-weight: 850;
-  font-size: clamp(42px, 7vw, 62px);
+  font-size: clamp(30px, 4.6vw, 40px);
   line-height: 1;
-  letter-spacing: -0.04em;
 }
-.preloader-word span {
+/* Flyer-style badges: glossy disc in the arm colour with a gold rim. */
+.preloader-word .pl-badge {
+  position: relative;
+  display: inline-grid;
+  place-items: center;
+  width: 1.6em;
+  height: 1.6em;
+  border-radius: 50%;
+  color: var(--fg);
+  background: radial-gradient(
+    circle at 34% 28%,
+    var(--hi) 0%,
+    var(--bg) 52%,
+    var(--lo) 100%
+  );
+  border: 0.1em solid #e9b632;
+  box-shadow:
+    inset 0 0 0 0.045em rgb(255 248 214 / 0.75),
+    0 0.12em 0.3em rgb(0 0 0 / 0.22);
+  text-shadow: 0 0.04em 0.08em rgb(0 0 0 / 0.28);
+  animation: pl-badge-in 0.7s cubic-bezier(0.34, 1.45, 0.64, 1)
+    calc(1.35s + var(--i) * 0.08s) both;
+}
+/* Badges pop up in full (no cropping mask), so the round rim never looks cut. */
+@keyframes pl-badge-in {
+  from {
+    opacity: 0;
+    transform: translateY(16px) scale(0.55);
+  }
+}
+.preloader-word .pl-badge::after {
+  /* glossy highlight */
+  content: "";
+  position: absolute;
+  left: 18%;
+  right: 18%;
+  top: 8%;
+  height: 34%;
+  border-radius: 50%;
+  background: linear-gradient(rgb(255 255 255 / 0.45), rgb(255 255 255 / 0));
+  pointer-events: none;
+}
+.preloader-word .pl-badge-serif {
+  font-family: Georgia, "Times New Roman", serif;
+  font-weight: 700;
+  text-shadow: none;
+}
+/* Full name under the badges, each word in its badge colour. */
+.preloader-name {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0 0.35em;
+  margin: 2px 0 0;
+  padding: 0 16px;
+  font-family: "Manrope Variable", Arial, sans-serif;
+  font-weight: 800;
+  font-size: clamp(17px, 2.3vw, 22px);
+  letter-spacing: -0.02em;
+  line-height: 1.3;
+}
+.preloader-name span {
   display: inline-block;
-  text-shadow: 0 2px 0 rgb(0 0 0 / 0.12);
-  animation: pl-rise 0.8s cubic-bezier(0.2, 0.9, 0.2, 1)
-    calc(1.35s + var(--i) * 0.07s) both;
+  animation: pl-fade 0.6s ease calc(1.75s + var(--i) * 0.09s) both;
 }
 .preloader-tag {
   margin: 14px 0 0;
@@ -6330,7 +6387,7 @@ textarea::placeholder {
   text-transform: uppercase;
   color: var(--muted);
   font-weight: 600;
-  animation: pl-fade 0.7s ease 1.7s both;
+  animation: pl-fade 0.7s ease 2.15s both;
 }
 .preloader-bar {
   width: 150px;
