@@ -279,7 +279,7 @@ export function Hero() {
   return (
     <section
       ref={rootRef}
-      className="home-hero story-hero"
+      className={`home-hero story-hero${active === 1 ? " team-backdrop-slide" : ""}`}
       aria-label="Welcome to CCDI"
       aria-roledescription="carousel"
       data-running={running ? "true" : "false"}
@@ -425,17 +425,9 @@ export function Hero() {
               </div>
             </div>
             <div className="hero-management-detail">
-              <figure className="hero-management-photo">
-                <img
-                  src="/images/library/archive-020.webp"
-                  width={1280}
-                  height={759}
-                  alt="CCDI Board of Trustees and Management Team group photograph"
-                />
-                <figcaption>
-                  CCDI Board of Trustees & Management Team
-                </figcaption>
-              </figure>
+              <p className="hero-team-credit">
+                CCDI Board of Trustees & Management Team
+              </p>
               <div className="hero-statements">
                 <div>
                   <h3>Our vision</h3>
