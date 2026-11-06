@@ -182,3 +182,5 @@ Hosting setup is separate: create the `info@creativecdi.org` mailbox in cPanel, 
 The management carousel slide uses the team photograph as a full-width backdrop, with its supplied introduction, vision and mission in a green panel below the faces. Mobile framing preserves the full group; the other five slides retain their existing layouts.
 
 See [Launch security checklist](docs/launch-security.md) for the prepared Apache protections, hosting/account actions, backup checks, privacy responsibilities and future donation safeguards. Hosting-side controls remain pending verification.
+
+The public telephone and direct WhatsApp contact both use `08026264133` (`+2348026264133`). The membership and student registration downloads and their thumbnails use the approved logo, green/orange/red/yellow CCDI lettering and official phone/email details. The Social Enterprise hero pairs the supplied catering-team photo with the Our Kitchen flyer, whose old contact numbers were replaced with the official number. The confirmed YouTube channel is linked from the header, footer, Contact page and organisation SEO data.

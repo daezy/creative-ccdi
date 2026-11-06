@@ -556,10 +556,12 @@ async function PageContent({ slug }: { slug: string }) {
                   <div>
                     <h3>
                       {social.label === "WhatsApp"
-                        ? "Our WhatsApp community"
+                        ? "WhatsApp CCDI"
                         : social.label === "Facebook"
                           ? "Our Facebook community"
-                          : "CCDI on TikTok"}
+                          : social.label === "YouTube"
+                            ? "CCDI on YouTube"
+                            : "CCDI on TikTok"}
                     </h3>
                     <a href={social.href} target="_blank" rel="noreferrer">
                       {social.label === "Facebook"
@@ -581,7 +583,6 @@ async function PageContent({ slug }: { slug: string }) {
                 <Phone size={22} aria-hidden="true" />
                 <div>
                   <h3>Speak with the team</h3>
-                  <a href="tel:+2347061252687">0706 125 2687</a>
                   <a href="tel:+2348026264133">0802 626 4133</a>
                 </div>
               </div>
@@ -631,11 +632,12 @@ async function PageContent({ slug }: { slug: string }) {
           </p>
           <h2>Third-party services</h2>
           <p>
-            Facebook, TikTok and WhatsApp links take you to third-party services
-            with their own privacy practices. Information you send through those
-            services is handled by them. Use your judgement about what personal
-            information to include. The contact page also includes an embedded
-            Google Map; loading or using it connects your browser to Google.
+            Facebook, TikTok, YouTube and WhatsApp links take you to third-party
+            services with their own privacy practices. Information you send
+            through those services is handled by them. Use your judgement about
+            what personal information to include. The contact page also includes
+            an embedded Google Map; loading or using it connects your browser to
+            Google.
           </p>
           <h2>Photos and personal stories</h2>
           <p>

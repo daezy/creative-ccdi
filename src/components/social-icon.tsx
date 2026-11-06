@@ -1,4 +1,4 @@
-import { Facebook, MessageCircle, Music2 } from "lucide-react";
+import { Facebook, MessageCircle, Music2, Youtube } from "lucide-react";
 
 export function SocialIcon({
   platform,
@@ -8,10 +8,12 @@ export function SocialIcon({
   size?: number;
 }) {
   const Icon =
-    platform === "WhatsApp"
-      ? MessageCircle
-      : platform === "TikTok"
-        ? Music2
-        : Facebook;
+    platform === "YouTube"
+      ? Youtube
+      : platform === "WhatsApp"
+        ? MessageCircle
+        : platform === "TikTok"
+          ? Music2
+          : Facebook;
   return <Icon size={size} aria-hidden="true" />;
 }

@@ -9033,3 +9033,13 @@ body {
   .story-hero.team-backdrop-slide .hero-backdrop { top: 90px; }
   .story-hero.team-backdrop-slide .hero-management { margin-top: calc(52vw + 70px); }
 }
+
+/* Social Enterprise pairs the supplied team photograph with its kitchen flyer. */
+.hero-enterprise-pair { display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 14px; }
+.hero-enterprise-pair img { display: block; width: 100%; height: auto; border-radius: 3px; }
+.hero-enterprise-pair img:first-child { margin-top: -40px; }
+.hero-enterprise-pair img:last-child { margin-top: 40px; }
+@media (max-width: 600px) {
+  .hero-enterprise-pair { grid-template-columns: 1fr; gap: 18px; }
+  .hero-enterprise-pair img:first-child, .hero-enterprise-pair img:last-child { margin-top: 0; }
+}

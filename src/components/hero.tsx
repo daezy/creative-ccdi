@@ -461,22 +461,39 @@ export function Hero() {
               </div>
             </div>
             <div className="hero-visual">
-              <div
-                className={`hero-photo-main${currentArmPhoto ? " hero-arm-group" : ""}`}
-                style={
-                  currentArmPhoto
-                    ? {
-                        ["--arm-photo-ratio" as string]: `${currentArmPhoto.width} / ${currentArmPhoto.height}`,
-                      }
-                    : undefined
-                }
-              >
-                <PhotoSlot label={arm!.photo} photo={currentArmPhoto} />
-                <div className="hero-photo-caption">
-                  <span className="status-dot" />
-                  {arm!.title}
+              {arm!.slug === "social-enterprise" ? (
+                <div className="hero-enterprise-pair">
+                  <img
+                    src="/images/social-enterprise-catering.webp"
+                    alt="CCDI catering team serving food at an event"
+                    width={1080}
+                    height={771}
+                  />
+                  <img
+                    src="/images/social-enterprise-kitchen.webp"
+                    alt="CCDI Our Kitchen: catering, snacks and meals for all occasions. Contact 08026264133."
+                    width={1080}
+                    height={876}
+                  />
                 </div>
-              </div>
+              ) : (
+                <div
+                  className={`hero-photo-main${currentArmPhoto ? " hero-arm-group" : ""}`}
+                  style={
+                    currentArmPhoto
+                      ? {
+                          ["--arm-photo-ratio" as string]: `${currentArmPhoto.width} / ${currentArmPhoto.height}`,
+                        }
+                      : undefined
+                  }
+                >
+                  <PhotoSlot label={arm!.photo} photo={currentArmPhoto} />
+                  <div className="hero-photo-caption">
+                    <span className="status-dot" />
+                    {arm!.title}
+                  </div>
+                </div>
+              )}
             </div>
           </div>
         )}

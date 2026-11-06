@@ -4,10 +4,7 @@ export const facebook =
 export const contact = {
   address: "No. 9, Sanusi Adeyemo Street, Satellite Town, Lagos, Nigeria",
   addressShort: "Satellite Town, Lagos",
-  phones: [
-    { label: "0706 125 2687", href: "tel:+2347061252687" },
-    { label: "0802 626 4133", href: "tel:+2348026264133" },
-  ],
+  phones: [{ label: "0802 626 4133", href: "tel:+2348026264133" }],
   email: "info@creativecdi.org",
 };
 /** Official role addresses; provision the mailbox and forwarders in cPanel. */
@@ -24,12 +21,14 @@ export const officialEmails = {
 } as const;
 /** Stable profile destination of the supplied TikTok share link. */
 export const tiktok = "https://www.tiktok.com/@user5333967161017";
-export const whatsapp =
-  "https://chat.whatsapp.com/GpMoc1i5cm6GCgUIMyBTwn?s=sw&p=a&mlu=4&ilr=4";
+export const whatsapp = "https://wa.me/2348026264133";
+export const youtube =
+  "https://www.youtube.com/channel/UCHORuJVuf6_11sKLlNfrJ7A";
 export const socials = [
   { label: "Facebook", href: facebook, action: "Find us on Facebook" },
   { label: "TikTok", href: tiktok, action: "Watch on TikTok" },
-  { label: "WhatsApp", href: whatsapp, action: "Join our WhatsApp group" },
+  { label: "YouTube", href: youtube, action: "Watch on YouTube" },
+  { label: "WhatsApp", href: whatsapp, action: "Message us on WhatsApp" },
 ];
 export const mapSearch = encodeURIComponent(contact.address);
 /** Google Maps' generated embed for the street; no unverified building pin. */
