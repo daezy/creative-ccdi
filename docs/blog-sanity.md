@@ -1,8 +1,18 @@
 # CCDI blog editing
 
-Project: `z53lde5i` (CCDI Blog). Dataset: `production`.
+Client-owned project: `kpusk3kf` (CCDI Blog). Dataset: `production`.
+
+Editor: [CCDI Journal](https://creativecdi-journal.sanity.studio/).
+Sign in with Google using the client's `creativeselfcraft2008@gmail.com` account.
+The organization and project are owned by that account.
 
 The Studio lives in `studio/`, independently of the static Next.js site.
+
+## Client account migration (6 November 2026)
+
+The three current posts were exported from the previous project and imported into the client-owned project, preserving their document IDs, text and slugs. There were no uploaded image assets in the previous dataset. The old project/editor were left intact; use the new editor above for all future posts.
+
+Both the default website project and Studio configuration now use `kpusk3kf`. If any hosting environment explicitly overrides `SANITY_PROJECT_ID`, update that override too. Rebuilt cPanel files use the new project after upload.
 
 ## Start the editor locally
 
@@ -32,7 +42,7 @@ npx sanity dataset import import/existing-posts.ndjson --dataset production --mi
 Set these in the website's `.env.local` and in the build host's environment:
 
 ```dotenv
-SANITY_PROJECT_ID=z53lde5i
+SANITY_PROJECT_ID=kpusk3kf
 SANITY_DATASET=production
 ```
 

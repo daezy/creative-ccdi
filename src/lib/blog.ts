@@ -29,7 +29,7 @@ const BUILD_STAMP = Date.now();
 // Only published documents are read. Never expose editor credentials to the site.
 export const getArticles = cache(async (): Promise<Article[]> => {
   if (process.env.SANITY_USE_LOCAL_CONTENT === "true") return localArticles;
-  const project = process.env.SANITY_PROJECT_ID || "z53lde5i";
+  const project = process.env.SANITY_PROJECT_ID || "kpusk3kf";
   if (!/^[a-z0-9]+$/.test(project))
     throw new Error("Invalid SANITY_PROJECT_ID");
   const dataset = process.env.SANITY_DATASET || "production";
