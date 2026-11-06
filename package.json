@@ -7,11 +7,12 @@
     "prebuild": "npm run generate:social",
     "generate:social": "node scripts/generate-social-assets.mjs",
     "build": "next build --webpack",
+    "build:cpanel": "npm run generate:social && STATIC_EXPORT=true next build --webpack",
     "start": "next start",
     "typecheck": "tsc --noEmit",
     "check:export": "node scripts/check-export.mjs",
     "check:seo": "node scripts/check-seo.mjs",
-    "package:cpanel": "npm run check:export && npm run check:seo && python3 scripts/package-cpanel.py"
+    "package:cpanel": "npm run build:cpanel && npm run check:export && npm run check:seo && python3 scripts/package-cpanel.py"
   },
   "dependencies": {
     "@base-ui/react": "^1.0.0",

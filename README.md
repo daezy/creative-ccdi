@@ -2,7 +2,7 @@
 
 # Creative Craft Development Initiative (CCDI)
 
-The CCDI website, built with **Next.js App Router, React and TypeScript** and exported as a static site. It presents the organisation’s skills development, social enterprise, benevolent and childcare, and community initiatives using supplied copy, photographs, videos, testimonials and documents.
+The CCDI website, built with **Next.js App Router, React and TypeScript** with server hosting on Vercel and a static cPanel export. Both versions read current published blog content from Sanity. It presents the organisation’s skills development, social enterprise, benevolent and childcare, and community initiatives using supplied copy, photographs, videos, testimonials and documents.
 
 The homepage carousel has six slides: the CCDI introduction, management with vision and mission, and one slide for each of the four project arms. Carousel content lives in `src/components/hero.tsx`; it reuses the organisation’s supplied statements and approved photographs.
 
@@ -21,24 +21,26 @@ npm run dev -- --port 3124
 
 Open [http://localhost:3124](http://localhost:3124). Changes to the source update the local preview automatically while the development server is running.
 
-## Production build
+## Production builds
+
+For Vercel (live server rendering):
 
 ```bash
 npm run build
-npm run check:export
+npm run start
 ```
 
-The production website is generated in **`out/`**. Deploy that directory to a static host; a Node.js server is not required at runtime.
+Blog content and metadata are fetched from Sanity on each request; content changes do not require deployment.
 
-To preview the exported files locally, with Python 3 installed:
+For cPanel (static files with live browser fetching):
 
 ```bash
-python3 -m http.server 3125 --directory out
+npm run package:cpanel
 ```
 
-Open [http://localhost:3125](http://localhost:3125).
+Upload **`dist/creativecdi-cpanel.zip`** including `.htaccess`. The package command builds `out/`, runs export/SEO checks and packages the result. Run `npm run build:cpanel` if only the exported directory is needed. New posts render from Sanity in the browser; Apache's rewrite rule supports URLs created after the export. The static sitemap and social previews remain snapshots until rebuilt. See [blog editing and hosting](docs/blog-sanity.md).
 
-`npm run start` runs Next.js’s server command and is **not the preview command for this static-export configuration**. Use the development server or serve `out/` as shown above.
+A simple static server can preview existing exported URLs, but testing a new article URL requires Apache with the supplied rewrite rule.
 
 ### Production domain
 
@@ -74,13 +76,13 @@ See [the SEO launch guide](docs/seo-launch.md) for domain activation, Search Con
 | `npm ci` | Install the versions recorded in the lockfile |
 | `npm run dev -- --port 3124` | Run the live local preview |
 | `npm run typecheck` | Check TypeScript without emitting files |
-| `npm run build` | Generate production assets and static HTML in `out/` |
+| `npm run build` | Build the Next.js server version for Vercel |
 | `npm run check:export` | Check exported pages, metadata, internal links, anchors, sitemap and robots.txt |
 | `npm run generate:social` | Regenerate page previews, logo sizes and icons |
 | `npm run check:seo` | Validate every page’s metadata, previews, structured data and indexing configuration |
-| `npm run package:cpanel` | Check the export and create `dist/creativecdi-cpanel.zip` for the confirmed cPanel host (requires Python 3) |
+| `npm run package:cpanel` | Build and check the static export, then create `dist/creativecdi-cpanel.zip` for the confirmed cPanel host (requires Python 3) |
 
-Run the build before `check:export`; the checker reads the generated `out/` directory.
+Run `npm run build:cpanel` before `check:export`; the checker reads the generated `out/` directory.
 
 ## Website features
 
@@ -161,7 +163,7 @@ The registration and membership PDFs are printable forms. Visitors are directed 
 
 ## Hosting and repository hygiene
 
-The site is portable: `next.config.ts` enables `output: "export"`, trailing-slash URLs and unoptimised image delivery for static hosting. A host should serve `out/` as the document root and support directory index files such as `/about/index.html`.
+The site supports both hosting modes: `next.config.ts` enables `output: "export"` only with `STATIC_EXPORT=true`; the default is a Next.js server deployment. Both use trailing-slash URLs and unoptimised image delivery. A host should serve `out/` as the document root and support directory index files such as `/about/index.html`.
 
 `.openai/hosting.json` records the existing Sites project and its static output directory. Preserve that identity when updating the existing hosted site. It is not needed by a separate static host and contains no authentication token.
 

@@ -46,14 +46,28 @@ SANITY_PROJECT_ID=kpusk3kf
 SANITY_DATASET=production
 ```
 
-These are public project identifiers, with the CCDI project used by default if no override is set. The website requires no API token, reads only published content, and fetches posts during each build. Set `SANITY_USE_LOCAL_CONTENT=true` only for offline development with the original local articles. API failures fail the build to avoid silently deploying stale content.
+These are public project identifiers, with the CCDI project used by default if no override is set. The website requires no API token, reads only published content, and reads current published posts at request time on Vercel or in the browser on cPanel. Set `SANITY_USE_LOCAL_CONTENT=true` only for offline development with the original local articles. API failures are surfaced rather than replacing unpublished posts with the original local articles.
 
 ## Publish
 
 Create a Blog post, enter a title, generate a slug, add an excerpt, category and body. Upload an optional cover and describe it in the image description. Publish when ready.
 
-Publishing updates Sanity immediately. The public website uses static export: run `npm run build`, `npm run check:export`, and `npm run check:seo` in the repository root, then deploy the new `out/` folder. New articles, metadata and sitemap entries are generated together.
+Publishing updates Sanity immediately. No website rebuild or redeployment is needed for article changes after the updated website code is installed.
 
-Automatic publishing needs a Sanity webhook connected to the actual website deployment pipeline. It has not been configured by these files. cPanel needs a rebuild-and-upload pipeline; a Vercel deployment can use a Vercel deploy hook. Never put deploy hook URLs or write tokens in source control.
+### Vercel
 
-Unpublishing/removing a post takes effect on the next deployment. The schema's publication date is informational and does not schedule publication. Drafts are excluded from the website.
+`npm run build` produces a Next.js server deployment. The homepage journal, blog listing, article pages and sitemap read Sanity without a persistent data cache. New slugs work on demand, article metadata is rendered on the server, and missing/unpublished posts return HTTP 404. No publish webhook or deploy hook is needed.
+
+### cPanel
+
+Run `npm run package:cpanel` to build, validate and package the static version, then upload `dist/creativecdi-cpanel.zip` including its `.htaccess` file. This initial installation is required once. `npm run build:cpanel` separately creates `out/`.
+
+The exported homepage journal, blog listing and article pages fetch current published content in the browser on load, on returning to the tab, and every 60 seconds while visible. Existing content is retained with an error notice if a refresh fails. Unpublished posts disappear after a successful refresh; an empty dataset displays an empty journal.
+
+Apache's rewrite rule sends new `/blog/<slug>/` URLs to `/blog/__live__/index.html`. The browser then reads the requested slug from the address bar and renders its Sanity article. Blog cards use full-page navigation so Next's exported route manifests cannot block a new URL. Apache `mod_rewrite` and the supplied `.htaccess` are required. The rule was tested with Apache locally.
+
+**Static hosting limits:** new cPanel posts need JavaScript to render, and an unknown URL initially returns a generic shell with HTTP 200. After loading, missing posts show an unavailable message and `noindex`. The browser updates metadata for real articles, but social crawlers that do not run JavaScript see the exported snapshot or generic fallback. The static sitemap is also a build-time snapshot. Rebuilding is only needed to refresh those crawler-facing files, not to show new content to visitors. Vercel handles current metadata, sitemap and HTTP status on the server.
+
+Sanity CORS permits the production domain, www domain, Vercel alias and localhost testing origins to read published content without credentials. If hosting on a new domain, add its exact origin in the project's CORS settings without credential access.
+
+The schema's publication date is informational and does not schedule publication. Drafts are excluded from the website. Publishing, editing and unpublishing apply on the next server request or successful cPanel browser refresh.

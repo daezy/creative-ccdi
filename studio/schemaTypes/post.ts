@@ -16,7 +16,13 @@ export const post = defineType({
       options: { source: "title", maxLength: 96 },
       description:
         "Generate this once. Changing a published URL breaks existing links.",
-      validation: (rule) => rule.required(),
+      validation: (rule) =>
+        rule.required().custom((value) => {
+          const slug = value?.current;
+          return !slug || /^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(slug)
+            ? true
+            : "Use lowercase letters, numbers and hyphens for the article URL.";
+        }),
     }),
     defineField({
       name: "description",

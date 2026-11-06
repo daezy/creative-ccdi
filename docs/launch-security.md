@@ -2,7 +2,7 @@
 
 ## Project protections prepared
 
-The site is a static export, with no public website login, CCDI-hosted enquiry endpoint, card collection or payment processing. The enquiry form submits directly to Formspree, which stores submissions, filters spam and emails the verified CCDI recipient. A honeypot is included in the form. Sanity Studio is a separate authenticated editorial service.
+The site supports a Next.js server deployment on Vercel and a static cPanel export, with no public website login, CCDI-hosted enquiry endpoint, card collection or payment processing. The enquiry form submits directly to Formspree, which stores submissions, filters spam and emails the verified CCDI recipient. A honeypot is included in the form. Sanity Studio is a separate authenticated editorial service.
 
 The cPanel ZIP includes `deployment/cpanel.htaccess`: canonical HTTPS redirects, directory listing disabled, hidden-file access denied (except certificate validation), MIME sniffing protection, framing blocked, a referrer policy, and camera/microphone/location permissions disabled. A baseline Content Security Policy blocks plugins, foreign base URLs and framing and upgrades insecure resources. It does **not** restrict script sources; a strict script policy needs an export-compatible hash strategy and browser testing. The Google Maps preview can still display and link to directions without browser geolocation.
 

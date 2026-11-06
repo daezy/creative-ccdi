@@ -1,7 +1,8 @@
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
-import { getArticles } from "@/lib/blog";
-import { ArticleImage } from "./article-image";
+import { getArticles, staticBlog, getBlogConfig } from "@/lib/blog";
+import { BlogCards } from "./blog-cards";
+import { LiveBlogList } from "./live-blog";
 import { publicationIds } from "@/lib/media";
 import library from "@/lib/media-library.json";
 import videos from "@/lib/video-library.json";
@@ -89,47 +90,10 @@ export function HomePublications() {
 }
 
 export async function HomeJournal() {
-  const articles = (await getArticles()).slice(0, 3);
-  return (
-    <section
-      className="section home-journal"
-      id="home-journal"
-      aria-label="From the CCDI journal"
-    >
-      <div className="container">
-        <SectionHead
-          eyebrow="Journal & updates"
-          title={
-            <>
-              Ideas, stories & <em>perspectives.</em>
-            </>
-          }
-          href="/blog/"
-          linkLabel="Visit our blog"
-        />
-        <div className="journal-grid">
-          {articles.map((article) => (
-            <Link
-              className="journal-card"
-              href={`/blog/${article.slug}/`}
-              key={article.slug}
-            >
-              <div className="journal-photo">
-                <ArticleImage article={article} />
-              </div>
-              <div className="journal-card-label">
-                <span>{article.category}</span>
-                <ArrowUpRight size={18} aria-hidden="true" />
-              </div>
-              <h3>{article.title}</h3>
-              <p>{article.description}</p>
-              <span className="home-article-link">
-                Read article <ArrowUpRight size={17} aria-hidden="true" />
-              </span>
-            </Link>
-          ))}
-        </div>
-      </div>
-    </section>
+  const articles = await getArticles();
+  return staticBlog ? (
+    <LiveBlogList initialArticles={articles} config={getBlogConfig()} home />
+  ) : (
+    <BlogCards articles={articles} home />
   );
 }

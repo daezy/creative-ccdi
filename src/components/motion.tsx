@@ -82,7 +82,7 @@ const SINGLES = [
 
 /** Client-rendered areas whose DOM React may update. */
 const CLIENT_ZONES =
-  ".gallery-collections, .enquiry-form, .document-library, .support-selector, .site-header";
+  ".gallery-collections, .enquiry-form, .document-library, .support-selector, .site-header, .live-blog";
 
 const norm = (p: string) => p.replace(/\/+$/, "") || "/";
 
@@ -383,11 +383,14 @@ export function Motion() {
       if (
         !a ||
         (a.target && a.target !== "_self") ||
-        a.hasAttribute("download")
+        a.hasAttribute("download") ||
+        a.hasAttribute("data-native-navigation")
       )
         return;
       const url = new URL(a.href, location.href);
       if (url.origin !== location.origin) return;
+      // Exported hosts need a document request for article URLs added later.
+      if (/^\/blog\/[^/]+\/?$/.test(url.pathname)) return;
       if (norm(url.pathname) === norm(location.pathname)) return;
       if (/\.(pdf|jpe?g|png|webp|gif|mp4|zip|docx?|xlsx?)$/i.test(url.pathname))
         return;

@@ -14,6 +14,7 @@ with ZipFile(destination, "w", compression=ZIP_DEFLATED, compresslevel=6) as arc
     archive.write(root / "deployment" / "cpanel.htaccess", ".htaccess")
 with ZipFile(destination) as archive:
     assert archive.testzip() is None, "Corrupt archive"
-    assert {"index.html", ".htaccess", "robots.txt", "sitemap.xml", "social/home.png", "404.html"}.issubset(archive.namelist())
+    assert {"index.html", ".htaccess", "robots.txt", "sitemap.xml", "social/home.png", "404.html", "blog/__live__/index.html"}.issubset(archive.namelist())
+    assert b"/blog/__live__/index.html" in archive.read(".htaccess"), "Missing live article rewrite rule"
     assert not any(name.startswith(("src/", "node_modules/", ".env", ".git/")) for name in archive.namelist())
 print(f"Verified cPanel archive: {destination} ({destination.stat().st_size / 1024 / 1024:.1f} MB)")

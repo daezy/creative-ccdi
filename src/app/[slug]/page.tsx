@@ -67,8 +67,9 @@ import {
   contact,
   socials,
 } from "@/lib/content";
-import { getArticles } from "@/lib/blog";
-import { ArticleImage } from "@/components/article-image";
+import { getArticles, staticBlog, getBlogConfig } from "@/lib/blog";
+import { BlogCards } from "@/components/blog-cards";
+import { LiveBlogList } from "@/components/live-blog";
 import {
   Button,
   Eyebrow,
@@ -453,29 +454,14 @@ async function PageContent({ slug }: { slug: string }) {
       );
     case "testimonials":
       return <Testimonials />;
-    case "blog":
+    case "blog": {
       const articles = await getArticles();
-      return (
-        <div className="journal-grid">
-          {articles.map((a, i) => (
-            <Link
-              className="journal-card"
-              href={`/blog/${a.slug}/`}
-              key={a.slug}
-            >
-              <div className="journal-photo">
-                <ArticleImage article={a} />
-              </div>
-              <div className="journal-card-label">
-                <span>{a.category}</span>
-                <ArrowUpRight size={18} />
-              </div>
-              <h2>{a.title}</h2>
-              <p>{a.description}</p>
-            </Link>
-          ))}
-        </div>
+      return staticBlog ? (
+        <LiveBlogList initialArticles={articles} config={getBlogConfig()} />
+      ) : (
+        <BlogCards articles={articles} />
       );
+    }
     case "videos":
       return (
         <>
@@ -633,6 +619,11 @@ async function PageContent({ slug }: { slug: string }) {
             the contact page, without its query parameters.
           </p>
           <h2>Third-party services</h2>
+          <p>
+            Journal content and cover images are delivered through Sanity. On
+            the cPanel version, your browser connects directly to Sanity to load
+            the latest published articles.
+          </p>
           <p>
             Formspree processes enquiry submissions and checks them for spam.
             Read the{" "}

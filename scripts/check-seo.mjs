@@ -140,6 +140,7 @@ const blogSlugs = fs
   .filter(
     (entry) =>
       entry.isDirectory() &&
+      entry.name !== "__live__" &&
       fs.existsSync(path.join(blogDirectory, entry.name, "index.html")),
   )
   .map((entry) => entry.name);

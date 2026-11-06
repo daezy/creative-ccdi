@@ -13,7 +13,9 @@ ErrorDocument 404 /404.html
   RewriteRule ^ https://creativecdi.org%{REQUEST_URI} [R=301,L,NE]
   # Deny hidden files/directories, keeping certificate validation accessible above.
   RewriteRule (^|/)\. - [F,L]
-  # No SPA fallback: Next exports a real directory/index.html for each route.
+  # New Sanity slugs load the blog shell even if they did not exist at export.
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule ^blog/[a-z0-9]+(?:-[a-z0-9]+)*/?$ /blog/__live__/index.html [END]
 </IfModule>
 
 <IfModule mod_mime.c>

@@ -2,7 +2,8 @@ import type { MetadataRoute } from "next";
 import { absoluteUrl, seoPages } from "@/lib/seo";
 import library from "@/lib/media-library.json";
 import { getArticles } from "@/lib/blog";
-export const dynamic = "force-static";
+// Static exports emit a snapshot; server fetches remain uncached and dynamic.
+export const revalidate = 60;
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const articlePaths = (await getArticles()).map(
     (article) => `/blog/${article.slug}/`,
