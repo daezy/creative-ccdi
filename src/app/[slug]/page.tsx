@@ -624,13 +624,28 @@ async function PageContent({ slug }: { slug: string }) {
             This website introduces Creative Craft Development Initiative and
             its programmes. You do not need an account to browse the pages.
           </p>
-          <h2>Preparing an enquiry</h2>
+          <h2>Sending an enquiry</h2>
           <p>
-            The enquiry form prepares a message on your device. It does not send
-            or store your details on a CCDI server. If you choose “Prepare &
-            copy enquiry”, your browser may copy the message to your clipboard.
+            When you send an enquiry, your name, email address, optional phone
+            number, enquiry topic and message are sent through Formspree to
+            CCDI. Formspree stores submissions and sends email notifications to
+            CCDI so the team can respond. The form also includes the address of
+            the contact page, without its query parameters.
           </p>
           <h2>Third-party services</h2>
+          <p>
+            Formspree processes enquiry submissions and checks them for spam.
+            Read the{" "}
+            <a
+              href="https://formspree.io/legal/privacy-policy/"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Formspree privacy policy
+            </a>{" "}
+            for details about its handling of data. You can also contact CCDI
+            directly by email or phone.
+          </p>
           <p>
             Facebook, TikTok, YouTube and WhatsApp links take you to third-party
             services with their own privacy practices. Information you send
@@ -652,7 +667,7 @@ async function PageContent({ slug }: { slug: string }) {
             needed to deliver this website. The supplied framework also
             describes features such as analytics, newsletters, donations and
             online applications. This website currently provides downloadable
-            forms and a locally prepared enquiry; it does not process
+            forms and an online enquiry service; it does not process
             applications, subscriptions or payments.
           </p>
           <TextLink href="/contact/">Ask a privacy question</TextLink>

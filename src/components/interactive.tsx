@@ -1,11 +1,10 @@
 "use client";
 import { responsive, SIZES } from "@/lib/responsive";
 import library from "@/lib/media-library.json";
-import { useEffect, useState, type FormEvent } from "react";
+import { useEffect, useRef, useState, type FormEvent } from "react";
 import { Dialog } from "@base-ui/react/dialog";
 import {
   Check,
-  Copy,
   ArrowUpRight,
   X,
   Camera,
@@ -14,6 +13,7 @@ import {
   ArrowUp,
   Heart,
 } from "lucide-react";
+import { contactFormEndpoint } from "@/lib/contact-form";
 import { training, facebook, contact } from "@/lib/content";
 import { PhotoSlot, Icon, Button } from "./ui";
 export function TrainingGrid() {
@@ -255,44 +255,87 @@ export function Gallery() {
 }
 export function EnquiryForm() {
   const [interest, setInterest] = useState("General enquiry");
-  const [copied, setCopied] = useState(false);
-  const [draft, setDraft] = useState("");
+  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">(
+    "idle",
+  );
   const [error, setError] = useState("");
+  const inFlight = useRef(false);
   useEffect(() => {
     const value = new URLSearchParams(window.location.search).get("interest");
-    if (value) setInterest(value);
+    if (value) setInterest(value.slice(0, 160));
   }, []);
+
   async function submit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    if (inFlight.current) return;
+    const form = e.currentTarget;
+    const data = new FormData(form);
+    for (const field of ["name", "email", "message", "interest"]) {
+      data.set(field, String(data.get(field) || "").trim());
+    }
+    if (!data.get("name") || !data.get("email") || !data.get("message")) {
+      setError("Please enter your name, email address and message.");
+      setStatus("error");
+      return;
+    }
+    data.set(
+      "subject",
+      `CCDI enquiry: ${data.get("interest") || "General enquiry"}`,
+    );
+    // Include the page path without copying URL query strings or personal data.
+    data.set("source", window.location.origin + window.location.pathname);
+    inFlight.current = true;
+    setStatus("sending");
     setError("");
-    setCopied(false);
-    const data = new FormData(e.currentTarget);
-    const message = `Hello CCDI,\n\nMy name is ${data.get("name")}. I’m interested in ${data.get("interest")}.\n\n${data.get("message")}\n\n${data.get("email") ? `Email: ${data.get("email")}` : ""}${data.get("phone") ? `\nPhone: ${data.get("phone")}` : ""}`;
-    setDraft(message);
     try {
-      await navigator.clipboard.writeText(message);
-      setCopied(true);
-    } catch {
+      const response = await fetch(contactFormEndpoint, {
+        method: "POST",
+        body: data,
+        headers: { Accept: "application/json" },
+        signal: AbortSignal.timeout(30000),
+      });
+      if (!response.ok) {
+        if (response.status === 429)
+          throw new Error(
+            "The enquiry service is busy. Please try again later or email CCDI directly.",
+          );
+        throw new Error(
+          "Your enquiry could not be sent. Please try again or email CCDI directly.",
+        );
+      }
+      form.reset();
+      setStatus("sent");
+    } catch (cause) {
+      setStatus("error");
       setError(
-        "Your message is ready below. Select and copy it, then send it to CCDI by email or Facebook.",
+        cause instanceof Error && cause.name === "Error"
+          ? cause.message
+          : "We could not confirm delivery. Your message is still here. Please check your connection or email CCDI directly.",
       );
+    } finally {
+      inFlight.current = false;
     }
   }
+
   return (
     <form
       className="enquiry-form"
+      action={contactFormEndpoint}
+      method="POST"
       onSubmit={submit}
+      aria-busy={status === "sending"}
       onChange={() => {
-        setCopied(false);
-        setDraft("");
-        setError("");
+        if (!inFlight.current) {
+          setStatus("idle");
+          setError("");
+        }
       }}
     >
       <div className="form-heading">
         <h2>What would you like to explore?</h2>
         <p>
-          Write your enquiry, copy it, then send it by email or through CCDI’s
-          Facebook page. Preparing a message here does not send it.
+          Send your enquiry to CCDI. Share a little about what you have in mind
+          and we’ll reply by email.
         </p>
         <a className="text-link" href={`mailto:${contact.email}`}>
           Email {contact.email} <ArrowUpRight size={16} aria-hidden="true" />
@@ -312,130 +355,135 @@ export function EnquiryForm() {
           <span>1</span>Write
         </li>
         <li>
-          <span>2</span>Copy
+          <span>2</span>Send enquiry
         </li>
         <li>
-          <span>3</span>Send to CCDI
+          <span>3</span>Hear from CCDI
         </li>
       </ol>
-      <div className="form-row">
-        <label>
-          Full name <span>*</span>
-          <input
-            name="name"
-            autoComplete="name"
-            required
-            placeholder="Your full name…"
-          />
-        </label>
-        <label>
-          Email address <small>(optional)</small>
-          <input
-            type="email"
-            name="email"
-            autoComplete="email"
-            spellCheck={false}
-            placeholder="you@example.com…"
-          />
-        </label>
-      </div>
-      <div className="form-row">
-        <label>
-          Phone <small>(optional)</small>
-          <input
-            type="tel"
-            name="phone"
-            autoComplete="tel"
-            placeholder="+234…"
-          />
-        </label>
-        <label>
-          I’m interested in
-          <input
-            name="interest"
-            value={interest}
-            onChange={(e) => {
-              setInterest(e.target.value);
-              setCopied(false);
-            }}
-            list="interests"
-          />
-          <datalist id="interests">
-            {[
-              "General enquiry",
-              "Skills training",
-              "Volunteering",
-              "Partnership",
-              "Donating",
-              "Enterprise services",
-            ].map((i) => (
-              <option key={i} value={i} />
-            ))}
-          </datalist>
-        </label>
-      </div>
-      <label>
-        Your message <span>*</span>
-        <textarea
-          name="message"
-          required
-          rows={5}
-          placeholder="Tell us a little about what you have in mind…"
+      <fieldset
+        disabled={status === "sending"}
+        style={{ border: 0, padding: 0, margin: 0, minWidth: 0 }}
+      >
+        <legend className="sr-only">Your enquiry details</legend>
+        <input
+          type="hidden"
+          name="subject"
+          value={`CCDI enquiry: ${interest}`}
         />
-      </label>
-      <p className="form-privacy">
-        Only share information needed for your enquiry. Please do not include
-        sensitive information about children or other people.{" "}
-        <a href="/privacy-policy/">Privacy information</a>
-      </p>
-      <button className="button button-green" type="submit">
-        {copied ? (
-          <>
-            <Check size={17} />
-            Message copied
-          </>
-        ) : (
-          <>
-            <Copy size={17} />
-            Prepare & copy enquiry
-          </>
-        )}
-      </button>
-      <div role="status" className="form-status">
-        {copied && (
-          <p>
-            Your message is copied. Paste it into an email to {contact.email}
-            or a message on CCDI’s Facebook page.
-          </p>
-        )}
-        {error && <p>{error}</p>}
-      </div>
-      {draft && (
-        <div className="prepared-message">
+        <div hidden aria-hidden="true">
           <label>
-            Your prepared enquiry
-            <textarea
-              readOnly
-              value={draft}
-              rows={8}
-              onFocus={(e) => e.target.select()}
+            Leave this field empty
+            <input
+              name="_gotcha"
+              type="text"
+              tabIndex={-1}
+              autoComplete="off"
             />
           </label>
-          <a
-            href={`mailto:${contact.email}?subject=${encodeURIComponent(`CCDI enquiry: ${interest}`)}&body=${encodeURIComponent(draft)}`}
-            className="button button-outline"
-          >
-            Continue by email <ArrowUpRight size={17} />
-          </a>
-          <a
-            href={facebook}
-            target="_blank"
-            rel="noreferrer"
-            className="button button-outline"
-          >
-            Continue on Facebook <ArrowUpRight size={17} />
-          </a>
         </div>
+        <div className="form-row">
+          <label>
+            Full name <span>*</span>
+            <input
+              name="name"
+              autoComplete="name"
+              required
+              maxLength={120}
+              placeholder="Your full name…"
+            />
+          </label>
+          <label>
+            Email address <span>*</span>
+            <input
+              type="email"
+              name="email"
+              autoComplete="email"
+              required
+              maxLength={254}
+              spellCheck={false}
+              placeholder="you@example.com…"
+            />
+          </label>
+        </div>
+        <div className="form-row">
+          <label>
+            Phone <small>(optional)</small>
+            <input
+              type="tel"
+              name="phone"
+              autoComplete="tel"
+              maxLength={40}
+              placeholder="+234…"
+            />
+          </label>
+          <label>
+            I’m interested in
+            <input
+              name="interest"
+              value={interest}
+              maxLength={160}
+              onChange={(e) => setInterest(e.target.value)}
+              list="interests"
+            />
+            <datalist id="interests">
+              {[
+                "General enquiry",
+                "Skills training",
+                "Volunteering",
+                "Partnership",
+                "Donating",
+                "Enterprise services",
+                "Membership",
+                "Returning a completed form",
+              ].map((i) => (
+                <option key={i} value={i} />
+              ))}
+            </datalist>
+          </label>
+        </div>
+        <label>
+          Your message <span>*</span>
+          <textarea
+            name="message"
+            required
+            rows={5}
+            maxLength={10000}
+            placeholder="Tell us a little about what you have in mind…"
+          />
+        </label>
+        <p className="form-privacy">
+          Your enquiry is sent securely through Formspree to CCDI. Please do not
+          include sensitive information about children or other people.{" "}
+          <a href="/privacy-policy/">Privacy information</a>
+        </p>
+        <button
+          className="button button-green"
+          type="submit"
+          disabled={status === "sending"}
+        >
+          {status === "sending" ? (
+            "Sending…"
+          ) : (
+            <>
+              <ArrowUpRight size={17} aria-hidden="true" />
+              Send enquiry
+            </>
+          )}
+        </button>
+      </fieldset>
+      <div role="status" aria-live="polite" className="form-status">
+        {status === "sent" && (
+          <p>
+            Thank you. Your enquiry has been sent to CCDI. We’ll reply to the
+            email address you provided.
+          </p>
+        )}
+      </div>
+      {error && (
+        <p role="alert" className="form-status">
+          {error} <a href={`mailto:${contact.email}`}>Email {contact.email}</a>
+        </p>
       )}
     </form>
   );

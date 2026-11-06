@@ -91,7 +91,7 @@ Run the build before `check:export`; the checker reads the generated `out/` dire
 - 12 programme and event videos with native playback controls.
 - Five community testimonials and two leadership reflections, including their full supplied stories and identified portraits.
 - Four original PDF documents, with their guidance also integrated into relevant training, membership, privacy and safeguarding pages.
-- Contact information and locally prepared enquiries; support choices lead to a relevant enquiry rather than a payment checkout.
+- Contact information and Formspree enquiries; training, volunteer, partnership and support links prefill the shared contact form.
 - Public contact email: `info@creativecdi.org`; Facebook, TikTok and WhatsApp group links are shared in the header, footer and Contact page. Contact also includes a Google Maps preview and directions link using the supplied Lagos address.
 
 ## Project structure
@@ -152,7 +152,7 @@ The registration and membership PDFs are printable forms. Visitors are directed 
 
 ## Current behaviour and remaining material
 
-- The enquiry form prepares a message locally and copies it to the clipboard, with a selectable fallback. The visitor must send the message through CCDI’s Facebook page; the website does not submit it to a backend.
+- The enquiry form submits directly to Formspree (`mgaaqbbw`) and emails `creativeselfcraft2008@gmail.com`. All enquiry topics share this inbox. It includes a loading state, confirmation, recoverable errors, email reply-to, a spam honeypot and a native POST fallback. Formspree stores submissions; the website privacy page describes this. The endpoint is public and needs no secret or server. See `docs/contact-form.md` for handover details.
 - Donation/support options do not collect payments. Visitors contact CCDI to confirm current needs and official payment arrangements.
 - Impact figures confirmed for this version are 18 years of impact, 3,000+ beneficiaries annually, 12,000+ people reached and 12+ community reach.
 - Detailed financial statements, reporting periods, partner/sponsor logos and additional management biographies remain to be supplied.

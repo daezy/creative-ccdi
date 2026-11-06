@@ -1,6 +1,7 @@
 import { Mail, ArrowUpRight } from "lucide-react";
 import { officialEmails } from "@/lib/content";
 import styles from "./official-email.module.css";
+import Link from "next/link";
 
 export function OfficialEmail({
   department,
@@ -17,6 +18,10 @@ export function OfficialEmail({
           {email}
           <ArrowUpRight size={17} aria-hidden="true" />
         </a>
+        <Link href={`/contact/?interest=${encodeURIComponent(label)}`}>
+          Send an enquiry
+          <ArrowUpRight size={17} aria-hidden="true" />
+        </Link>
       </div>
     </aside>
   );
