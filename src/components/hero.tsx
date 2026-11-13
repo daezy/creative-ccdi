@@ -137,7 +137,7 @@ function playSlide(root: HTMLElement) {
       0.15,
     )
     .from(
-      ".hero-photo-main img, .hero-photo-small img, .hero-management-photo img, .hero-arm-card img",
+      ".hero-photo-main img, .hero-photo-small img, .hero-management-photo img, .hero-arm-card img, .hero-welfare-photos img",
       { autoAlpha: 0, duration: 0.7, ease: "power1.out" },
       0,
     );
@@ -476,6 +476,34 @@ export function Hero() {
                     height={876}
                   />
                 </div>
+              ) : arm!.slug === "benevolent-childcare" ? (
+                <figure className="hero-welfare-photos">
+                  <div className="hero-welfare-photo-grid">
+                    <PhotoSlot label={arm!.photo} photo={currentArmPhoto} />
+                    <PhotoSlot
+                      label="Community group during welfare outreach"
+                      photo={{
+                        src: "/images/welfare-community-group.webp",
+                        alt: "Children and volunteers together during a welfare outreach visit",
+                        width: 1080,
+                        height: 809,
+                      }}
+                    />
+                    <PhotoSlot
+                      label="Welfare outreach supplies"
+                      photo={{
+                        src: "/images/welfare-outreach-supplies.webp",
+                        alt: "CCDI volunteers with bottled water and bags of supplies during a welfare visit",
+                        width: 1080,
+                        height: 771,
+                      }}
+                    />
+                  </div>
+                  <figcaption className="hero-photo-caption">
+                    <span className="status-dot" />
+                    {arm!.title}
+                  </figcaption>
+                </figure>
               ) : (
                 <div
                   className={`hero-photo-main${currentArmPhoto ? " hero-arm-group" : ""}`}
