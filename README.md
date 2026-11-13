@@ -177,7 +177,7 @@ The shared commitments section uses a green introduction panel and numbered prom
 
 ### Official email addresses
 
-General enquiries use `info@creativecdi.org` in the header, footer, Contact page and organisation SEO data. Administration (`office@creativecdi.org`) and leadership (`director@creativecdi.org`) are on About CCDI; projects (`projects@creativecdi.org`) appear on programme and project pages; finance (`finance@creativecdi.org`), partnerships (`partnerships@creativecdi.org`) and donations (`donate@creativecdi.org`) appear on their corresponding pages. The personal Yahoo address is no longer used in site content.
+General enquiries use `info@creativecdi.org` in the header, footer, Contact page and organisation SEO data. Administration (`office@creativecdi.org`) and leadership (`director@creativecdi.org`) are on About CCDI; projects (`projects@creativecdi.org`) appear on programme and project pages; finance (`finance@creativecdi.org`), partnerships (`partnerships@creativecdi.org`) and donations (`donation@creativecdi.org`) appear on their corresponding pages. The personal Yahoo address is no longer used in site content.
 
 Hosting setup is separate: create the `info@creativecdi.org` mailbox in cPanel, then create the other six addresses above as forwarders to that mailbox. Use the plural `partnerships` consistently. These website changes do not provision mailboxes or forwarders. Verify delivery to all seven addresses once the hosting setup is complete.
 

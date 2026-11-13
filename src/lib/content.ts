@@ -17,13 +17,13 @@ export const officialEmails = {
     label: "Partnerships",
     email: "partnerships@creativecdi.org",
   },
-  support: { label: "Support CCDI", email: "donate@creativecdi.org" },
+  support: { label: "Support CCDI", email: "donation@creativecdi.org" },
 } as const;
 /** Stable profile destination of the supplied TikTok share link. */
 export const tiktok = "https://www.tiktok.com/@user5333967161017";
 export const whatsapp = "https://wa.me/2348026264133";
 export const youtube =
-  "https://www.youtube.com/channel/UCHORuJVuf6_11sKLlNfrJ7A";
+  "https://www.youtube.com/channel/UC-jt6kmG9Jb8ebhRO8JnGyg";
 export const socials = [
   { label: "Facebook", href: facebook, action: "Find us on Facebook" },
   { label: "TikTok", href: tiktok, action: "Watch on TikTok" },
