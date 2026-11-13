@@ -116,7 +116,14 @@ export function Publications() {
                   height={p.height}
                   loading="lazy"
                   decoding="async"
-                  style={{ objectFit: p.contain ? "contain" : "cover" }}
+                  style={{
+                    objectFit: p.contain ? "contain" : "cover",
+                    // Portrait photos in landscape tiles: keep faces in frame.
+                    objectPosition:
+                      "objectPosition" in p
+                        ? String(p.objectPosition)
+                        : undefined,
+                  }}
                   {...responsive(p.src, p.width, SIZES.third)}
                 />
                 <h3>{p.alt}</h3>
@@ -197,7 +204,14 @@ export function ProjectPhotos({ slug }: { slug: string }) {
                   height={p.height}
                   loading="lazy"
                   decoding="async"
-                  style={{ objectFit: p.contain ? "contain" : "cover" }}
+                  style={{
+                    objectFit: p.contain ? "contain" : "cover",
+                    // Portrait photos in landscape tiles: keep faces in frame.
+                    objectPosition:
+                      "objectPosition" in p
+                        ? String(p.objectPosition)
+                        : undefined,
+                  }}
                   {...responsive(p.src, p.width, SIZES.third)}
                 />
               </a>
