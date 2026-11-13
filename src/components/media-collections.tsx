@@ -148,7 +148,7 @@ export function ProjectPhotos({ slug }: { slug: string }) {
       "certification-event",
     ],
     "social-enterprise": [
-      "catering-service",
+      "catering-class",
       "fashion-design",
       "handmade-bags",
       "event-decoration",

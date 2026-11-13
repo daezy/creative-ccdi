@@ -75,7 +75,7 @@ export const photos: Record<string, Photo> = {
     library["skills-certification-graduates"],
   "Hands-on learning and practical skills training":
     library["skills-baking-team"],
-  "CCDI enterprise, catering, and production": library["catering-service"],
+  "CCDI enterprise, catering, and production": library["fashion-design"],
   "Youth empowerment and child welfare programmes":
     library["welfare-donation-team"],
   "Families learning and growing together": library["couples-blissful-day"],
