@@ -6384,11 +6384,11 @@ textarea::placeholder {
 }
 .preloader-tag {
   margin: 14px 0 0;
-  font-size: 10px;
-  letter-spacing: 0.22em;
+  font-size: 11px;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: var(--muted);
-  font-weight: 600;
+  color: var(--ink);
+  font-weight: 750;
   animation: pl-fade 0.7s ease 2.15s both;
 }
 .preloader-bar {
