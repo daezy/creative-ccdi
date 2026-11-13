@@ -66,6 +66,8 @@ export const metadata: Metadata = {
 };
 export const viewport: Viewport = {
   themeColor: "#075b37",
+  // Light only: tells browsers not to auto-darken the site in dark mode.
+  colorScheme: "only light",
   width: "device-width",
   initialScale: 1,
 };

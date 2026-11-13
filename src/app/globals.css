@@ -1,6 +1,8 @@
 @import "@fontsource-variable/manrope";
 @import "@fontsource-variable/dm-sans";
 :root {
+  /* The site is always light; browsers must not apply automatic dark mode. */
+  color-scheme: only light;
   --green: #075b37;
   --green-dark: #073e29;
   --ink: #173c2c;
