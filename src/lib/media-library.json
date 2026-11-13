@@ -2288,5 +2288,45 @@
     "source": "images/welfare/WhatsApp Image 2026-10-29 at 15.29.56.jpeg",
     "id": 240,
     "contain": false
+  },
+  "couples-evening-of-bliss": {
+    "src": "/images/library/couples-evening-of-bliss.webp",
+    "alt": "A couple at Couple's Evening of Bliss",
+    "width": 1080,
+    "height": 1614,
+    "category": "Family & community",
+    "source": "images/community/WhatsApp Image 2026-11-13 at 18.11.35 (1).jpeg",
+    "id": 241,
+    "contain": false
+  },
+  "couples-evening-of-bliss-portrait": {
+    "src": "/images/library/couples-evening-of-bliss-portrait.webp",
+    "alt": "A couple's portrait at Couple's Evening of Bliss",
+    "width": 1080,
+    "height": 1614,
+    "category": "Family & community",
+    "source": "images/community/WhatsApp Image 2026-11-13 at 18.11.35 (2).jpeg",
+    "id": 242,
+    "contain": false
+  },
+  "couples-praying-together": {
+    "src": "/images/library/couples-praying-together.webp",
+    "alt": "A couple praying together at a couples programme",
+    "width": 1080,
+    "height": 723,
+    "category": "Family & community",
+    "source": "images/community/WhatsApp Image 2026-11-13 at 18.11.35 (3).jpeg",
+    "id": 243,
+    "contain": false
+  },
+  "living-marital-life-couple": {
+    "src": "/images/library/living-marital-life-couple.webp",
+    "alt": "A couple at a Living Marital Life event",
+    "width": 640,
+    "height": 960,
+    "category": "Family & community",
+    "source": "images/community/WhatsApp Image 2026-11-13 at 18.11.35 (4).jpeg",
+    "id": 244,
+    "contain": false
   }
 }

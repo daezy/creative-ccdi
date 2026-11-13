@@ -169,6 +169,8 @@ export function ProjectPhotos({ slug }: { slug: string }) {
       "family-event-guests",
       "family-talk",
       "community-award",
+      "couples-evening-of-bliss",
+      "couples-dance",
     ],
   };
   return (
