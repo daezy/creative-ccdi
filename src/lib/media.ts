@@ -98,10 +98,10 @@ export const photos: Record<string, Photo> = {
   "Growing in confidence": library["craft-workshop"],
   "A place to create": library["sewing-class"],
   "Together, we thrive": library["couples-blissful-day"],
-  "From skill to service": library["catering-service"],
+  "From skill to service": library["catering-class"],
   "CCDI centre": library["ccdi-centre"],
   "From potential to practical skills":
     library["skills-certification-graduates"],
-  "Enterprise that gives back to community": library["catering-service"],
+  "Enterprise that gives back to community": library["catering-class"],
   "Stronger families, stronger futures": library["couples-blissful-day"],
 };

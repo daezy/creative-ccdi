@@ -150,7 +150,7 @@ const servicePhotos = [
   "event-decoration",
   "event-arrivals",
   "catering-class",
-  "catering-service",
+  "catering-team",
   "helpers-helpmeet",
   "fashion-design",
   "seminar-audience",
