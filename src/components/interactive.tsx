@@ -488,8 +488,14 @@ export function EnquiryForm() {
     </form>
   );
 }
-export function SupportSelector() {
-  const [choice, setChoice] = useState("Skills & learning");
+const generalSupport = { title: "Where it’s needed most", icon: "care" };
+export function SupportSelector({
+  options,
+}: {
+  options: readonly { title: string; icon: string }[];
+}) {
+  const choices = [...options, generalSupport];
+  const [choice, setChoice] = useState(choices[0].title);
   return (
     <div className="support-selector">
       <h2>What would you like to support?</h2>
@@ -502,19 +508,14 @@ export function SupportSelector() {
         role="group"
         aria-label="Area to support"
       >
-        {[
-          "Skills & learning",
-          "Child welfare",
-          "Family & community",
-          "Where it’s needed most",
-        ].map((s, i) => (
+        {choices.map(({ title: s, icon }) => (
           <button
             key={s}
             onClick={() => setChoice(s)}
             aria-pressed={choice === s}
             className={choice === s ? "selected" : ""}
           >
-            <Icon name={["skills", "care", "community", "enterprise"][i]} />
+            <Icon name={icon} />
             <span>{s}</span>
             <span className="choice-indicator">
               {choice === s && <Check size={14} />}

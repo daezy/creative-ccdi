@@ -96,7 +96,11 @@ export const pageDesigns: Record<string, PageDesign> = {
   donate: {
     family: "participate",
     image: "welfare-support-visit",
-    links: [["Support that opens doors", "page-details"]],
+    links: [
+      ["Donate", "page-details"],
+      ["Sponsor a project", "sponsor-a-project"],
+      ["Partner with us", "become-a-partner"],
+    ],
   },
   testimonials: {
     family: "voices",

@@ -475,7 +475,7 @@ export const pageInfo: Record<
       "Meaningful transformation grows through shared expertise, resources, and commitment.",
   },
   donate: {
-    label: "Support possibility",
+    label: "Donate · Sponsor · Partner",
     title: "Give someone a place to begin.",
     description:
       "Help create opportunities to learn, grow, and build a more independent future.",

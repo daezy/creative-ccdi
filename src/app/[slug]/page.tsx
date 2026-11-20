@@ -45,6 +45,7 @@ import { fundingSources, fundUses } from "@/lib/programmes";
 import { Testimonials } from "@/components/testimonials";
 import { EventsCalendar } from "@/components/events-calendar";
 import { UpcomingEvents } from "@/components/upcoming-events";
+import { DonateContent } from "@/components/donate-content";
 import { DisclosureMotion } from "@/components/disclosure-motion";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
@@ -55,7 +56,6 @@ import {
   ArrowRight,
   ShieldCheck,
   BookOpen,
-  Heart,
   MapPin,
   Mail,
   Phone,
@@ -86,7 +86,6 @@ import {
   TrainingGrid,
   Gallery,
   EnquiryForm,
-  SupportSelector,
 } from "@/components/interactive";
 const communityEvidenceByPage: Record<string, string> = {
   impact: "emadu",
@@ -487,47 +486,7 @@ async function PageContent({ slug }: { slug: string }) {
         </>
       );
     case "donate":
-      return (
-        <div className="donate-grid">
-          <div>
-            <Eyebrow>Support that opens doors</Eyebrow>
-            <h2>
-              Help possibility
-              <br />
-              find a place.
-            </h2>
-            <p>
-              Your support can contribute to practical training, learning
-              resources, welfare initiatives, and stronger families and
-              communities.
-            </p>
-            <ul className="check-list">
-              {[
-                "Support practical skills and learning",
-                "Contribute resources or professional expertise",
-                "Sponsor a programme or community initiative",
-                "Discuss giving that aligns with your interests",
-              ].map((t) => (
-                <li key={t}>
-                  <Check size={17} />
-                  {t}
-                </li>
-              ))}
-            </ul>
-            <div className="editorial-note">
-              <ShieldCheck size={24} />
-              <p>
-                Speak directly with CCDI to confirm current needs, official
-                payment details, and arrangements for your contribution.
-              </p>
-            </div>
-            <TextLink href="/financial-transparency/">
-              Our transparency commitment
-            </TextLink>
-          </div>
-          <SupportSelector />
-        </div>
-      );
+      return <DonateContent />;
     case "contact":
       return (
         <>

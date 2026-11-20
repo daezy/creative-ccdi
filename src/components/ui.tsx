@@ -17,6 +17,8 @@ import {
   BookOpen,
   BriefcaseBusiness,
   Camera,
+  GraduationCap,
+  HeartPulse,
   type LucideIcon,
 } from "lucide-react";
 import type { ReactNode } from "react";
@@ -31,6 +33,8 @@ export const icons: Record<string, LucideIcon> = {
   digital: Monitor,
   agriculture: Sprout,
   printing: Printer,
+  education: GraduationCap,
+  health: HeartPulse,
 };
 export function Icon({ name, size = 25 }: { name: string; size?: number }) {
   const I = icons[name] || Sprout;
