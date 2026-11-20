@@ -3,7 +3,9 @@ import { CalendarDays } from "lucide-react";
 import {
   calendarProgrammes,
   calendarYear,
+  formatDates,
   months,
+  scheduledEvents,
   type CalendarArm,
 } from "@/lib/events-calendar";
 import { SectionHead, TextLink } from "./ui";
@@ -15,6 +17,7 @@ const armNames: Record<CalendarArm, string> = {
 };
 
 export function EventsCalendar() {
+  const events = scheduledEvents();
   return (
     <>
       <section className="calendar-overview" id="year-at-a-glance">
@@ -22,9 +25,9 @@ export function EventsCalendar() {
           eyebrow={`CCDI year calendar ${calendarYear}`}
           title="The year at a glance."
         >
-          Our monthly, bi-monthly, quarterly and thrice-a-year programmes.
-          Exact dates are fixed by the planning committee and announced ahead
-          of each event, usually on a weekend.
+          Our monthly, bi-monthly, quarterly and thrice-a-year programmes, each
+          held on a set day of the month. Dates still to be confirmed are
+          announced ahead of each event.
         </SectionHead>
         <ul className="calendar-legend" aria-label="Project arms">
           {(Object.keys(armNames) as CalendarArm[]).map((arm) => (
@@ -91,15 +94,18 @@ export function EventsCalendar() {
                 {m} {calendarYear}
               </h3>
               <ul>
-                {calendarProgrammes
-                  .filter((p) => p.months.includes(mi + 1))
-                  .map((p) => (
-                    <li key={p.id}>
+                {events
+                  .filter((e) => e.month === mi + 1)
+                  .map(({ key, programme: p, dates }) => (
+                    <li key={key}>
                       <span
                         className={`calendar-dot arm-${p.arm}`}
                         aria-hidden="true"
                       />
-                      <Link href={`/projects/${p.arm}/`}>{p.short}</Link>
+                      <span className="calendar-month-item">
+                        <Link href={`/projects/${p.arm}/`}>{p.short}</Link>
+                        <small>{formatDates(dates)}</small>
+                      </span>
                     </li>
                   ))}
               </ul>
@@ -108,7 +114,7 @@ export function EventsCalendar() {
         </ol>
         <p className="calendar-note">
           Want to take part, volunteer or partner on a programme?{" "}
-          <TextLink href="/contact/">Talk to us</TextLink>
+          <TextLink href="/events/">See upcoming events</TextLink>
         </p>
       </section>
     </>

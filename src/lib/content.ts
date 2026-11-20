@@ -81,7 +81,14 @@ export const navigation = [
       { label: "Events Documents", href: "/documents/" },
     ],
   },
-  { label: "Calendar", href: "/calendar/" },
+  {
+    label: "Events",
+    href: "/events/",
+    links: [
+      { label: "Upcoming Events", href: "/events/" },
+      { label: "Calendar of Events 2027", href: "/calendar/" },
+    ],
+  },
   { label: "Contact & More", href: "/contact/" },
 ];
 export const arms = [
@@ -436,6 +443,12 @@ export const pageInfo: Record<
     title: "See possibility in action.",
     description:
       "A space for programme films, event highlights, and stories from our community.",
+  },
+  events: {
+    label: "Upcoming events",
+    title: "Come and be part of it.",
+    description:
+      "Dates for CCDI’s outreach, training, conferences, health seminars and family programmes.",
   },
   calendar: {
     label: "Calendar of events",

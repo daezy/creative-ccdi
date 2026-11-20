@@ -124,6 +124,13 @@ export const pageDesigns: Record<string, PageDesign> = {
     image: "family-event-guests",
     links: [["The CCDI journal", "page-details"]],
   },
+  events: {
+    family: "reference",
+    links: [
+      ["Next on the calendar", "page-details"],
+      ["Dates for your diary", "upcoming-events"],
+    ],
+  },
   calendar: {
     family: "reference",
     links: [
@@ -221,7 +228,7 @@ export function PageMasthead({ slug }: { slug: string }) {
             <div className="reference-emblem" aria-hidden="true">
               {slug.includes("protection") || slug.includes("privacy") ? (
                 <ShieldCheck size={62} strokeWidth={1} />
-              ) : slug === "calendar" ? (
+              ) : slug === "calendar" || slug === "events" ? (
                 <CalendarDays size={62} strokeWidth={1} />
               ) : (
                 <FileText size={62} strokeWidth={1} />

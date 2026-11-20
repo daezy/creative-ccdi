@@ -44,6 +44,7 @@ import {
 import { fundingSources, fundUses } from "@/lib/programmes";
 import { Testimonials } from "@/components/testimonials";
 import { EventsCalendar } from "@/components/events-calendar";
+import { UpcomingEvents } from "@/components/upcoming-events";
 import { DisclosureMotion } from "@/components/disclosure-motion";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
@@ -470,6 +471,8 @@ async function PageContent({ slug }: { slug: string }) {
           <MediaConsent brief />
         </>
       );
+    case "events":
+      return <UpcomingEvents />;
     case "calendar":
       return <EventsCalendar />;
     case "documents":
