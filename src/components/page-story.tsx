@@ -1,7 +1,12 @@
 import { EagerImage } from "./eager-image";
 import { responsive } from "@/lib/responsive";
 import Link from "next/link";
-import { ArrowDownRight, FileText, ShieldCheck } from "lucide-react";
+import {
+  ArrowDownRight,
+  CalendarDays,
+  FileText,
+  ShieldCheck,
+} from "lucide-react";
 import { pageInfo } from "@/lib/content";
 import library from "@/lib/media-library.json";
 import { communityTestimonials } from "@/lib/testimonials";
@@ -119,6 +124,13 @@ export const pageDesigns: Record<string, PageDesign> = {
     image: "family-event-guests",
     links: [["The CCDI journal", "page-details"]],
   },
+  calendar: {
+    family: "reference",
+    links: [
+      ["The year at a glance", "year-at-a-glance"],
+      ["Month by month", "month-by-month"],
+    ],
+  },
   documents: {
     family: "reference",
     links: [
@@ -209,6 +221,8 @@ export function PageMasthead({ slug }: { slug: string }) {
             <div className="reference-emblem" aria-hidden="true">
               {slug.includes("protection") || slug.includes("privacy") ? (
                 <ShieldCheck size={62} strokeWidth={1} />
+              ) : slug === "calendar" ? (
+                <CalendarDays size={62} strokeWidth={1} />
               ) : (
                 <FileText size={62} strokeWidth={1} />
               )}

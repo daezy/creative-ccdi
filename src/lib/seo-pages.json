@@ -77,6 +77,12 @@
     "label": "CCDI in motion",
     "category": "Creative Craft Development Initiative"
   },
+  "/calendar/": {
+    "title": "CCDI Calendar of Events 2027",
+    "description": "See when CCDI’s 2027 programmes take place: Touch of Love, welfare support, skills empowerment, leadership conferences, childcare, couples’ day-out, and health awareness seminars.",
+    "label": "Calendar of events",
+    "category": "Creative Craft Development Initiative"
+  },
   "/documents/": {
     "title": "Registration Forms, Membership & Resources",
     "description": "Access CCDI student registration and membership forms, programme resources, publications, and privacy and safeguarding guidance.",

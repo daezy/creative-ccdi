@@ -124,6 +124,7 @@ export function pageStructuredData(path: string) {
                   "/programmes/",
                   "/projects/",
                   "/documents/",
+                  "/calendar/",
                 ].includes(path)
               ? "CollectionPage"
               : "WebPage",
