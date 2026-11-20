@@ -9118,6 +9118,7 @@ body {
   gap: 8px;
 }
 .calendar-table-scroll {
+  position: relative;
   max-width: 100%;
   overflow-x: auto;
   border: 1px solid var(--line);
